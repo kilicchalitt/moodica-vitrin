@@ -1,8 +1,0 @@
-.DS_Store
-Thumbs.db
-*.log
-.env
-bin/
-obj/
-.vs/
-node_modules/
