@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using bitirme.Models;
 using Microsoft.AspNetCore.SignalR;
 
 namespace bitirme.Hubs
@@ -15,11 +16,11 @@ namespace bitirme.Hubs
 
             if (int.TryParse(userIdValue, out var userId))
             {
-                if (role == "Patient")
+                if (role == AppRoles.Patient)
                 {
                     await Groups.AddToGroupAsync(Context.ConnectionId, PatientGroup(userId));
                 }
-                else if (role == "Doctor")
+                else if (role == AppRoles.Doctor)
                 {
                     await Groups.AddToGroupAsync(Context.ConnectionId, DoctorGroup(userId));
                 }

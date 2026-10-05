@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using bitirme.Data;
+using bitirme.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
@@ -43,8 +44,8 @@ namespace bitirme.Hubs
             var isParticipant = await _context.Appointments
                 .AsNoTracking()
                 .AnyAsync(a => a.Id == appointmentId &&
-                               ((role == "Patient" && a.PatientId == userId) ||
-                                (role == "Doctor" && a.DoctorId == userId)));
+                               ((role == AppRoles.Patient && a.PatientId == userId) ||
+                                (role == AppRoles.Doctor && a.DoctorId == userId)));
 
             if (!isParticipant)
             {
@@ -82,7 +83,7 @@ namespace bitirme.Hubs
         public async Task SendNote(string roomId, string note)
         {
             EnsureJoined(roomId);
-            if (Context.User?.FindFirstValue(ClaimTypes.Role) != "Doctor")
+            if (Context.User?.FindFirstValue(ClaimTypes.Role) != AppRoles.Doctor)
             {
                 throw new HubException("Not gönderme yetkiniz yok.");
             }
