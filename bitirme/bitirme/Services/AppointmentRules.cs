@@ -19,6 +19,9 @@ namespace bitirme.Services
         /// <summary>Randevu alınabilen son saat sınırı (hariç).</summary>
         public const int LastHourExclusive = 20;
 
+        /// <summary>Başlangıcı şu andan önce (veya tam şu an) olan randevu alınamaz.</summary>
+        public static bool IsInPast(DateTime start, DateTime now) => start <= now;
+
         public static bool IsWeekend(DateTime start) =>
             start.DayOfWeek == DayOfWeek.Saturday || start.DayOfWeek == DayOfWeek.Sunday;
 
