@@ -24,4 +24,4 @@ jobs:
         run: dotnet build bitirme/bitirme.sln --configuration Release --no-restore
 
       - name: Testler
-        run: dotnet test bitirme/bitirme.sln --configuration Release --no-build
+        run: dotnet test --solution bitirme/bitirme.sln --configuration Release --no-build
