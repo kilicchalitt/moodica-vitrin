@@ -4,8 +4,8 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `5d866f5feb23203e5d6da53c5f3b243fe936ed19`
-- Kaynak commit tarihi: 2026-10-05T12:00:19+03:00
+- Kaynak commit: `0053b066d00a8748aaf51e8f78582cee071e938e`
+- Kaynak commit tarihi: 2026-10-05T12:00:39+03:00
 - Dosya sayısı: 6
 
 | Dosya | SHA-256 |
@@ -15,4 +15,4 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme/Hubs/VideoHub.cs` | `08d6fec75c753cb0be5e2465e72978979917ce310fab78d27051c5e50db60ca7` |
 | `bitirme/bitirme/Services/AppointmentRules.cs` | `5c4c0777ce4be3335662b7ab00e302d86088989eff17d6345fff557701ca4488` |
 | `bitirme/bitirme/bitirme.csproj` | `995de0c340d758b58aeb2e5316e3f59064c9e862004fa3589ee62dd1003d7698` |
-| `docs/ana-proje-ci.yml` | `d5dcd1af4344befb496d6d7e2144bbd3aa339fd6aacf3fe317f6e2332908ad3d` |
+| `docs/ana-proje-ci.yml` | `a88e91c80e3b494c5d3a7eaa2cbeaa1c40c82aee5c4550c832b3d2a8074bc7da` |
