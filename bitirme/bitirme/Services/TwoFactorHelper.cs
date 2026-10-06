@@ -37,6 +37,12 @@ namespace bitirme.Services
         public static string NormalizeCode(string? code) =>
             new string((code ?? string.Empty).Where(c => !char.IsWhiteSpace(c) && c != '-').ToArray());
 
+        /// <summary>
+        /// Kurtarma kodları Identity'de tireli saklanır ("ABCDE-FGHIJ"); yalnızca boşluklar atılır ve büyük harfe çevrilir.
+        /// </summary>
+        public static string NormalizeRecoveryCode(string? code) =>
+            new string((code ?? string.Empty).Where(c => !char.IsWhiteSpace(c)).ToArray()).ToUpperInvariant();
+
         public static string QrCodeDataUri(string text)
         {
             using var generator = new QRCodeGenerator();
