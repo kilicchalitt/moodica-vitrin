@@ -4,9 +4,9 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `1445ab8871e74af701462a8fcf0ac1d648b4cceb`
+- Kaynak commit: `f4ced4308d249211a7cb520a793a35f3a7fe5c4b`
 - Kaynak commit tarihi: 2026-10-07T00:26:43+03:00
-- Dosya sayısı: 13
+- Dosya sayısı: 14
 
 | Dosya | SHA-256 |
 |---|---|
@@ -19,6 +19,7 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme/Services/AppointmentRules.cs` | `5c4c0777ce4be3335662b7ab00e302d86088989eff17d6345fff557701ca4488` |
 | `bitirme/bitirme/Services/ConsentCatalog.cs` | `39283d081b215bdab6c599aeabdcf15a358007c9b4e84ffa352fd42f19f4f9b0` |
 | `bitirme/bitirme/Services/ConsentService.cs` | `507c1040da4d66c4c00375f9fc36d16a4c5e5639294abc63d3cbd5eb186e4d2c` |
+| `bitirme/bitirme/Services/HealthDataAuditLog.cs` | `17c00d0b856e53811bb378b226006107503c420529ed6ac890485c59a3ba97dd` |
 | `bitirme/bitirme/Services/RecoveryCodeHasher.cs` | `b3e59d5d216ca3c03f1e3aa1d44d3e842e38cd9247867a5889e74475c1bdd132` |
 | `bitirme/bitirme/Services/TwoFactorHelper.cs` | `eba0500e050458401531e836b14b42b647dc247ea22c1cb5c42d48c87df3a605` |
 | `bitirme/bitirme/bitirme.csproj` | `d8705ede244ed179e9e5b230f8c9be27058242ed735e1c622fab2469e3b0ca86` |
