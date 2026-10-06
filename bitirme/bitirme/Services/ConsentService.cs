@@ -20,13 +20,13 @@ namespace bitirme.Services
         }
 
         /// <summary>Metinlerin güncel sürümlerinin onayını kaydeder.</summary>
-        public async Task RecordAsync(User user, IEnumerable<ConsentDocument> documents)
+        public async Task RecordAsync(int userId, IEnumerable<ConsentDocument> documents)
         {
             var records = documents
                 .Distinct()
                 .Select(document => new ConsentRecord
                 {
-                    UserId = user.Id,
+                    UserId = userId,
                     Document = document,
                     Version = ConsentCatalog.CurrentVersion(document)
                 })
@@ -37,7 +37,7 @@ namespace bitirme.Services
 
             foreach (var record in records)
             {
-                _logger.LogInformation("Rıza onayı: kullanıcı {UserId}, {Document} sürüm {Version}", user.Id, record.Document, record.Version);
+                _logger.LogInformation("Rıza onayı: kullanıcı {UserId}, {Document} sürüm {Version}", userId, record.Document, record.Version);
             }
         }
 

@@ -34,6 +34,14 @@ namespace bitirme.Services
             _ => []
         };
 
+        /// <summary>Identity rol adından rıza akışına giren kullanıcı türü; yönetici ve bilinmeyen roller için null.</summary>
+        public static UserRole? RoleFromName(string? roleName) => roleName switch
+        {
+            AppRoles.Patient => UserRole.Patient,
+            AppRoles.Doctor => UserRole.Doctor,
+            _ => null
+        };
+
         /// <summary>Kullanıcı türü için güncel sürümü henüz onaylanmamış metinler.</summary>
         public static IReadOnlyList<ConsentDocument> Missing(UserRole role, IEnumerable<(ConsentDocument Document, string Version)> accepted)
         {
