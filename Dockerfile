@@ -19,6 +19,8 @@ WORKDIR /app
 ENV ASPNETCORE_HTTP_PORTS=8080
 EXPOSE 8080
 COPY --from=build /app .
+# Yüklenen dosyalar için klasör; compose'da kalıcı birim bağlanır. Uygulama kullanıcısı yazabilmeli.
+RUN mkdir -p /app/App_Data && chown $APP_UID /app/App_Data
 # Uygulama root yerine imajın hazır, yetkisiz kullanıcısıyla çalışır.
 USER $APP_UID
 ENTRYPOINT ["dotnet", "bitirme.dll"]
