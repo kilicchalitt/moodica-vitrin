@@ -22,9 +22,12 @@ namespace bitirme.Hubs
         private const string JoinedRoomsKey = "JoinedRooms";
         private readonly AppDbContext _context;
 
-        public VideoHub(AppDbContext context)
+        private readonly TimeProvider _time;
+
+        public VideoHub(AppDbContext context, TimeProvider time)
         {
             _context = context;
+            _time = time;
         }
 
         // Bir kullanıcı (Doktor veya Hasta) odaya (randevu numarasına) katılır
@@ -50,7 +53,7 @@ namespace bitirme.Hubs
 
             // Onayı geri alınmış veya askıdaki uzman görüşmeye katılamaz (ISSUE-38).
             if (!isParticipant || (role == AppRoles.Doctor &&
-                !await _context.Doctors.Visible(DateTimeOffset.UtcNow).AnyAsync(d => d.Id == userId)))
+                !await _context.Doctors.Visible(_time.GetUtcNow()).AnyAsync(d => d.Id == userId)))
             {
                 throw new HubException("Bu görüşmeye erişim yetkiniz yok.");
             }

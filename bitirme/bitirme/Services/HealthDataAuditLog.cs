@@ -58,8 +58,11 @@ namespace bitirme.Services
     {
         private readonly AppDbContext _context;
 
-        public HealthDataAuditLog(AppDbContext context)
+        private readonly TimeProvider _time;
+
+        public HealthDataAuditLog(AppDbContext context, TimeProvider time)
         {
+            _time = time;
             _context = context;
         }
 
@@ -72,7 +75,8 @@ namespace bitirme.Services
                 return;
             }
 
-            var since = DateTime.Now - HealthDataAuditRules.ViewDeduplicationWindow;
+            var now = _time.UtcNow();
+            var since = now - HealthDataAuditRules.ViewDeduplicationWindow;
             var subjectIds = accesses.Select(a => a.SubjectUserId).Distinct().ToList();
             var recentViews = await _context.HealthDataAccessLogs
                 .Where(l => l.ActorUserId == actorUserId && l.Action == HealthDataAccessAction.Viewed &&
@@ -97,7 +101,7 @@ namespace bitirme.Services
                 AppointmentId = a.AppointmentId,
                 Kind = a.Kind,
                 Action = a.Action,
-                CreatedAt = DateTime.Now
+                CreatedAt = now
             }));
             await _context.SaveChangesAsync();
         }
