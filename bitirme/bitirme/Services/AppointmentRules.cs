@@ -6,18 +6,21 @@ using bitirme.Models;
 namespace bitirme.Services
 {
     /// <summary>
-    /// Randevu oluşturma kuralları. Veritabanından bağımsızdır ve birim testlerle doğrulanır.
+    /// Randevu kuralları (DECISION-29). Veritabanından bağımsızdır ve birim testlerle doğrulanır. Zamanlar UTC'dir.
     /// </summary>
     public static class AppointmentRules
     {
-        /// <summary>Her seans 30 dakika sürer.</summary>
-        public const int SessionMinutes = 30;
+        /// <summary>Bir seans 50 dakika sürer; ardından 10 dakika ara (seanslar saat başında başlar).</summary>
+        public const int SessionMinutes = 50;
 
-        /// <summary>Randevu alınabilen ilk saat (dahil).</summary>
-        public const int FirstHour = 10;
+        /// <summary>Seans başlangıçları arasındaki adım (saat başı).</summary>
+        public const int SlotMinutes = 60;
 
-        /// <summary>Randevu alınabilen son saat sınırı (hariç).</summary>
-        public const int LastHourExclusive = 20;
+        /// <summary>Randevu en erken bu kadar sonrası için alınabilir.</summary>
+        public static readonly TimeSpan MinLeadTime = TimeSpan.FromHours(3);
+
+        /// <summary>Randevu en geç bu kadar sonrası için alınabilir.</summary>
+        public static readonly TimeSpan BookingHorizon = TimeSpan.FromDays(30);
 
         /// <summary>Danışanın randevu şikayeti/notu için en fazla karakter (ISSUE-40).</summary>
         public const int MaxComplaintLength = 1000;
@@ -27,18 +30,22 @@ namespace bitirme.Services
 
         public static string NoteTooLongMessage => $"Not en fazla {MaxNoteLength} karakter olabilir.";
 
-        /// <summary>Başlangıcı şu andan önce (veya tam şu an) olan randevu alınamaz.</summary>
-        public static bool IsInPast(DateTime start, DateTime now) => start <= now;
+        /// <summary>Seansın bittiği an.</summary>
+        public static DateTime EndOf(DateTime start) => start.AddMinutes(SessionMinutes);
 
-        public static bool IsWeekend(DateTime start) =>
-            start.DayOfWeek == DayOfWeek.Saturday || start.DayOfWeek == DayOfWeek.Sunday;
+        /// <summary>İki seans zaman olarak çakışıyor mu?</summary>
+        public static bool Overlaps(DateTime start, DateTime otherStart) =>
+            start < EndOf(otherStart) && otherStart < EndOf(start);
 
-        public static bool IsWithinWorkingHours(DateTime start) =>
-            start.Hour >= FirstHour && start.Hour < LastHourExclusive;
+        /// <summary>Takvim aralığında mı: en erken <see cref="MinLeadTime"/>, en geç <see cref="BookingHorizon"/> sonrası.</summary>
+        public static bool IsWithinBookingWindow(DateTime start, DateTime now) =>
+            start >= now + MinLeadTime && start <= now + BookingHorizon;
 
         /// <summary>Bekleyen ve onaylı randevular saati doldurur; iptal ve tamamlananlar doldurmaz.</summary>
-        public static bool OccupiesSlot(Appointment appointment) =>
-            appointment.Status == AppointmentStatus.Pending || appointment.Status == AppointmentStatus.Approved;
+        public static bool OccupiesSlot(Appointment appointment) => OccupiesSlot(appointment.Status);
+
+        public static bool OccupiesSlot(AppointmentStatus status) =>
+            status == AppointmentStatus.Pending || status == AppointmentStatus.Approved;
 
         /// <summary>
         /// Uzman, danışanın anket özetini yalnızca bu randevu üzerinden görebilir mi? Bekleyen, onaylı ve tamamlanan
@@ -46,14 +53,8 @@ namespace bitirme.Services
         /// </summary>
         public static bool GrantsAssessmentAccess(AppointmentStatus status) => status != AppointmentStatus.Cancelled;
 
-        /// <summary>Verilen başlangıçtaki seans, mevcut randevulardan biriyle çakışıyor mu?</summary>
-        public static bool HasConflict(DateTime start, IEnumerable<Appointment> existingAppointments)
-        {
-            var end = start.AddMinutes(SessionMinutes);
-            return existingAppointments.Any(a =>
-                OccupiesSlot(a) &&
-                start < a.AppointmentDate.AddMinutes(SessionMinutes) &&
-                end > a.AppointmentDate);
-        }
+        /// <summary>Verilen başlangıçtaki seans, saati dolduran mevcut randevulardan biriyle çakışıyor mu?</summary>
+        public static bool HasConflict(DateTime start, IEnumerable<Appointment> existingAppointments) =>
+            existingAppointments.Any(a => OccupiesSlot(a) && Overlaps(start, a.AppointmentDate));
     }
 }
