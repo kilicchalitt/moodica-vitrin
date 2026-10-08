@@ -74,7 +74,7 @@ public class AuthorizationTests(MoodicaFactory factory)
     {
         var patient = await _data.CreatePatientAsync();
         var doctor = await _data.CreateDoctorAsync();
-        var appointment = await _data.CreateAppointmentAsync(patient, doctor);
+        var appointment = await _data.CreateAppointmentAsync(patient, doctor, status: AppointmentStatus.Approved, startUtc: DateTime.UtcNow);
         var path = $"/Appointment/Meeting/{appointment.Id}";
 
         Assert.Equal(HttpStatusCode.OK, (await (await SignedInPatientAsync(patient)).GetAsync(path)).StatusCode);

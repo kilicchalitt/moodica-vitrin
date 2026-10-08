@@ -4,22 +4,22 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `8a584f8278a12c14ac9b7e93a591be152e890bf0`
-- Kaynak commit tarihi: 2026-10-09T00:01:04+03:00
+- Kaynak commit: `0f3adb7563b3998e6081bfe3823e535eb7b3b63e`
+- Kaynak commit tarihi: 2026-10-09T00:01:06+03:00
 - Dosya sayısı: 23
 
 | Dosya | SHA-256 |
 |---|---|
 | `Dockerfile` | `483d7f5c847700781694ec743ee5a6cc90ec64410efabf0f0cd62a6f0d08f754` |
-| `bitirme/bitirme.IntegrationTests/AuthorizationTests.cs` | `39e78a693411faaa5584786c4ccad301d8df337d88f6614f400a39f6c1d5b33e` |
+| `bitirme/bitirme.IntegrationTests/AuthorizationTests.cs` | `100c6dd6ef1f77490112bfbc51bbe1c3cc31b36630cbc9616097716d2ce16c10` |
 | `bitirme/bitirme.Tests/AppointmentStateRulesTests.cs` | `eb40abd1112735255c86eadf1de9246977956e2628c45956994d61c7ce877bda` |
 | `bitirme/bitirme.Tests/SlotRulesTests.cs` | `ceb0f90e6f703f02bdc50ae20b4b23437c07a84f84c30a5bcb8479a519b687f3` |
 | `bitirme/bitirme/Data/AppUserStore.cs` | `771d76f59a11149fafaacc0d4bd8cde4e44232a74bd9fd3d5472d3c97257f25e` |
 | `bitirme/bitirme/Filters/RequireConsentFilter.cs` | `b9c38d04861ec81a725a68741421f8ff9484b7467a27cd0e7053e91b5c5eced5` |
 | `bitirme/bitirme/Filters/RequireTwoFactorAttribute.cs` | `09298044da2fbf12280debae70cb048f6d27a3082f6b6e9fe3db88ec676c089c` |
 | `bitirme/bitirme/Hubs/NotificationHub.cs` | `b82dc9c0038902d064bf693e84f5db30c486bc3251754f080afae505a3d28f1a` |
-| `bitirme/bitirme/Hubs/VideoHub.cs` | `8d18e03fc26a8ee9ce7b96a0f6d13da671971ba595fc90bf99b3a57827d90393` |
-| `bitirme/bitirme/Services/AppointmentRules.cs` | `3e301341fc108c95e48a2d68fe1d1c19c8c8b12541470d030e5466c5aaed4798` |
+| `bitirme/bitirme/Hubs/VideoHub.cs` | `08f17829ee314e9438804bb9dd30b44bb51360f0d086cfaec4685979b56d3e50` |
+| `bitirme/bitirme/Services/AppointmentRules.cs` | `6acf681a599da1cb7fcc1284bdce7045d770d991286aaf482f773de0e9492370` |
 | `bitirme/bitirme/Services/AppointmentStateRules.cs` | `197e933275b2187adba593e7228b8505f1c2a47fbabd4dafe4c7fa2f8da0b5c4` |
 | `bitirme/bitirme/Services/ConsentCatalog.cs` | `39283d081b215bdab6c599aeabdcf15a358007c9b4e84ffa352fd42f19f4f9b0` |
 | `bitirme/bitirme/Services/ConsentService.cs` | `507c1040da4d66c4c00375f9fc36d16a4c5e5639294abc63d3cbd5eb186e4d2c` |

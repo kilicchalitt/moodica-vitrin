@@ -56,5 +56,48 @@ namespace bitirme.Services
         /// <summary>Verilen başlangıçtaki seans, saati dolduran mevcut randevulardan biriyle çakışıyor mu?</summary>
         public static bool HasConflict(DateTime start, IEnumerable<Appointment> existingAppointments) =>
             existingAppointments.Any(a => OccupiesSlot(a) && Overlaps(start, a.AppointmentDate));
+
+        /// <summary>Görüşme odası seanstan bu kadar önce açılır (ISSUE-19).</summary>
+        public static readonly TimeSpan MeetingOpensBefore = TimeSpan.FromMinutes(10);
+
+        /// <summary>Odanın açıldığı an.</summary>
+        public static DateTime MeetingOpensAt(DateTime start) => start - MeetingOpensBefore;
+
+        /// <summary>Oda seans ve ardından gelen 10 dakikalık ara bitince (sonraki seansın başında) kapanır.</summary>
+        public static DateTime MeetingClosesAt(DateTime start) => start.AddMinutes(SlotMinutes);
+
+        /// <summary>Görüşme odasına şu an girilebilir mi; girilemiyorsa neden (ISSUE-19).</summary>
+        public static MeetingAccess GetMeetingAccess(AppointmentStatus status, DateTime start, DateTime now)
+        {
+            if (status != AppointmentStatus.Approved)
+            {
+                return MeetingAccess.NotApproved;
+            }
+
+            if (now < MeetingOpensAt(start))
+            {
+                return MeetingAccess.TooEarly;
+            }
+
+            return now < MeetingClosesAt(start) ? MeetingAccess.Open : MeetingAccess.Ended;
+        }
+
+        /// <summary>Odaya girilemediğinde kullanıcıya gösterilen açıklama.</summary>
+        public static string MeetingAccessMessage(MeetingAccess access) => access switch
+        {
+            MeetingAccess.NotApproved => "Görüşme odası yalnızca onaylı randevularda açılır.",
+            MeetingAccess.TooEarly => $"Görüşme odası seanstan {MeetingOpensBefore.TotalMinutes:0} dakika önce açılır.",
+            MeetingAccess.Ended => "Bu seansın görüşme süresi doldu.",
+            _ => string.Empty
+        };
+    }
+
+    /// <summary>Görüşme odasına erişim durumu.</summary>
+    public enum MeetingAccess
+    {
+        Open,
+        NotApproved,
+        TooEarly,
+        Ended
     }
 }

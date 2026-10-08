@@ -45,17 +45,26 @@ namespace bitirme.Hubs
                 throw new HubException("Bu görüşmeye erişim yetkiniz yok.");
             }
 
-            var isParticipant = await _context.Appointments
+            var appointment = await _context.Appointments
                 .AsNoTracking()
-                .AnyAsync(a => a.Id == appointmentId &&
-                               ((role == AppRoles.Patient && a.PatientId == userId) ||
-                                (role == AppRoles.Doctor && a.DoctorId == userId)));
+                .Where(a => a.Id == appointmentId &&
+                            ((role == AppRoles.Patient && a.PatientId == userId) ||
+                             (role == AppRoles.Doctor && a.DoctorId == userId)))
+                .Select(a => new { a.Status, a.AppointmentDate })
+                .FirstOrDefaultAsync();
 
             // Onayı geri alınmış veya askıdaki uzman görüşmeye katılamaz (ISSUE-38).
-            if (!isParticipant || (role == AppRoles.Doctor &&
+            if (appointment == null || (role == AppRoles.Doctor &&
                 !await _context.Doctors.Visible(_time.GetUtcNow()).AnyAsync(d => d.Id == userId)))
             {
                 throw new HubException("Bu görüşmeye erişim yetkiniz yok.");
+            }
+
+            // Oda yalnızca onaylı randevuda ve seans saatine yakın açılır (ISSUE-19).
+            var access = AppointmentRules.GetMeetingAccess(appointment.Status, appointment.AppointmentDate, _time.UtcNow());
+            if (access != MeetingAccess.Open)
+            {
+                throw new HubException(AppointmentRules.MeetingAccessMessage(access));
             }
 
             GetJoinedRooms().Add(roomId);
