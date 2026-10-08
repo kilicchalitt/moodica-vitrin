@@ -97,12 +97,12 @@ public class AuthorizationTests(MoodicaFactory factory)
         var otherDoctor = await SignedInDoctorAsync(await _data.CreateDoctorAsync());
         var denied = await otherDoctor.PostFormAsync("/Doktor/Dashboard", "/Appointment/UpdateNote",
             ("id", appointment.Id.ToString()), ("note", "Yetkisiz not"));
-        Assert.Contains("\"success\":false", await denied.Content.ReadAsStringAsync(TestContext.Current.CancellationToken));
+        Assert.Contains("\"success\":false", await denied.ReadTextAsync());
 
         var owner = await SignedInDoctorAsync(doctor);
         var allowed = await owner.PostFormAsync("/Doktor/Dashboard", "/Appointment/UpdateNote",
             ("id", appointment.Id.ToString()), ("note", "Seans notu"));
-        Assert.Contains("\"success\":true", await allowed.Content.ReadAsStringAsync(TestContext.Current.CancellationToken));
+        Assert.Contains("\"success\":true", await allowed.ReadTextAsync());
 
         var savedNote = await _data.WithDbAsync(db => db.Appointments.Where(a => a.Id == appointment.Id).Select(a => a.Note).SingleAsync());
         Assert.Equal("Seans notu", savedNote);
