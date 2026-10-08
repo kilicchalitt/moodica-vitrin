@@ -4,13 +4,14 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `b74ec743911c7ff3076226c3d891390b77885095`
-- Kaynak commit tarihi: 2026-10-08T10:57:34+03:00
-- Dosya sayısı: 14
+- Kaynak commit: `ee7b9a203d4322a94199fc3b158c6ea9e123e486`
+- Kaynak commit tarihi: 2026-10-08T10:57:38+03:00
+- Dosya sayısı: 15
 
 | Dosya | SHA-256 |
 |---|---|
 | `Dockerfile` | `e367b9a15f5175e4a96804db1250433c445f4f27624d1b06d48c4d47fdfabeb3` |
+| `bitirme/bitirme.IntegrationTests/AuthorizationTests.cs` | `3ca2fe35e9e8cd22028c4bf0b9cc3039bf9c79a7914195143b76f7fbc3d4f135` |
 | `bitirme/bitirme/Data/AppUserStore.cs` | `771d76f59a11149fafaacc0d4bd8cde4e44232a74bd9fd3d5472d3c97257f25e` |
 | `bitirme/bitirme/Filters/RequireConsentFilter.cs` | `b9c38d04861ec81a725a68741421f8ff9484b7467a27cd0e7053e91b5c5eced5` |
 | `bitirme/bitirme/Filters/RequireTwoFactorAttribute.cs` | `09298044da2fbf12280debae70cb048f6d27a3082f6b6e9fe3db88ec676c089c` |
