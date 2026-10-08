@@ -3,8 +3,11 @@ name: CI
 on:
   push:
     branches: [main, gelistirme]
+    # Yalnızca belge değişen gönderimlerde derlenecek bir şey yok.
+    paths-ignore: ['docs/**', '**/*.md']
   pull_request:
     branches: [main]
+    paths-ignore: ['docs/**', '**/*.md']
 
 jobs:
   build:
