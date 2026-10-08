@@ -4,8 +4,8 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `37c8115c2350cdebbb019ca336cc777187a9a03e`
-- Kaynak commit tarihi: 2026-10-09T00:00:56+03:00
+- Kaynak commit: `547f28201065ffbb48d3a72d085c3d6e120f3de0`
+- Kaynak commit tarihi: 2026-10-09T00:00:58+03:00
 - Dosya sayısı: 15
 
 | Dosya | SHA-256 |
@@ -24,4 +24,4 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme/Services/RecoveryCodeHasher.cs` | `b3e59d5d216ca3c03f1e3aa1d44d3e842e38cd9247867a5889e74475c1bdd132` |
 | `bitirme/bitirme/Services/TwoFactorHelper.cs` | `eba0500e050458401531e836b14b42b647dc247ea22c1cb5c42d48c87df3a605` |
 | `bitirme/bitirme/bitirme.csproj` | `69d71371c0812bc7250ae8ed1ed5c19542ae1c7c8cd04588e10be3a45cc843ac` |
-| `docs/ana-proje-ci.yml` | `c77efb55698cb8fdff61e78503861d509a646f97ade4337e3e64eab45a2e179d` |
+| `docs/ana-proje-ci.yml` | `78e5e677339047d6ee37f99814d88bd2d43def0fc8a4b63c66d8ccb661e4f32a` |
