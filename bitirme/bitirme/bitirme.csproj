@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MailKit" Version="4.18.1" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.3" />
     <!-- Npgsql 10.0.3, EF Core 10.0.4'ü getiriyor; Design/Tools ile aynı sürümde kalmak için açıkça yükseltilir. -->
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.12" />
@@ -36,8 +37,7 @@
     <ClientAppSource Include="ClientApp\src\**;ClientApp\package.json;ClientApp\package-lock.json;ClientApp\vite.config.ts;ClientApp\tsconfig.json" />
   </ItemGroup>
 
-  <Target Name="BuildClientApp" BeforeTargets="BeforeBuild" Condition="'$(SkipClientBuild)' != 'true'"
-          Inputs="@(ClientAppSource)" Outputs="wwwroot\dist\anket.js">
+  <Target Name="BuildClientApp" BeforeTargets="BeforeBuild" Condition="'$(SkipClientBuild)' != 'true'" Inputs="@(ClientAppSource)" Outputs="wwwroot\dist\anket.js">
     <Exec Command="npm ci --no-fund --no-audit" WorkingDirectory="ClientApp" Condition="!Exists('ClientApp\node_modules')" />
     <Exec Command="npm run build" WorkingDirectory="ClientApp" />
   </Target>

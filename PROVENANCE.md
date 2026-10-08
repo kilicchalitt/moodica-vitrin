@@ -4,9 +4,9 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `7d60f51903db6729617395d2d96851a8f847d9e7`
+- Kaynak commit: `fdde927e693cdcdcfc2aa7414f77227ba1a1d7a2`
 - Kaynak commit tarihi: 2026-10-09T00:01:03+03:00
-- Dosya sayısı: 20
+- Dosya sayısı: 23
 
 | Dosya | SHA-256 |
 |---|---|
@@ -23,10 +23,13 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme/Services/AppointmentStateRules.cs` | `197e933275b2187adba593e7228b8505f1c2a47fbabd4dafe4c7fa2f8da0b5c4` |
 | `bitirme/bitirme/Services/ConsentCatalog.cs` | `39283d081b215bdab6c599aeabdcf15a358007c9b4e84ffa352fd42f19f4f9b0` |
 | `bitirme/bitirme/Services/ConsentService.cs` | `507c1040da4d66c4c00375f9fc36d16a4c5e5639294abc63d3cbd5eb186e4d2c` |
+| `bitirme/bitirme/Services/Email/EmailBackgroundWorker.cs` | `f81dd09177f69a082ca4c10c942c6917ad90862b504429cd48b59c7a9897e3e8` |
+| `bitirme/bitirme/Services/Email/EmailOutbox.cs` | `b8b4e34f89a0b9f331cd74aec57efd10a31428742d5f1cf930ae91af0088716b` |
+| `bitirme/bitirme/Services/Email/EmailRules.cs` | `ab5631027c8ce50ab1b2a2fe73a388890423e011007a84c28cdcc03b7695b0b7` |
 | `bitirme/bitirme/Services/HealthDataAuditLog.cs` | `4f6800737abd147bf9ffa48498312a6e9738b5e70fe7496cfae77642150aee9d` |
 | `bitirme/bitirme/Services/RecoveryCodeHasher.cs` | `b3e59d5d216ca3c03f1e3aa1d44d3e842e38cd9247867a5889e74475c1bdd132` |
 | `bitirme/bitirme/Services/SlotRules.cs` | `88ce0b5bbe76d08cbc9e053a0d9d79c83a0ca83113b3cad44c787a5d4670d69c` |
 | `bitirme/bitirme/Services/TwoFactorHelper.cs` | `eba0500e050458401531e836b14b42b647dc247ea22c1cb5c42d48c87df3a605` |
 | `bitirme/bitirme/Services/WorkingHoursRules.cs` | `9757786ba77cbde498725c39d8386dc9ec1a7e58efa673a7e574409f519deea5` |
-| `bitirme/bitirme/bitirme.csproj` | `69d71371c0812bc7250ae8ed1ed5c19542ae1c7c8cd04588e10be3a45cc843ac` |
+| `bitirme/bitirme/bitirme.csproj` | `bf0f53c7439c8fac76ad0cf27b7fcec3bcfa99ad7a7756ca04e02ce60ad74c71` |
 | `docs/ana-proje-ci.yml` | `78e5e677339047d6ee37f99814d88bd2d43def0fc8a4b63c66d8ccb661e4f32a` |
