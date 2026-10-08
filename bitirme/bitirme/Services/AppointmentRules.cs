@@ -19,6 +19,14 @@ namespace bitirme.Services
         /// <summary>Randevu alınabilen son saat sınırı (hariç).</summary>
         public const int LastHourExclusive = 20;
 
+        /// <summary>Danışanın randevu şikayeti/notu için en fazla karakter (ISSUE-40).</summary>
+        public const int MaxComplaintLength = 1000;
+
+        /// <summary>Uzmanın seans notu için en fazla karakter (ISSUE-40).</summary>
+        public const int MaxNoteLength = 4000;
+
+        public static string NoteTooLongMessage => $"Not en fazla {MaxNoteLength} karakter olabilir.";
+
         /// <summary>Başlangıcı şu andan önce (veya tam şu an) olan randevu alınamaz.</summary>
         public static bool IsInPast(DateTime start, DateTime now) => start <= now;
 

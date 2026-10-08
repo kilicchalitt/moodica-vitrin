@@ -91,6 +91,11 @@ namespace bitirme.Hubs
                 throw new HubException("Not gönderme yetkiniz yok.");
             }
 
+            if (note?.Length > AppointmentRules.MaxNoteLength)
+            {
+                throw new HubException(AppointmentRules.NoteTooLongMessage);
+            }
+
             await Clients.GroupExcept(roomId, Context.ConnectionId).SendAsync("ReceiveNote", note);
         }
 
