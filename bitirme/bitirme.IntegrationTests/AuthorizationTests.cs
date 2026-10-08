@@ -24,17 +24,16 @@ public class AuthorizationTests(MoodicaFactory factory)
     }
 
     [Theory]
-    [InlineData("/Hasta/Dashboard")]
-    [InlineData("/Doktor/Dashboard")]
-    [InlineData("/Doktor/Profil")]
-    [InlineData("/Appointment/Create")]
-    [InlineData("/Hesap/IkiAdimliDogrulama")]
-    public async Task Anonymous_ProtectedPage_RedirectsToLogin(string path)
+    [InlineData("/Hasta/Dashboard", "/Hasta/Login")]
+    [InlineData("/Appointment/Create", "/Hasta/Login")]
+    [InlineData("/Hesap/IkiAdimliDogrulama", "/Hasta/Login")]
+    [InlineData("/Doktor/Dashboard", "/Doktor/Login")]
+    [InlineData("/Doktor/Profil", "/Doktor/Login")]
+    public async Task Anonymous_ProtectedPage_RedirectsToSectionLogin_WithReturnUrl(string path, string loginPage)
     {
         var response = await factory.CreateAppClient().GetAsync(path);
 
-        // Uzman sayfaları için doğru giriş sayfası ISSUE-35 (TASK-35) ile gelecek; şimdilik bir giriş sayfasına gitmesi yeter.
-        Assert.Contains("/Login", response.RedirectPath());
+        Assert.Equal($"{loginPage}?ReturnUrl={Uri.EscapeDataString(path)}", response.RedirectPath());
     }
 
     [Fact]
