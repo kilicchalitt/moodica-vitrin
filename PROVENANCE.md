@@ -4,7 +4,7 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `547f28201065ffbb48d3a72d085c3d6e120f3de0`
+- Kaynak commit: `d81c63b2f44383aeee3ed5aa3866ea4f19f911f8`
 - Kaynak commit tarihi: 2026-10-09T00:00:58+03:00
 - Dosya sayısı: 15
 
@@ -16,7 +16,7 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme/Filters/RequireConsentFilter.cs` | `b9c38d04861ec81a725a68741421f8ff9484b7467a27cd0e7053e91b5c5eced5` |
 | `bitirme/bitirme/Filters/RequireTwoFactorAttribute.cs` | `09298044da2fbf12280debae70cb048f6d27a3082f6b6e9fe3db88ec676c089c` |
 | `bitirme/bitirme/Hubs/NotificationHub.cs` | `b82dc9c0038902d064bf693e84f5db30c486bc3251754f080afae505a3d28f1a` |
-| `bitirme/bitirme/Hubs/VideoHub.cs` | `cb5ebecba218e78598bb2b78cba5362668051c1df86fa3dbb44af8006f2c71d1` |
+| `bitirme/bitirme/Hubs/VideoHub.cs` | `d121ca8ffb792daed9635401f2f3d35e62460d626b4fde080b722c7387ccd32e` |
 | `bitirme/bitirme/Services/AppointmentRules.cs` | `469fba013c684a0ea78230f864ffa17afd3e199ea38b90803114f3ed05874b86` |
 | `bitirme/bitirme/Services/ConsentCatalog.cs` | `39283d081b215bdab6c599aeabdcf15a358007c9b4e84ffa352fd42f19f4f9b0` |
 | `bitirme/bitirme/Services/ConsentService.cs` | `507c1040da4d66c4c00375f9fc36d16a4c5e5639294abc63d3cbd5eb186e4d2c` |

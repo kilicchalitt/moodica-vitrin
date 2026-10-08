@@ -4,6 +4,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using bitirme.Data;
 using bitirme.Models;
+using bitirme.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
@@ -47,7 +48,9 @@ namespace bitirme.Hubs
                                ((role == AppRoles.Patient && a.PatientId == userId) ||
                                 (role == AppRoles.Doctor && a.DoctorId == userId)));
 
-            if (!isParticipant)
+            // Onayı geri alınmış veya askıdaki uzman görüşmeye katılamaz (ISSUE-38).
+            if (!isParticipant || (role == AppRoles.Doctor &&
+                !await _context.Doctors.Visible(DateTimeOffset.UtcNow).AnyAsync(d => d.Id == userId)))
             {
                 throw new HubException("Bu görüşmeye erişim yetkiniz yok.");
             }
