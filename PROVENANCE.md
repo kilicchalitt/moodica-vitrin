@@ -4,8 +4,8 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `fdde927e693cdcdcfc2aa7414f77227ba1a1d7a2`
-- Kaynak commit tarihi: 2026-10-09T00:01:03+03:00
+- Kaynak commit: `8a584f8278a12c14ac9b7e93a591be152e890bf0`
+- Kaynak commit tarihi: 2026-10-09T00:01:04+03:00
 - Dosya sayısı: 23
 
 | Dosya | SHA-256 |
@@ -24,8 +24,8 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme/Services/ConsentCatalog.cs` | `39283d081b215bdab6c599aeabdcf15a358007c9b4e84ffa352fd42f19f4f9b0` |
 | `bitirme/bitirme/Services/ConsentService.cs` | `507c1040da4d66c4c00375f9fc36d16a4c5e5639294abc63d3cbd5eb186e4d2c` |
 | `bitirme/bitirme/Services/Email/EmailBackgroundWorker.cs` | `f81dd09177f69a082ca4c10c942c6917ad90862b504429cd48b59c7a9897e3e8` |
-| `bitirme/bitirme/Services/Email/EmailOutbox.cs` | `b8b4e34f89a0b9f331cd74aec57efd10a31428742d5f1cf930ae91af0088716b` |
-| `bitirme/bitirme/Services/Email/EmailRules.cs` | `ab5631027c8ce50ab1b2a2fe73a388890423e011007a84c28cdcc03b7695b0b7` |
+| `bitirme/bitirme/Services/Email/EmailOutbox.cs` | `da01bc5e49346fc75f9a3def087287b4c017518bc91708246299eef904239e33` |
+| `bitirme/bitirme/Services/Email/EmailRules.cs` | `64c523294ddaa4875cd45ed17af2635e65665f9c9f7dceeff225e1fe884c5602` |
 | `bitirme/bitirme/Services/HealthDataAuditLog.cs` | `4f6800737abd147bf9ffa48498312a6e9738b5e70fe7496cfae77642150aee9d` |
 | `bitirme/bitirme/Services/RecoveryCodeHasher.cs` | `b3e59d5d216ca3c03f1e3aa1d44d3e842e38cd9247867a5889e74475c1bdd132` |
 | `bitirme/bitirme/Services/SlotRules.cs` | `88ce0b5bbe76d08cbc9e053a0d9d79c83a0ca83113b3cad44c787a5d4670d69c` |

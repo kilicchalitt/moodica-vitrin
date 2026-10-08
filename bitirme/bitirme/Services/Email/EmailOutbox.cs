@@ -144,6 +144,14 @@ namespace bitirme.Services.Email
             var sent = 0;
             foreach (var email in due)
             {
+                if (EmailRules.IsReservedAddress(email.To))
+                {
+                    email.Status = OutboxStatus.Failed;
+                    email.LastError = "Ayrılmış (deneme) alan adı; gönderilmedi.";
+                    await _context.SaveChangesAsync(cancellationToken);
+                    continue;
+                }
+
                 email.Attempts++;
                 try
                 {
