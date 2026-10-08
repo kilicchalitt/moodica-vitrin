@@ -26,6 +26,21 @@ jobs:
         with:
           dotnet-version: '10.0.x'
 
+      - name: Node 24 kur
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: bitirme/bitirme/ClientApp/package-lock.json
+
+      # Arayüz betikleri: tür denetimi ve testler (derlemeyi dotnet build yapar).
+      - name: Arayüz testleri
+        working-directory: bitirme/bitirme/ClientApp
+        run: |
+          npm ci --no-fund --no-audit
+          npm run typecheck
+          npm test
+
       - name: Paketleri indir
         run: dotnet restore bitirme/bitirme.sln
 

@@ -26,6 +26,29 @@
     </PackageReference>
   </ItemGroup>
 
+  <!-- Arayüz betikleri (TypeScript + Vite, DECISION-26): kaynak ClientApp/, çıktı wwwroot/dist/ (git'e girmez).
+       dotnet build / Visual Studio derlemesi Node ile betikleri de derler; Docker imajı betikleri ayrı Node aşamasında
+       derleyip SkipClientBuild=true verir. -->
+  <ItemGroup>
+    <Content Remove="ClientApp\**" />
+    <None Remove="ClientApp\**" />
+    <None Include="ClientApp\**" Exclude="ClientApp\node_modules\**" />
+    <ClientAppSource Include="ClientApp\src\**;ClientApp\package.json;ClientApp\package-lock.json;ClientApp\vite.config.ts;ClientApp\tsconfig.json" />
+  </ItemGroup>
+
+  <Target Name="BuildClientApp" BeforeTargets="BeforeBuild" Condition="'$(SkipClientBuild)' != 'true'"
+          Inputs="@(ClientAppSource)" Outputs="wwwroot\dist\anket.js">
+    <Exec Command="npm ci --no-fund --no-audit" WorkingDirectory="ClientApp" Condition="!Exists('ClientApp\node_modules')" />
+    <Exec Command="npm run build" WorkingDirectory="ClientApp" />
+  </Target>
+
+  <!-- İlk derlemede yeni üretilen dosyalar da statik varlık olarak yayımlansın. -->
+  <Target Name="IncludeClientAppOutput" AfterTargets="BuildClientApp" BeforeTargets="BeforeBuild">
+    <ItemGroup>
+      <Content Include="wwwroot\dist\**" Exclude="@(Content)" />
+    </ItemGroup>
+  </Target>
+
   <ItemGroup>
     <Content Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
