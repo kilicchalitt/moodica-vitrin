@@ -32,6 +32,12 @@ namespace bitirme.Services
         public static bool OccupiesSlot(Appointment appointment) =>
             appointment.Status == AppointmentStatus.Pending || appointment.Status == AppointmentStatus.Approved;
 
+        /// <summary>
+        /// Uzman, danışanın anket özetini yalnızca bu randevu üzerinden görebilir mi? Bekleyen, onaylı ve tamamlanan
+        /// randevu erişim verir; iptal edilen (uzmanın reddi dahil) vermez — açık rıza "randevu alınan uzmanla paylaşım"dır.
+        /// </summary>
+        public static bool GrantsAssessmentAccess(AppointmentStatus status) => status != AppointmentStatus.Cancelled;
+
         /// <summary>Verilen başlangıçtaki seans, mevcut randevulardan biriyle çakışıyor mu?</summary>
         public static bool HasConflict(DateTime start, IEnumerable<Appointment> existingAppointments)
         {
