@@ -9,6 +9,12 @@ on:
     branches: [main]
     paths-ignore: ['docs/**', '**/*.md']
 
+# gelistirme'de yeni gönderim, aynı dalda bekleyen/süren eski çalışmayı iptal eder: son çalışma önceki
+# commit'leri de kapsar. main'de süren çalışma kesilmez (main'e günde bir kez toplu gönderilir).
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
