@@ -4,9 +4,9 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `b327f25b0a7ee1a20e7ca0222521896e2956fe50`
+- Kaynak commit: `e3cee073678cd551fd467b3d51379ba617e2b54d`
 - Kaynak commit tarihi: 2026-10-09T00:01:01+03:00
-- Dosya sayısı: 15
+- Dosya sayısı: 16
 
 | Dosya | SHA-256 |
 |---|---|
@@ -23,5 +23,6 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme/Services/HealthDataAuditLog.cs` | `4f6800737abd147bf9ffa48498312a6e9738b5e70fe7496cfae77642150aee9d` |
 | `bitirme/bitirme/Services/RecoveryCodeHasher.cs` | `b3e59d5d216ca3c03f1e3aa1d44d3e842e38cd9247867a5889e74475c1bdd132` |
 | `bitirme/bitirme/Services/TwoFactorHelper.cs` | `eba0500e050458401531e836b14b42b647dc247ea22c1cb5c42d48c87df3a605` |
+| `bitirme/bitirme/Services/WorkingHoursRules.cs` | `9757786ba77cbde498725c39d8386dc9ec1a7e58efa673a7e574409f519deea5` |
 | `bitirme/bitirme/bitirme.csproj` | `69d71371c0812bc7250ae8ed1ed5c19542ae1c7c8cd04588e10be3a45cc843ac` |
 | `docs/ana-proje-ci.yml` | `78e5e677339047d6ee37f99814d88bd2d43def0fc8a4b63c66d8ccb661e4f32a` |
