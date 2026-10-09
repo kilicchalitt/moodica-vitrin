@@ -13,9 +13,10 @@ namespace bitirme.Services
 
         private static readonly IReadOnlyDictionary<ConsentDocument, string> CurrentVersions = new Dictionary<ConsentDocument, string>
         {
-            [ConsentDocument.PatientPrivacyNotice] = "2026-10-05-taslak",
+            // 2026-10-07: aydınlatma metinlerine görüntülü görüşme bağlantı (STUN/TURN) sağlayıcısına aktarım eklendi.
+            [ConsentDocument.PatientPrivacyNotice] = "2026-10-07-taslak",
             [ConsentDocument.HealthDataExplicitConsent] = "2026-10-05-taslak",
-            [ConsentDocument.ExpertPrivacyNotice] = "2026-10-05-taslak"
+            [ConsentDocument.ExpertPrivacyNotice] = "2026-10-07-taslak"
         };
 
         private static readonly ConsentDocument[] PatientDocuments =
