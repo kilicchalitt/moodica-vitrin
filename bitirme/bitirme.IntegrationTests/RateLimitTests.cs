@@ -59,7 +59,7 @@ public class RateLimitTests(MoodicaFactory factory)
 
         var limited = await client.PostJsonAsync("/Anket", "/Anket/Gonder", new { });
         Assert.Equal(HttpStatusCode.TooManyRequests, limited.StatusCode);
-        using var json = JsonDocument.Parse(await limited.Content.ReadAsStringAsync());
+        using var json = JsonDocument.Parse(await limited.ReadTextAsync());
         Assert.Equal(RateLimitPolicies.RejectedMessage, json.RootElement.GetProperty("errors")[0].GetString());
     }
 }
