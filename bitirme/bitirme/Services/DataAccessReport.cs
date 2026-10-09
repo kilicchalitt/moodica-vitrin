@@ -30,13 +30,14 @@ namespace bitirme.Services
             _context = context;
         }
 
-        public async Task<IReadOnlyList<DataAccessEntry>> ForUserAsync(int userId)
+        /// <summary>En yeni <paramref name="limit"/> kayıt (sayfada 200; veri indirmede tamamı).</summary>
+        public async Task<IReadOnlyList<DataAccessEntry>> ForUserAsync(int userId, int limit = MaxEntries)
         {
             var health = await _context.HealthDataAccessLogs
                 .AsNoTracking()
                 .Where(l => l.SubjectUserId == userId && l.ActorUserId != userId && l.Kind != HealthDataKind.PrivateSessionNote)
                 .OrderByDescending(l => l.CreatedAt)
-                .Take(MaxEntries)
+                .Take(limit)
                 .Select(l => new
                 {
                     l.CreatedAt,
@@ -54,7 +55,7 @@ namespace bitirme.Services
                 .AsNoTracking()
                 .Where(l => l.TargetUserId == userId)
                 .OrderByDescending(l => l.CreatedAt)
-                .Take(MaxEntries)
+                .Take(limit)
                 .Select(l => new { l.CreatedAt, l.Action })
                 .ToListAsync();
 
@@ -65,7 +66,7 @@ namespace bitirme.Services
                     h.AppointmentDate))
                 .Concat(admin.Select(a => new DataAccessEntry(a.CreatedAt, PlatformName, Describe(a.Action), null)))
                 .OrderByDescending(e => e.AtUtc)
-                .Take(MaxEntries)
+                .Take(limit)
                 .ToList();
         }
 
