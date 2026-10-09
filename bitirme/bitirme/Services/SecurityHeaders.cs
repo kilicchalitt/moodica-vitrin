@@ -1,0 +1,55 @@
+using System;
+using System.Security.Cryptography;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Hosting;
+
+namespace bitirme.Services
+{
+    /// <summary>
+    /// Tarayıcı güvenlik başlıkları (Faz 8): içerik güvenlik politikası (CSP), çerçeveye alınmama, MIME koklamama,
+    /// yönlendiren bilgisi ve tarayıcı izinleri. Satır içi betikler yalnızca bu isteğe özel nonce ile çalışır
+    /// (<c>&lt;script nonce="@Context.CspNonce()"&gt;</c>); satır içi olay işleyicisi (onclick vb.) çalışmaz.
+    /// Dış kaynaklar: Bootstrap ve SweetAlert2 (jsDelivr), SignalR ve Font Awesome (cdnjs), Google Fonts.
+    /// Satır içi stil (style özniteliği, SweetAlert2'nin eklediği stil) izinli; stil enjeksiyonu betik çalıştıramaz.
+    /// </summary>
+    public static class SecurityHeaders
+    {
+        private const string NonceKey = "Moodica.CspNonce";
+
+        /// <summary>Bu isteğin CSP nonce değeri (satır içi betik etiketine yazılır).</summary>
+        public static string CspNonce(this HttpContext context) =>
+            context.Items[NonceKey] as string ?? throw new InvalidOperationException("Güvenlik başlıkları ara katmanı çalışmadı.");
+
+        public static IApplicationBuilder UseMoodicaSecurityHeaders(this IApplicationBuilder app, IWebHostEnvironment environment)
+        {
+            // Geliştirmede Visual Studio'nun tarayıcı yenileme/Browser Link betikleri başka bir yerel bağlantı noktasından gelir.
+            var developmentSources = environment.IsDevelopment() ? " http://localhost:* ws://localhost:* wss://localhost:*" : string.Empty;
+
+            return app.Use(async (context, next) =>
+            {
+                var nonce = Convert.ToBase64String(RandomNumberGenerator.GetBytes(16));
+                context.Items[NonceKey] = nonce;
+
+                var headers = context.Response.Headers;
+                headers.ContentSecurityPolicy =
+                    "default-src 'self'; " +
+                    $"script-src 'self' 'nonce-{nonce}' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com{developmentSources}; " +
+                    "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com; " +
+                    "font-src 'self' data: https://cdnjs.cloudflare.com https://fonts.gstatic.com; " +
+                    "img-src 'self' data: blob:; " +
+                    "media-src 'self' blob:; " +
+                    $"connect-src 'self'{developmentSources}; " +
+                    "object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'";
+                headers.XFrameOptions = "DENY";
+                headers.XContentTypeOptions = "nosniff";
+                headers["Referrer-Policy"] = "strict-origin-when-cross-origin";
+                headers["Permissions-Policy"] = "camera=(self), microphone=(self), display-capture=(), geolocation=(), payment=(), usb=()";
+                headers["Cross-Origin-Opener-Policy"] = "same-origin";
+
+                await next();
+            });
+        }
+    }
+}
