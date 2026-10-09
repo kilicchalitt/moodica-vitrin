@@ -123,6 +123,17 @@ namespace bitirme.Hubs
             await Clients.GroupExcept(roomId, Context.ConnectionId).SendAsync("UserLeft", Context.ConnectionId);
         }
 
+        // Sekme kapanır veya bağlantı koparsa karşı taraf "ayrıldı" bildirimini alır (ISSUE-11).
+        public override async Task OnDisconnectedAsync(Exception? exception)
+        {
+            foreach (var roomId in GetJoinedRooms())
+            {
+                await Clients.GroupExcept(roomId, Context.ConnectionId).SendAsync("UserLeft", Context.ConnectionId);
+            }
+
+            await base.OnDisconnectedAsync(exception);
+        }
+
         private HashSet<string> GetJoinedRooms()
         {
             if (Context.Items.TryGetValue(JoinedRoomsKey, out var value) && value is HashSet<string> rooms)
