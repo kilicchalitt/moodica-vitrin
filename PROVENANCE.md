@@ -4,9 +4,9 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `56ec7f4bf899332705582c12b665549250ebfb51`
-- Kaynak commit tarihi: 2026-10-10T00:01:13+03:00
-- Dosya sayısı: 32
+- Kaynak commit: `cd5cd067c58c1d86f5dfdb21d76195252bad06d9`
+- Kaynak commit tarihi: 2026-10-10T00:01:14+03:00
+- Dosya sayısı: 33
 
 | Dosya | SHA-256 |
 |---|---|
@@ -20,13 +20,14 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme/Data/AppUserStore.cs` | `771d76f59a11149fafaacc0d4bd8cde4e44232a74bd9fd3d5472d3c97257f25e` |
 | `bitirme/bitirme/Data/AppointmentTextEncryptionInterceptor.cs` | `65fce6a1ce518a27336b7571ecd12cd4cb6b64687817b67d7e59acec1f438efc` |
 | `bitirme/bitirme/Filters/RequireConsentFilter.cs` | `b9c38d04861ec81a725a68741421f8ff9484b7467a27cd0e7053e91b5c5eced5` |
+| `bitirme/bitirme/Filters/RequireHealthConsentAttribute.cs` | `fc4e3568eb6a5e50268457ba42e3b20caa92af92f67a923b3a0207982f66436b` |
 | `bitirme/bitirme/Filters/RequireTwoFactorAttribute.cs` | `09298044da2fbf12280debae70cb048f6d27a3082f6b6e9fe3db88ec676c089c` |
 | `bitirme/bitirme/Hubs/NotificationHub.cs` | `b82dc9c0038902d064bf693e84f5db30c486bc3251754f080afae505a3d28f1a` |
 | `bitirme/bitirme/Hubs/VideoHub.cs` | `29151bf4046354d1f69110c19505c9dcc4e42376338d6be9bf3caab7d2088966` |
 | `bitirme/bitirme/Services/AppointmentRules.cs` | `6acf681a599da1cb7fcc1284bdce7045d770d991286aaf482f773de0e9492370` |
 | `bitirme/bitirme/Services/AppointmentStateRules.cs` | `197e933275b2187adba593e7228b8505f1c2a47fbabd4dafe4c7fa2f8da0b5c4` |
-| `bitirme/bitirme/Services/ConsentCatalog.cs` | `195fb41fa5e30d2db6a11f089813b3051f9f0876d2fbb754630c059f38910cf5` |
-| `bitirme/bitirme/Services/ConsentService.cs` | `507c1040da4d66c4c00375f9fc36d16a4c5e5639294abc63d3cbd5eb186e4d2c` |
+| `bitirme/bitirme/Services/ConsentCatalog.cs` | `a3920e5d5417961db66b1a55fa087f4614d5ddb00c71aeb316dee746f37c4808` |
+| `bitirme/bitirme/Services/ConsentService.cs` | `789e7f19453836f4638dfeca0781138777508e2ec43edb2509af0a29e042133e` |
 | `bitirme/bitirme/Services/DataAccessReport.cs` | `6f7934765a875753f866738100ef5bedde4e88a502efb4efcf769ad4a3467984` |
 | `bitirme/bitirme/Services/Email/EmailBackgroundWorker.cs` | `f81dd09177f69a082ca4c10c942c6917ad90862b504429cd48b59c7a9897e3e8` |
 | `bitirme/bitirme/Services/Email/EmailOutbox.cs` | `da01bc5e49346fc75f9a3def087287b4c017518bc91708246299eef904239e33` |

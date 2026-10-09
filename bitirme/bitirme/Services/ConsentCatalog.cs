@@ -55,6 +55,27 @@ namespace bitirme.Services
                 .ToList();
         }
 
+        /// <summary>Geri alınabilen metin: yalnızca sağlık verisi açık rızası (aydınlatma metinleri bilgilendirmedir; DECISION-35).</summary>
+        public static bool IsWithdrawable(ConsentDocument document) => document == ConsentDocument.HealthDataExplicitConsent;
+
+        /// <summary>
+        /// Kayıtlardan (eskiden yeniye; onaylar ve geri almalar) güncel sürümü onaylanmamış metinler. En son kaydı geri alma olan
+        /// açık rıza eksik sayılmaz: kişi bilerek geri aldı, onay ekranına zorlanmaz; sağlık verisi işleyen işlemler kapalı kalır.
+        /// </summary>
+        public static IReadOnlyList<ConsentDocument> MissingFromRecords(UserRole role,
+            IReadOnlyCollection<(ConsentDocument Document, string Version, bool Withdrawn)> recordsOldestFirst)
+        {
+            var accepted = recordsOldestFirst.Where(r => !r.Withdrawn).Select(r => (r.Document, r.Version));
+            return Missing(role, accepted)
+                .Where(document => !IsWithdrawn(recordsOldestFirst, document))
+                .ToList();
+        }
+
+        /// <summary>Metnin en son kaydı geri alma mı?</summary>
+        public static bool IsWithdrawn(IEnumerable<(ConsentDocument Document, string Version, bool Withdrawn)> recordsOldestFirst,
+            ConsentDocument document) =>
+            IsWithdrawable(document) && recordsOldestFirst.LastOrDefault(r => r.Document == document).Withdrawn;
+
         public static string Title(ConsentDocument document) => document switch
         {
             ConsentDocument.PatientPrivacyNotice => "Danışan Aydınlatma Metni",

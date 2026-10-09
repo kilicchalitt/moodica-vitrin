@@ -50,13 +50,48 @@ namespace bitirme.Services
                 return [];
             }
 
-            var accepted = await _context.ConsentRecords
+            var records = await _context.ConsentRecords
                 .Where(c => c.UserId == userId && required.Contains(c.Document))
-                .Select(c => new { c.Document, c.Version })
-                .Distinct()
+                .OrderBy(c => c.Id)
+                .Select(c => new { c.Document, c.Version, c.Withdrawn })
                 .ToListAsync();
 
-            return ConsentCatalog.Missing(role, accepted.Select(c => (c.Document, c.Version)));
+            return ConsentCatalog.MissingFromRecords(role, records.Select(c => (c.Document, c.Version, c.Withdrawn)).ToList());
+        }
+
+        /// <summary>Açık rızanın geri alındığını kaydeder (yeni satır; önceki onaylar silinmez — DECISION-35).</summary>
+        public async Task WithdrawAsync(int userId, ConsentDocument document)
+        {
+            if (!ConsentCatalog.IsWithdrawable(document))
+            {
+                throw new InvalidOperationException($"{document} geri alınabilen bir rıza değil.");
+            }
+
+            _context.ConsentRecords.Add(new ConsentRecord
+            {
+                UserId = userId,
+                Document = document,
+                Version = ConsentCatalog.CurrentVersion(document),
+                Withdrawn = true
+            });
+            await _context.SaveChangesAsync();
+            _logger.LogInformation("Rıza geri alındı: kullanıcı {UserId}, {Document}", userId, document);
+        }
+
+        /// <summary>Danışan sağlık verisi açık rızasını geri almış mı (en son kaydı geri alma mı)?</summary>
+        public async Task<bool> HasWithdrawnHealthConsentAsync(int patientId) =>
+            (await WithdrawnHealthConsentAmongAsync([patientId])).Count > 0;
+
+        /// <summary>Verilen danışanlardan sağlık verisi açık rızasını geri almış olanlar.</summary>
+        public async Task<IReadOnlySet<int>> WithdrawnHealthConsentAmongAsync(IEnumerable<int> patientIds)
+        {
+            var ids = patientIds.Distinct().ToList();
+            var latest = await _context.ConsentRecords
+                .Where(c => ids.Contains(c.UserId) && c.Document == ConsentDocument.HealthDataExplicitConsent)
+                .GroupBy(c => c.UserId)
+                .Select(g => g.OrderByDescending(c => c.Id).Select(c => new { c.UserId, c.Withdrawn }).First())
+                .ToListAsync();
+            return latest.Where(l => l.Withdrawn).Select(l => l.UserId).ToHashSet();
         }
     }
 }
