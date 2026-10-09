@@ -1,6 +1,8 @@
-# Kisitli Ornek Kod
+# Örnek Kod
 
-Bu dosya, projenin genel kodlama yaklasimini gostermek icin hazirlanmis kucuk bir ornektir. Tam kaynak kodu temsil etmez.
+Bu dosya, projenin genel kodlama yaklaşımını göstermek için hazırlanmış küçük bir örnektir. Tam kaynak kodu temsil etmez.
+
+Randevu durumlarının kullanıcıya gösterilen adları (danışan paneli):
 
 ```csharp
 private static string GetStatusText(AppointmentStatus status)
@@ -8,28 +10,25 @@ private static string GetStatusText(AppointmentStatus status)
     return status switch
     {
         AppointmentStatus.Pending => "Beklemede",
-        AppointmentStatus.Approved => "Onaylandi",
-        AppointmentStatus.Completed => "Tamamlandi",
-        AppointmentStatus.Cancelled => "Iptal",
+        AppointmentStatus.Approved => "Onaylandı",
+        AppointmentStatus.Completed => "Tamamlandı",
+        AppointmentStatus.Cancelled => "İptal",
+        AppointmentStatus.AwaitingPayment => "Ödeme bekleniyor",
         _ => status.ToString()
     };
 }
 ```
 
-```javascript
-function getAppointmentStatusMeta(status) {
-    const normalized = (status || '').toLocaleLowerCase('tr-TR');
+Saf, veritabanından bağımsız ve birim testli bir kural örneği (iki seans zaman olarak çakışıyor mu?):
 
-    if (normalized.includes('onay')) {
-        return { statusText: 'Onaylandi', statusClass: 'bg-success' };
-    }
+```csharp
+/// <summary>Bir seans 50 dakika sürer; ardından 10 dakika ara.</summary>
+public const int SessionMinutes = 50;
 
-    if (normalized.includes('iptal')) {
-        return { statusText: 'Iptal', statusClass: 'bg-danger' };
-    }
+public static DateTime EndOf(DateTime start) => start.AddMinutes(SessionMinutes);
 
-    return { statusText: 'Beklemede', statusClass: 'bg-warning text-dark' };
-}
+public static bool Overlaps(DateTime start, DateTime otherStart) =>
+    start < EndOf(otherStart) && otherStart < EndOf(start);
 ```
 
-Bu ornekler sadece tanitim amaclidir. Projenin tam dosya yapisi, veritabani modeli, servisleri, controller kodlari ve frontend akis kodlari public olarak paylasilmamaktadir.
+Bu örnekler yalnızca tanıtım amaçlıdır. Projenin tam dosya yapısı, veritabanı modeli, servisleri, denetleyicileri ve ön yüz kodları herkese açık olarak paylaşılmamaktadır.

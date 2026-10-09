@@ -1,124 +1,88 @@
-# Online Terapi ve Akilli Karar Destek Platformu
+# Moodica — Online Terapi ve Uzman Eşleştirme Platformu
 
-**Proje Sahibi:** Halit Kilic  
-**Durum:** Akademik calisma  
-**Kaynak Kod:** Public olarak paylasilmamaktadir
+**Proje Sahibi:** Halit Kılıç  
+**Durum:** Geliştirme sürüyor (bitirme projesi olarak başladı; yayına hazırlanan bir ürüne dönüştürülüyor)  
+**Kaynak Kod:** Herkese açık olarak paylaşılmamaktadır
 
-Bu depo, Online Terapi ve Akilli Karar Destek Platformu adli akademik calismanin tanitim sayfasidir. Proje; hasta, doktor, randevu, on gorusme, duygu durumu takibi ve yapay zeka destekli karar destek sureclerini tek bir dijital saglik platformu uzerinde birlestirmeyi amaclamaktadir.
+Bu depo, Moodica projesinin tanıtım sayfasıdır. Moodica; ruh sağlığı desteği arayan yetişkinleri bilimsel temelli bir ihtiyaç analiziyle kendilerine uygun psikolog veya psikiyatriste yönlendiren, randevu, ödeme ve görüntülü seansı tek yerde sunan bir online terapi platformudur.
 
-Bu public depo, projenin kapsamini, teknik yaklasimini, modullerini ve sinirli ornek kod parcalarini gostermek icin hazirlanmistir. Uygulamanin tam kaynak kodlari, veritabani yapisi, servis katmanlari ve tum uygulama akis kodlari private depoda tutulmaktadir.
+Bu herkese açık depo yalnızca projenin kapsamını, teknik yaklaşımını ve modüllerini tanıtmak için hazırlanmıştır. Uygulamanın tam kaynak kodu, veritabanı yapısı ve servis katmanları özel (private) depoda tutulmaktadır.
 
-## Projenin Amaci
+## Projenin Amacı
 
-Projenin temel amaci, psikolojik danismanlik ve online terapi sureclerinde doktor ile hasta arasindaki dijital etkilesimi daha izlenebilir, daha organize ve karar destek mekanizmalariyla daha anlamli hale getirmektir.
+Danışanın doğru uzmana ulaşmasını kolaylaştırmak ve danışan ile uzman arasındaki süreci (ihtiyaç analizi, randevu, ödeme, görüntülü seans, seans sonrası takip) güvenli, izlenebilir ve kişisel verilerin korunmasına uygun şekilde tek bir platformda yürütmektir.
 
-Bu kapsamda sistem; randevu yonetimi, hasta-doktor eslestirmesi, yapay zeka destekli metin analizi, duygu durumu kaydi, klinik not yonetimi ve anlik bildirim mekanizmalarini bir araya getiren web tabanli bir prototip olarak gelistirilmistir.
+**Önemli ilke:** Sistem teşhis koymaz. İhtiyaç analizi yalnızca tarama ve yönlendirme amaçlıdır; değerlendirme ve tedavi her zaman uzmandadır.
 
-## Proje Kapsami
+## Kullanıcı Rolleri
 
-Sistem uzerinde iki temel kullanici rolu bulunmaktadir:
+- **Danışan:** İhtiyaç analizini doldurur, önerilen uzmanlardan birini seçer, uygun saatten randevu alır, görüntülü seansa katılır ve seans sonrası geri bildirim verir.
+- **Uzman (psikolog / psikiyatrist):** Mesleki belgeleri yönetici tarafından doğrulandıktan sonra listelenir; çalışma saatlerini ve izinlerini yönetir, randevularını ve danışanın paylaştığı bilgileri görür, seans notu yazar.
+- **Yönetici:** Uzman başvurularını inceler ve onaylar, hesap işlemlerini yürütür. Danışanların sağlık verilerini göremez.
 
-- Hasta
-- Doktor
+## Temel Özellikler
 
-Hasta, sisteme kayit olup randevu talebi olusturabilir ve yapay zeka destekli on gorusme surecini tamamlayabilir. Doktor ise kendisine atanan hastalari goruntuleyebilir, randevu durumlarini yonetebilir, hasta bazli analiz kayitlarini inceleyebilir ve klinik notlar ekleyebilir.
+- **İhtiyaç analizi:** Adım adım anket; PHQ-9 ve GAD-7 gibi geçerli ölçekler. Kriz belirtisinde acil yardım bilgisi (112 / 183) ve öncelikli işaretleme.
+- **Uzman eşleştirme:** Kanıta dayalı yöntem tablosuna göre puanlanan, "neden önerildi" gerekçeli 3–4 uzman önerisi; teşhis dili kullanılmaz.
+- **Uzman dizini:** Alan, yöntem, meslek ve seans türüne göre süzülebilen uzman listesi ve profil sayfaları.
+- **Takvim ve randevu:** Uzmanın haftalık çalışma saatleri ve izinlerinden hesaplanan boş saatler; çakışmaya karşı veritabanı koruması; iptal kuralları; e-posta hatırlatmaları.
+- **Peşin ödeme:** Seçilen saat kısa bir süre ödeme için ayrılır, ödeme tamamlanınca randevu onaylanır; iptal kurallarına göre otomatik iade. Kart bilgisi platformda tutulmaz (ödeme kuruluşunun güvenli sayfası).
+- **Görüntülü seans:** Tarayıcıda WebRTC ile doğrudan, uçtan uca şifreli görüşme; görüşmeler kaydedilmez. Oda yalnızca randevunun tarafları için ve seans saatine yakın açılır.
+- **Seans sonrası:** Geri bildirim (uzmana yalnızca toplu sonuç), ikinci randevu önerisi, kendine yardım içerikleri ve isteğe bağlı ilerleme ölçümleri.
+- **Kişisel verilerin korunması:** Sağlık verileri şifreli saklanır; sağlık verisine her erişim kayda geçer; kişi "Verilerim" sayfasında verisine kimin eriştiğini görebilir, verilerini indirebilir, açık rızasını geri alabilir ve hesabını silebilir.
+- **Hesap güvenliği:** E-posta doğrulama, iki aşamalı doğrulama, telefon doğrulaması, istek sınırları ve güvenlik başlıkları.
+- **Canlı paneller:** Randevu değişiklikleri danışan ve uzman panellerine sayfa yenilemeden yansır.
 
-## Temel Ozellikler
+## Kullanılan Teknolojiler
 
-- Hasta ve doktor icin ayri kimlik dogrulama akisi
-- Hasta tarafindan randevu olusturma
-- Doktor tarafindan randevu onaylama, iptal etme ve beklemeye alma
-- Hasta bazli randevu ve analiz gecmisi goruntuleme
-- Yapay zeka destekli on gorusme metin analizi
-- Risk seviyesi ve karar destek raporu olusturma
-- Goruntulu gorusme sirasinda duygu durumu kaydi
-- Duygu kayitlarinin yuzdelik dagilim uzerinden degerlendirilmesi
-- Klinik not ekleme ve guncelleme
-- SignalR ile anlik panel bildirimleri
-- Python tabanli analiz servisi ile entegrasyon
+| Katman | Teknoloji |
+|---|---|
+| Web uygulaması | ASP.NET Core MVC (.NET 10), Razor |
+| Kimlik | ASP.NET Core Identity (iki aşamalı doğrulama dahil) |
+| Veritabanı | PostgreSQL, Entity Framework Core |
+| Anlık iletişim | SignalR (panel bildirimleri, görüşme sinyalleşmesi) |
+| Görüntülü görüşme | WebRTC, STUN/TURN (coturn) |
+| Ön yüz | Bootstrap, TypeScript (Vite) |
+| Altyapı | Docker, Caddy (otomatik HTTPS), şifreli yedekleme |
+| Kalite | xUnit birim ve entegrasyon testleri (gerçek PostgreSQL ile), Vitest, GitHub Actions ile sürekli entegrasyon |
 
-## Kullanilan Teknolojiler ve Akademik Degerlendirme
+## Geliştirme Yaklaşımı
 
-### ASP.NET Core MVC
+- Her değişiklik testlerle birlikte gelir; yetki kuralları ve sağlık verisi ekranları entegrasyon testleriyle doğrulanır.
+- Eşleştirme ve güvenlik kuralları yazılı bir şartnameye bağlıdır ve birim testlerle korunur.
+- Gizli bilgiler (şifre, anahtar) koda girmez.
+- Yeni veri ekleyen her özellik bir veri koruma kontrol listesinden geçer.
 
-Uygulamanin ana web mimarisi ASP.NET Core MVC uzerine kurulmustur. MVC mimarisi sayesinde veri modeli, is mantigi ve kullanici arayuzu birbirinden ayrilmistir. Bu ayrim, projenin surdurulebilirligini artirmakta ve farkli modullerin daha kontrollu sekilde gelistirilmesine imkan vermektedir.
+## Yol Haritası (özet)
 
-### Entity Framework Core
+- ✅ Temel altyapı, kimlik ve uzman profili
+- ✅ İhtiyaç analizi ve uzman eşleştirme
+- ✅ Takvim, randevu ve görüntülü seans
+- ✅ Seans sonrası süreç, kişisel verilerin korunması (teknik kısım)
+- ✅ Ödeme altyapısı (test sağlayıcısıyla)
+- ⏳ Yayın altyapısı, hukuki süreçler ve klinisyen incelemesi
+- ⬜ Kapalı beta
 
-Veritabani islemleri Entity Framework Core ile gerceklestirilmistir. Bu teknoloji, uygulama modelleri ile iliskisel veritabani tablolari arasinda nesne-iliskisel esleme saglamaktadir. Randevu, kullanici, analiz sonucu ve duygu kaydi gibi veriler bu katman uzerinden yonetilmektedir.
+## Ekran Görüntüleri
 
-### SQL Server
+Ekran görüntüleri bu depoya daha sonra eklenecektir.
 
-Kalici veri saklama katmani olarak SQL Server kullanilmistir. Kullanici bilgileri, randevu kayitlari, analiz sonuclari, klinik notlar ve duygu durumu gecmisi iliskisel veritabani yapisinda tutulmaktadir.
+## Örnek Kod
 
-### SignalR
+Bu depoda projenin tamamını gösteren kaynak kod bulunmaz. Yalnızca kodlama yaklaşımını göstermek için küçük bir örnek paylaşılmıştır: [CODE_SAMPLE.md](CODE_SAMPLE.md)
 
-Panel bildirimleri ve sayfa degisikligi gerektiren durumlarda anlik haberlesme icin SignalR kullanilmistir. Bu yapi, klasik sayfa yenileme mantigina gore daha dinamik bir kullanici deneyimi sunmakta ve doktor-hasta panellerinin daha hizli tepki vermesini saglamaktadir.
+## Kaynak Kodun Paylaşılmama Nedeni
 
-### Python FastAPI
+Proje kişisel emek ürünüdür ve yayına hazırlanmaktadır. Tam kaynak kod, veritabanı modeli ve servis katmanlarının herkese açık paylaşılması uygun görülmemiştir; bu depo yalnızca tanıtım ve inceleme amacıyla hazırlanmıştır.
 
-Yapay zeka destekli analiz servisleri Python FastAPI uzerinden ayrik bir servis olarak tasarlanmistir. Bu tercih, web uygulamasi ile analiz katmaninin birbirinden bagimsiz gelistirilmesine olanak saglamaktadir.
+## Telif ve Kullanım Hakları
 
-### JavaScript
+Bu proje ve bu depodaki tüm açıklamalar, belgeler, örnek kod parçaları ve görseller Halit Kılıç'a aittir. Yazılı izin olmadan hiçbir içerik kopyalanamaz, çoğaltılamaz, dağıtılamaz, değiştirilemez; ticari veya akademik başka bir çalışmada kullanılamaz. Ayrıntılar için [LICENSE](LICENSE) dosyasına bakınız.
 
-Kullanici arayuzundeki dinamik etkilesimler JavaScript ile yonetilmistir. Randevu durum guncellemeleri, panel icindeki gorunurluk degisimleri ve kullaniciya anlik geri bildirim verilmesi bu katmanda ele alinmistir.
+## İletişim
 
-### Bootstrap
-
-Arayuz tasariminda Bootstrap kullanilmistir. Responsive grid yapisi, form elemanlari, kart yapilari ve buton bilesenleri sayesinde farkli ekran boyutlarinda duzenli bir kullanim deneyimi hedeflenmistir.
-
-### HTML ve CSS
-
-Sayfa yapisi HTML ile, gorsel duzenlemeler ise CSS ile olusturulmustur. Doktor paneli, atanan hasta kartlari, randevu kayit tablolari ve analiz kartlari icin ozel stiller uygulanmistir.
-
-## Sistem Modulleri
-
-### Hasta Paneli
-
-Hasta paneli, hastanin randevu olusturmasini, mevcut randevularini takip etmesini ve yapay zeka destekli on gorusme adimini tamamlamasini saglar.
-
-### Doktor Paneli
-
-Doktor paneli, hekimin kendisine atanan hastalari goruntulemesini, hasta bazli randevu gecmisini incelemesini, durum guncellemesi yapmasini ve klinik not eklemesini saglar.
-
-### Yapay Zeka Analiz Modulu
-
-Hasta tarafindan girilen on gorusme metni Python API uzerinden analiz edilir. Bu analiz sonucunda risk seviyesi ve karar destek raporu olusturularak doktor panelinde goruntulenir.
-
-### Duygu Durumu Takip Modulu
-
-Gorusme sirasinda elde edilen yuz ifadesi verileri kaydedilir ve hasta bazli olarak gruplandirilir. Baskin duygu degeri tekil bir ham skor yerine, kayitlarin yuzdelik dagilimina gore hesaplanir.
-
-### Randevu Durum Yonetimi
-
-Doktor, randevulari Beklemede, Onaylandi veya Iptal durumlarina alabilir. Bu islemler kullanici arayuzunde hizli geri bildirim uretecek sekilde tasarlanmistir.
-
-## Ekran Goruntuleri
-
-Ekran goruntuleri bu public tanitim deposuna daha sonra eklenecektir. Bu nedenle bu bolum simdilik bilincli olarak bos birakilmistir.
-
-## Kisitli Ornek Kod
-
-Bu depoda projenin tamamini gosteren kaynak kodlar bulunmaz. Sadece mimari yaklasimi anlatmak icin kucuk ve sinirli bir ornek kod parcasi paylasilmistir:
-
-[CODE_SAMPLE.md](CODE_SAMPLE.md)
-
-## Kaynak Kodun Paylasilmama Nedeni
-
-Bu proje akademik ve kisisel emek urunudur. Tam kaynak kod, veritabani modeli, servis katmanlari ve uygulama akislarinin public olarak paylasilmasi uygun gorulmemistir. Bu nedenle public depo yalnizca tanitim ve inceleme amaciyla hazirlanmistir.
-
-## Telif ve Kullanim Haklari
-
-Bu proje ve bu depoda yer alan tum aciklamalar, dokumantasyon, ornek kod parcalari ve ileride eklenecek gorsel materyaller Halit Kilic'a aittir.
-
-Bu depo yalnizca inceleme ve tanitim amaciyla paylasilmistir. Yazili izin olmadan bu projedeki herhangi bir icerik kopyalanamaz, cogaltilamaz, dagitilamaz, degistirilemez, ticari veya akademik baska bir calismada kullanilamaz.
-
-Detaylar icin [LICENSE](LICENSE) dosyasina bakiniz.
-
-## Iletisim
-
-Proje hakkinda bilgi almak veya kaynak kod erisimi talep etmek icin proje sahibiyle iletisime gecilmelidir.
+Proje hakkında bilgi almak veya kaynak koda erişim talep etmek için proje sahibiyle iletişime geçiniz.
 
 ---
 
-Copyright (c) 2026 Halit Kilic. Tum haklari saklidir.
+Copyright (c) 2026 Halit Kılıç. Tüm hakları saklıdır.
