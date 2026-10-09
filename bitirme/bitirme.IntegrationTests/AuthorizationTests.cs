@@ -103,7 +103,7 @@ public class AuthorizationTests(MoodicaFactory factory)
             ("id", appointment.Id.ToString()), ("note", "Seans notu"));
         Assert.Contains("\"success\":true", await allowed.ReadTextAsync());
 
-        var savedNote = await _data.WithDbAsync(db => db.Appointments.Where(a => a.Id == appointment.Id).Select(a => a.Note).SingleAsync());
+        var savedNote = await _data.StoredNoteAsync(appointment.Id);
         Assert.Equal("Seans notu", savedNote);
     }
 }

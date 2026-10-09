@@ -39,13 +39,26 @@ namespace bitirme.Services
     }
 
     /// <summary>
-    /// Uzmanın özel seans notu (ISSUE-22). Özel not ilk günden şifreli saklanır; danışana görünen not ve şikayet Faz 8'de şifrelenir.
+    /// Uzmanın özel seans notu (ISSUE-22). Özel not ilk günden şifreli saklanır; denetleyiciler yalnızca gerektiğinde çözer.
     /// </summary>
     public sealed class SessionNoteProtector : TextProtector
     {
         public const string ProtectorPurpose = "Moodica.SessionPrivateNote.v1";
 
         public SessionNoteProtector(IDataProtectionProvider dataProtection) : base(dataProtection, ProtectorPurpose)
+        {
+        }
+    }
+
+    /// <summary>
+    /// Randevudaki serbest metinler: danışanın şikayeti, danışana görünen seans notu ve iptal gerekçesi (ISSUE-22, Faz 8).
+    /// Veritabanına yazılırken şifrelenir, okunurken çözülür (<c>AppointmentTextEncryptionInterceptor</c>).
+    /// </summary>
+    public sealed class AppointmentTextProtector : TextProtector
+    {
+        public const string ProtectorPurpose = "Moodica.AppointmentText.v1";
+
+        public AppointmentTextProtector(IDataProtectionProvider dataProtection) : base(dataProtection, ProtectorPurpose)
         {
         }
     }
