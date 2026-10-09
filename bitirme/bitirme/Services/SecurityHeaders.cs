@@ -29,7 +29,8 @@ namespace bitirme.Services
 
             return app.Use(async (context, next) =>
             {
-                var nonce = Convert.ToBase64String(RandomNumberGenerator.GetBytes(16));
+                // Onaltılık: CSP'de geçerli ve Razor özniteliğe yazarken kodlamaz (base64'teki +, /, = kodlanıyordu).
+                var nonce = Convert.ToHexString(RandomNumberGenerator.GetBytes(16));
                 context.Items[NonceKey] = nonce;
 
                 var headers = context.Response.Headers;
