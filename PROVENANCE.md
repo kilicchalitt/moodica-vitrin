@@ -4,15 +4,16 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `6d8d5ac339fe823acc4b8af04c960c7a3d7069a5`
-- Kaynak commit tarihi: 2026-10-10T00:01:00+03:00
-- Dosya sayısı: 23
+- Kaynak commit: `653ecc4d29f2bfec96dfe7c78b7b9f05a5bf13e3`
+- Kaynak commit tarihi: 2026-10-10T00:01:01+03:00
+- Dosya sayısı: 24
 
 | Dosya | SHA-256 |
 |---|---|
 | `Dockerfile` | `483d7f5c847700781694ec743ee5a6cc90ec64410efabf0f0cd62a6f0d08f754` |
 | `bitirme/bitirme.IntegrationTests/AuthorizationTests.cs` | `100c6dd6ef1f77490112bfbc51bbe1c3cc31b36630cbc9616097716d2ce16c10` |
 | `bitirme/bitirme.Tests/AppointmentStateRulesTests.cs` | `eb40abd1112735255c86eadf1de9246977956e2628c45956994d61c7ce877bda` |
+| `bitirme/bitirme.Tests/SessionNoteProtectorTests.cs` | `5e88dbe2baa8f1cc14b64d9c6aa7bfc765fd7ca943cf0f028c92b6ea5f167027` |
 | `bitirme/bitirme.Tests/SlotRulesTests.cs` | `ceb0f90e6f703f02bdc50ae20b4b23437c07a84f84c30a5bcb8479a519b687f3` |
 | `bitirme/bitirme/Data/AppUserStore.cs` | `771d76f59a11149fafaacc0d4bd8cde4e44232a74bd9fd3d5472d3c97257f25e` |
 | `bitirme/bitirme/Filters/RequireConsentFilter.cs` | `b9c38d04861ec81a725a68741421f8ff9484b7467a27cd0e7053e91b5c5eced5` |
