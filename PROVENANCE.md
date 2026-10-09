@@ -4,14 +4,15 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `31324a3a58aeb1135eac479db467b3c34682c6fb`
-- Kaynak commit tarihi: 2026-10-10T00:01:10+03:00
-- Dosya sayısı: 27
+- Kaynak commit: `5297bfcf6a2d3cde3d3ec55864aaddc48a0428ae`
+- Kaynak commit tarihi: 2026-10-10T00:01:11+03:00
+- Dosya sayısı: 29
 
 | Dosya | SHA-256 |
 |---|---|
 | `Dockerfile` | `483d7f5c847700781694ec743ee5a6cc90ec64410efabf0f0cd62a6f0d08f754` |
 | `bitirme/bitirme.IntegrationTests/AuthorizationTests.cs` | `b939279e7e16600b9f25c8f5d7ac968240717a73455e5042d48562124503716d` |
+| `bitirme/bitirme.IntegrationTests/RateLimitTests.cs` | `e29e1d0f0c6ce8e7cf415e577702715524d4d77d49912664adfae9406fe1f83b` |
 | `bitirme/bitirme.Tests/AppointmentStateRulesTests.cs` | `eb40abd1112735255c86eadf1de9246977956e2628c45956994d61c7ce877bda` |
 | `bitirme/bitirme.Tests/SessionNoteProtectorTests.cs` | `5e88dbe2baa8f1cc14b64d9c6aa7bfc765fd7ca943cf0f028c92b6ea5f167027` |
 | `bitirme/bitirme.Tests/SlotRulesTests.cs` | `ceb0f90e6f703f02bdc50ae20b4b23437c07a84f84c30a5bcb8479a519b687f3` |
@@ -30,6 +31,7 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme/Services/Email/EmailRules.cs` | `64c523294ddaa4875cd45ed17af2635e65665f9c9f7dceeff225e1fe884c5602` |
 | `bitirme/bitirme/Services/HealthDataAuditLog.cs` | `4f6800737abd147bf9ffa48498312a6e9738b5e70fe7496cfae77642150aee9d` |
 | `bitirme/bitirme/Services/IceServerProvider.cs` | `cd16ce30622af4f96ae8854b62862e5a8e6a3c681f72ed46c5bdc0dbdeff09b2` |
+| `bitirme/bitirme/Services/RateLimitPolicies.cs` | `ba29f5ddefba3ab8e0b70d289ffa22d79ab8454eca0a13fcf2810a1c63deedcb` |
 | `bitirme/bitirme/Services/RecoveryCodeHasher.cs` | `b3e59d5d216ca3c03f1e3aa1d44d3e842e38cd9247867a5889e74475c1bdd132` |
 | `bitirme/bitirme/Services/SlotRules.cs` | `88ce0b5bbe76d08cbc9e053a0d9d79c83a0ca83113b3cad44c787a5d4670d69c` |
 | `bitirme/bitirme/Services/TextProtector.cs` | `d5f0bb368b003d64dc9f1eec1f0ba8e582c190f0f009e57fd292cd9960e2f9df` |
