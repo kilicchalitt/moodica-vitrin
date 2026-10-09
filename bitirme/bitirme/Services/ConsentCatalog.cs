@@ -15,8 +15,9 @@ namespace bitirme.Services
         {
             // 2026-10-07: aydınlatma metinlerine görüntülü görüşme bağlantı (STUN/TURN) sağlayıcısına aktarım eklendi.
             // 2026-10-07b: seans geri bildirimi (veri türü ve hizmet kalitesi amacı, DECISION-33) eklendi.
-            [ConsentDocument.PatientPrivacyNotice] = "2026-10-07b-taslak",
-            [ConsentDocument.HealthDataExplicitConsent] = "2026-10-05-taslak",
+            // 2026-10-08: danışan metinlerine isteğe bağlı ilerleme ölçümleri (PHQ-9/GAD-7 tekrarı, DECISION-33) eklendi.
+            [ConsentDocument.PatientPrivacyNotice] = "2026-10-08-taslak",
+            [ConsentDocument.HealthDataExplicitConsent] = "2026-10-08-taslak",
             [ConsentDocument.ExpertPrivacyNotice] = "2026-10-07b-taslak"
         };
 
