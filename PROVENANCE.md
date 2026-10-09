@@ -4,9 +4,9 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `cd5cd067c58c1d86f5dfdb21d76195252bad06d9`
+- Kaynak commit: `776c304941a902761a2377f94f333c2e6631ef58`
 - Kaynak commit tarihi: 2026-10-10T00:01:14+03:00
-- Dosya sayısı: 33
+- Dosya sayısı: 34
 
 | Dosya | SHA-256 |
 |---|---|
@@ -24,6 +24,7 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme/Filters/RequireTwoFactorAttribute.cs` | `09298044da2fbf12280debae70cb048f6d27a3082f6b6e9fe3db88ec676c089c` |
 | `bitirme/bitirme/Hubs/NotificationHub.cs` | `b82dc9c0038902d064bf693e84f5db30c486bc3251754f080afae505a3d28f1a` |
 | `bitirme/bitirme/Hubs/VideoHub.cs` | `29151bf4046354d1f69110c19505c9dcc4e42376338d6be9bf3caab7d2088966` |
+| `bitirme/bitirme/Services/AccountDeletionService.cs` | `7d99f3fff963e439477abf94e0b0f6e40d986e071d37cb997182cea1787ea052` |
 | `bitirme/bitirme/Services/AppointmentRules.cs` | `6acf681a599da1cb7fcc1284bdce7045d770d991286aaf482f773de0e9492370` |
 | `bitirme/bitirme/Services/AppointmentStateRules.cs` | `197e933275b2187adba593e7228b8505f1c2a47fbabd4dafe4c7fa2f8da0b5c4` |
 | `bitirme/bitirme/Services/ConsentCatalog.cs` | `a3920e5d5417961db66b1a55fa087f4614d5ddb00c71aeb316dee746f37c4808` |
