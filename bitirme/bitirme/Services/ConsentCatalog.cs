@@ -18,7 +18,8 @@ namespace bitirme.Services
             // 2026-10-08: danışan metinlerine isteğe bağlı ilerleme ölçümleri (PHQ-9/GAD-7 tekrarı, DECISION-33) eklendi.
             [ConsentDocument.PatientPrivacyNotice] = "2026-10-08-taslak",
             [ConsentDocument.HealthDataExplicitConsent] = "2026-10-08-taslak",
-            [ConsentDocument.ExpertPrivacyNotice] = "2026-10-07b-taslak"
+            // 2026-10-08: uzman metnine danışanın ihtiyaç analizi özeti ve ilerleme ölçümleri eklendi.
+            [ConsentDocument.ExpertPrivacyNotice] = "2026-10-08-taslak"
         };
 
         private static readonly ConsentDocument[] PatientDocuments =
