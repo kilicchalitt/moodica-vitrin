@@ -1,0 +1,99 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using bitirme.Data;
+using bitirme.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace bitirme.Services
+{
+    /// <summary>Kişinin verisine başkasının erişimi ya da hesabıyla ilgili bir yönetim işlemi (kim, ne, ne zaman).</summary>
+    public sealed record DataAccessEntry(DateTime AtUtc, string Who, string What, DateTime? AppointmentUtc);
+
+    /// <summary>
+    /// "Verime kim erişti" (Faz 8, KVKK md. 11): kişinin sağlık verisine kendisi dışında erişenler
+    /// (<c>HealthDataAccessLogs</c>) ve hesabıyla ilgili yönetici işlemleri (<c>AdminActionLogs</c>), en yeniden eskiye.
+    /// Yöneticiler kişi adıyla değil "Moodica yönetimi" olarak gösterilir; kayıtların içeriği (gerekçe, dosya adı) gösterilmez.
+    /// Uzmanın özel klinik notuna erişimler danışana gösterilmez: notun varlığı danışana açılmaz (DECISION-32; avukata
+    /// soruldu, <c>HUKUK.md</c> H-14).
+    /// </summary>
+    public sealed class DataAccessReport
+    {
+        public const int MaxEntries = 200;
+        public const string PlatformName = "Moodica yönetimi";
+
+        private readonly AppDbContext _context;
+
+        public DataAccessReport(AppDbContext context)
+        {
+            _context = context;
+        }
+
+        public async Task<IReadOnlyList<DataAccessEntry>> ForUserAsync(int userId)
+        {
+            var health = await _context.HealthDataAccessLogs
+                .AsNoTracking()
+                .Where(l => l.SubjectUserId == userId && l.ActorUserId != userId && l.Kind != HealthDataKind.PrivateSessionNote)
+                .OrderByDescending(l => l.CreatedAt)
+                .Take(MaxEntries)
+                .Select(l => new
+                {
+                    l.CreatedAt,
+                    l.Kind,
+                    l.Action,
+                    IsAdmin = l.ActorUser is Admin,
+                    Title = l.ActorUser is Doctor ? ((Doctor)l.ActorUser).Title : null,
+                    l.ActorUser!.FirstName,
+                    l.ActorUser.LastName,
+                    AppointmentDate = l.Appointment != null ? l.Appointment.AppointmentDate : (DateTime?)null
+                })
+                .ToListAsync();
+
+            var admin = await _context.AdminActionLogs
+                .AsNoTracking()
+                .Where(l => l.TargetUserId == userId)
+                .OrderByDescending(l => l.CreatedAt)
+                .Take(MaxEntries)
+                .Select(l => new { l.CreatedAt, l.Action })
+                .ToListAsync();
+
+            return health
+                .Select(h => new DataAccessEntry(h.CreatedAt,
+                    h.IsAdmin ? PlatformName : ActorName(h.Title, h.FirstName, h.LastName),
+                    Describe(h.Kind, h.Action),
+                    h.AppointmentDate))
+                .Concat(admin.Select(a => new DataAccessEntry(a.CreatedAt, PlatformName, Describe(a.Action), null)))
+                .OrderByDescending(e => e.AtUtc)
+                .Take(MaxEntries)
+                .ToList();
+        }
+
+        public static string ActorName(string? title, string? firstName, string? lastName) =>
+            string.Join(" ", new[] { title, firstName, lastName }.Where(p => !string.IsNullOrWhiteSpace(p)).Select(p => p!.Trim()));
+
+        public static string Describe(HealthDataKind kind, HealthDataAccessAction action)
+        {
+            var data = kind switch
+            {
+                HealthDataKind.Complaint => "Randevu şikayetinizi",
+                HealthDataKind.SessionNote => "Seans notunuzu",
+                HealthDataKind.NeedsAssessment => "İhtiyaç analizi anketinizi",
+                HealthDataKind.ProgressCheck => "İlerleme ölçümlerinizi",
+                _ => "Sağlık verinizi"
+            };
+            return action == HealthDataAccessAction.Written ? $"{data} yazdı veya güncelledi" : $"{data} görüntüledi";
+        }
+
+        public static string Describe(AdminActionType action) => action switch
+        {
+            AdminActionType.DoctorApproved => "Uzman başvurunuzu onayladı",
+            AdminActionType.DoctorRejected => "Uzman başvurunuzu reddetti",
+            AdminActionType.UserSuspended => "Hesabınızı askıya aldı",
+            AdminActionType.UserReactivated => "Hesabınızı yeniden açtı",
+            AdminActionType.DocumentViewed => "Mesleki belgenizi görüntüledi",
+            AdminActionType.FeedbackCommentViewed => "Seans geri bildirimi yorumunuzu görüntüledi",
+            _ => "Hesabınızla ilgili bir işlem yaptı"
+        };
+    }
+}
