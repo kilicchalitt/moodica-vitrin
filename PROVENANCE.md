@@ -4,9 +4,9 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `aa61cf8cba80b35c9c98ec86cb6b27f177af6020`
-- Kaynak commit tarihi: 2026-10-10T00:01:02+03:00
-- Dosya sayısı: 25
+- Kaynak commit: `bb6c59ee8bddecb4fceb510cd111f93df4ebcf85`
+- Kaynak commit tarihi: 2026-10-10T00:01:05+03:00
+- Dosya sayısı: 26
 
 | Dosya | SHA-256 |
 |---|---|
@@ -31,6 +31,7 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme/Services/IceServerProvider.cs` | `cd16ce30622af4f96ae8854b62862e5a8e6a3c681f72ed46c5bdc0dbdeff09b2` |
 | `bitirme/bitirme/Services/RecoveryCodeHasher.cs` | `b3e59d5d216ca3c03f1e3aa1d44d3e842e38cd9247867a5889e74475c1bdd132` |
 | `bitirme/bitirme/Services/SlotRules.cs` | `88ce0b5bbe76d08cbc9e053a0d9d79c83a0ca83113b3cad44c787a5d4670d69c` |
+| `bitirme/bitirme/Services/TextProtector.cs` | `6550852f6f1dff1ab59e94e90d197100cf5c1cedbc20bc4de1165d4b30328b9a` |
 | `bitirme/bitirme/Services/TwoFactorHelper.cs` | `eba0500e050458401531e836b14b42b647dc247ea22c1cb5c42d48c87df3a605` |
 | `bitirme/bitirme/Services/WorkingHoursRules.cs` | `9757786ba77cbde498725c39d8386dc9ec1a7e58efa673a7e574409f519deea5` |
 | `bitirme/bitirme/bitirme.csproj` | `bf0f53c7439c8fac76ad0cf27b7fcec3bcfa99ad7a7756ca04e02ce60ad74c71` |
