@@ -31,6 +31,12 @@ namespace bitirme.Services
         /// <summary>Şifreli sağlık verisi yazan gönderimler: ihtiyaç analizi anketi, ilerleme ölçümü.</summary>
         public const string Submission = "gonderim";
 
+        /// <summary>Telefon doğrulama kodu gönderme (ücretli mesaj; kullanıcı başına).</summary>
+        public const string PhoneCodeSend = "telefon-kodu";
+
+        /// <summary>Telefon doğrulama kodunu girme (tahmin denemesi; kullanıcı başına).</summary>
+        public const string PhoneCodeVerify = "telefon-dogrulama";
+
         public const string RejectedMessage = "Çok fazla deneme yapıldı. Lütfen birkaç dakika sonra tekrar deneyin.";
 
         public static IServiceCollection AddMoodicaRateLimiting(this IServiceCollection services, IConfiguration configuration)
@@ -46,6 +52,8 @@ namespace bitirme.Services
                 AddPolicy(options, AccountEmail, enabled, ClientAddress, permits: 5, TimeSpan.FromMinutes(15));
                 AddPolicy(options, Register, enabled, ClientAddress, permits: 5, TimeSpan.FromHours(1));
                 AddPolicy(options, Submission, enabled, UserOrAddress, permits: 10, TimeSpan.FromHours(1));
+                AddPolicy(options, PhoneCodeSend, enabled, UserOrAddress, permits: 3, TimeSpan.FromMinutes(15));
+                AddPolicy(options, PhoneCodeVerify, enabled, UserOrAddress, permits: 10, TimeSpan.FromMinutes(15));
             });
 
             return services;
