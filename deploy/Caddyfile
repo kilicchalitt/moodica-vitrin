@@ -1,0 +1,12 @@
+# Moodica ters vekili (Caddy): HTTPS sertifikasını otomatik alır/yeniler, HTTP'yi HTTPS'e yönlendirir, istekleri
+# (SignalR WebSocket dahil) uygulamaya iletir. Gerçek istemci adresini X-Forwarded-For ile kendisi yazar; istemcinin
+# gönderdiği X-Forwarded-* başlıklarına güvenmez. Güvenlik başlıkları (CSP, HSTS vb.) uygulamadadır.
+{
+	email {$ACME_EMAIL}
+}
+
+{$MOODICA_DOMAIN} {
+	encode zstd gzip
+	reverse_proxy web:8080
+	header -Server
+}

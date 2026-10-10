@@ -4,9 +4,9 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `c41197e3714643b33c5d12c1599be86fff14239a`
-- Kaynak commit tarihi: 2026-10-11T01:27:07+03:00
-- Dosya sayısı: 35
+- Kaynak commit: `9a8c10b9bf15747001bff8e5c66d83774ff02c74`
+- Kaynak commit tarihi: 2026-10-11T01:27:08+03:00
+- Dosya sayısı: 36
 
 | Dosya | SHA-256 |
 |---|---|
@@ -44,4 +44,5 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme/Services/TwoFactorHelper.cs` | `eba0500e050458401531e836b14b42b647dc247ea22c1cb5c42d48c87df3a605` |
 | `bitirme/bitirme/Services/WorkingHoursRules.cs` | `9757786ba77cbde498725c39d8386dc9ec1a7e58efa673a7e574409f519deea5` |
 | `bitirme/bitirme/bitirme.csproj` | `bf0f53c7439c8fac76ad0cf27b7fcec3bcfa99ad7a7756ca04e02ce60ad74c71` |
+| `deploy/Caddyfile` | `b7e2c80000778c65b686b816bf9a2aa4cbc83d1768bf9eaa47cbc3eb5fe1d18a` |
 | `docs/ana-proje-ci.yml` | `78e5e677339047d6ee37f99814d88bd2d43def0fc8a4b63c66d8ccb661e4f32a` |
