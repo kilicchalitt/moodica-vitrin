@@ -15,7 +15,7 @@ namespace bitirme.Services
     /// sabit zaman penceresiyle sınırlanır. Anonim işlemler IP adresine, gönderimler kullanıcıya göre sayılır. Hesap başına
     /// kilit (5 hatada 15 dk) ayrıca Identity'dedir; bu sınır çok hesaba yayılan denemeleri ve e-posta bombardımanını keser.
     /// <c>RateLimiting:Enabled=false</c> sınırları kaldırır (entegrasyon testleri tek adresten çok sayıda giriş yapar).
-    /// Yayında ters vekil arkasında gerçek IP için iletilen başlıklar Faz 9'da ayarlanır.
+    /// Ters vekil arkasında gerçek IP <see cref="ReverseProxySettings"/> ile gelir (yalnızca güvenilen vekilden).
     /// </summary>
     public static class RateLimitPolicies
     {
