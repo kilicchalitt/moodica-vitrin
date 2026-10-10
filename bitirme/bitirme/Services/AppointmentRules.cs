@@ -41,17 +41,25 @@ namespace bitirme.Services
         public static bool IsWithinBookingWindow(DateTime start, DateTime now) =>
             start >= now + MinLeadTime && start <= now + BookingHorizon;
 
-        /// <summary>Bekleyen ve onaylı randevular saati doldurur; iptal ve tamamlananlar doldurmaz.</summary>
+        /// <summary>
+        /// Saati dolduran durumlar: bekleyen, onaylı ve ödeme için ayrılmış (Faz 6). Veritabanı sorgularında kullanılır;
+        /// tekil indekslerin süzgeci de bunlardır (AppDbContext).
+        /// </summary>
+        public static readonly AppointmentStatus[] SlotStatuses =
+            [AppointmentStatus.Pending, AppointmentStatus.Approved, AppointmentStatus.AwaitingPayment];
+
+        /// <summary>Bekleyen, onaylı ve ödeme bekleyen randevular saati doldurur; iptal ve tamamlananlar doldurmaz.</summary>
         public static bool OccupiesSlot(Appointment appointment) => OccupiesSlot(appointment.Status);
 
-        public static bool OccupiesSlot(AppointmentStatus status) =>
-            status == AppointmentStatus.Pending || status == AppointmentStatus.Approved;
+        public static bool OccupiesSlot(AppointmentStatus status) => SlotStatuses.Contains(status);
 
         /// <summary>
         /// Uzman, danışanın anket özetini yalnızca bu randevu üzerinden görebilir mi? Bekleyen, onaylı ve tamamlanan
-        /// randevu erişim verir; iptal edilen (uzmanın reddi dahil) vermez — açık rıza "randevu alınan uzmanla paylaşım"dır.
+        /// randevu erişim verir; iptal edilen (uzmanın reddi dahil) ve ödemesi tamamlanmamış randevu vermez — açık rıza
+        /// "randevu alınan uzmanla paylaşım"dır.
         /// </summary>
-        public static bool GrantsAssessmentAccess(AppointmentStatus status) => status != AppointmentStatus.Cancelled;
+        public static bool GrantsAssessmentAccess(AppointmentStatus status) =>
+            status is not (AppointmentStatus.Cancelled or AppointmentStatus.AwaitingPayment);
 
         /// <summary>Verilen başlangıçtaki seans, saati dolduran mevcut randevulardan biriyle çakışıyor mu?</summary>
         public static bool HasConflict(DateTime start, IEnumerable<Appointment> existingAppointments) =>
@@ -90,6 +98,21 @@ namespace bitirme.Services
             MeetingAccess.Ended => "Bu seansın görüşme süresi doldu.",
             _ => string.Empty
         };
+    }
+
+    /// <summary>Panellerde hangi randevuların görüneceği (Faz 6: ödeme akışı).</summary>
+    public static class AppointmentVisibility
+    {
+        /// <summary>
+        /// Uzman yalnızca ödemesi alınmış (ya da ödeme öncesinden kalan) randevuları görür; ödeme bekleyen ve hiç ödenmeden
+        /// biten ayırmalar uzmana gösterilmez (danışanın şikayeti dahil).
+        /// </summary>
+        public static IQueryable<Appointment> VisibleToDoctor(this IQueryable<Appointment> appointments) =>
+            appointments.Where(a => a.Payment == null || a.Payment.PaidAt != null);
+
+        /// <summary>Danışan, ödenmeden biten (süresi dolan / vazgeçilen) ayırmaları görmez; ödeme bekleyeni görür.</summary>
+        public static IQueryable<Appointment> VisibleToPatient(this IQueryable<Appointment> appointments) =>
+            appointments.Where(a => a.Payment == null || a.Payment.PaidAt != null || a.Payment.Status == PaymentStatus.Pending);
     }
 
     /// <summary>Görüşme odasına erişim durumu.</summary>

@@ -33,6 +33,12 @@ namespace bitirme.Services
                 return "Randevu zaten bu durumda.";
             }
 
+            // Ödeme bekleyen randevu yalnızca ödeme akışıyla onaylanır veya bırakılır (Faz 6; PaymentService).
+            if (from == AppointmentStatus.AwaitingPayment)
+            {
+                return "Bu randevunun ödemesi bekleniyor.";
+            }
+
             switch (to)
             {
                 case AppointmentStatus.Pending:

@@ -22,6 +22,17 @@ public class AppointmentStateRulesTests
         Assert.Contains("değiştirilemez", Blocker(from, to, AppointmentActor.Doctor, 48));
     }
 
+    [Theory]
+    [InlineData(AppointmentStatus.Approved, AppointmentActor.Doctor)]
+    [InlineData(AppointmentStatus.Approved, AppointmentActor.Patient)]
+    [InlineData(AppointmentStatus.Cancelled, AppointmentActor.Doctor)]
+    [InlineData(AppointmentStatus.Cancelled, AppointmentActor.Patient)]
+    [InlineData(AppointmentStatus.Completed, AppointmentActor.Doctor)]
+    public void AwaitingPayment_ChangesOnlyThroughPaymentFlow(AppointmentStatus to, AppointmentActor actor)
+    {
+        Assert.Equal("Bu randevunun ödemesi bekleniyor.", Blocker(AppointmentStatus.AwaitingPayment, to, actor, 48));
+    }
+
     [Fact]
     public void NothingGoesBackToPending()
     {

@@ -4,9 +4,9 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `a2394a51916bf54696a0bac7849deec36f865423`
-- Kaynak commit tarihi: 2026-10-11T01:27:13+03:00
-- Dosya sayısı: 37
+- Kaynak commit: `d9d2e63e7cad88027f9c9b02ca6e2e5254ffb0ed`
+- Kaynak commit tarihi: 2026-10-11T01:27:16+03:00
+- Dosya sayısı: 38
 
 | Dosya | SHA-256 |
 |---|---|
@@ -14,7 +14,7 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme.IntegrationTests/AuthorizationTests.cs` | `591beb7ff6f0eeb9fb7bbfaa3a1fd7d9c55f374928f808968050c64f402bd479` |
 | `bitirme/bitirme.IntegrationTests/RateLimitTests.cs` | `523806b60e756f717d5a19f552894b777bcec4cbf8dd9ba2dc2fd04eccb2a17a` |
 | `bitirme/bitirme.IntegrationTests/SecurityHeadersTests.cs` | `eb944586c189cf53399b721e7c486638667fdf67b51bc7c335c247a18e94fa18` |
-| `bitirme/bitirme.Tests/AppointmentStateRulesTests.cs` | `eb40abd1112735255c86eadf1de9246977956e2628c45956994d61c7ce877bda` |
+| `bitirme/bitirme.Tests/AppointmentStateRulesTests.cs` | `a8b61df4d1b03ef24679f32419a53a0c65a30e83cecb9a4e5253d0853e60604b` |
 | `bitirme/bitirme.Tests/SessionNoteProtectorTests.cs` | `5e88dbe2baa8f1cc14b64d9c6aa7bfc765fd7ca943cf0f028c92b6ea5f167027` |
 | `bitirme/bitirme.Tests/SlotRulesTests.cs` | `ceb0f90e6f703f02bdc50ae20b4b23437c07a84f84c30a5bcb8479a519b687f3` |
 | `bitirme/bitirme/Data/AppUserStore.cs` | `771d76f59a11149fafaacc0d4bd8cde4e44232a74bd9fd3d5472d3c97257f25e` |
@@ -25,8 +25,8 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme/Hubs/NotificationHub.cs` | `b82dc9c0038902d064bf693e84f5db30c486bc3251754f080afae505a3d28f1a` |
 | `bitirme/bitirme/Hubs/VideoHub.cs` | `29151bf4046354d1f69110c19505c9dcc4e42376338d6be9bf3caab7d2088966` |
 | `bitirme/bitirme/Services/AccountDeletionService.cs` | `7d99f3fff963e439477abf94e0b0f6e40d986e071d37cb997182cea1787ea052` |
-| `bitirme/bitirme/Services/AppointmentRules.cs` | `6acf681a599da1cb7fcc1284bdce7045d770d991286aaf482f773de0e9492370` |
-| `bitirme/bitirme/Services/AppointmentStateRules.cs` | `197e933275b2187adba593e7228b8505f1c2a47fbabd4dafe4c7fa2f8da0b5c4` |
+| `bitirme/bitirme/Services/AppointmentRules.cs` | `43bfcdba5dbff88083e9679a131a0ad1680a6d066d577d5a911ce1199ad30c57` |
+| `bitirme/bitirme/Services/AppointmentStateRules.cs` | `0d7bf193a2276fa2ba070284584ccbdbe8e27669742c65be7d243531cc7a2041` |
 | `bitirme/bitirme/Services/ConsentCatalog.cs` | `a3920e5d5417961db66b1a55fa087f4614d5ddb00c71aeb316dee746f37c4808` |
 | `bitirme/bitirme/Services/ConsentService.cs` | `789e7f19453836f4638dfeca0781138777508e2ec43edb2509af0a29e042133e` |
 | `bitirme/bitirme/Services/DataAccessReport.cs` | `ef9e2f268224054dc0b070e256a6b937050c1a77a3e10b7247fdafa697d5c29b` |
@@ -36,6 +36,7 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme/Services/Email/EmailRules.cs` | `64c523294ddaa4875cd45ed17af2635e65665f9c9f7dceeff225e1fe884c5602` |
 | `bitirme/bitirme/Services/HealthDataAuditLog.cs` | `4f6800737abd147bf9ffa48498312a6e9738b5e70fe7496cfae77642150aee9d` |
 | `bitirme/bitirme/Services/IceServerProvider.cs` | `81e980e2897bbff95b6814134d9047b1edb5581848e9a46a625ddd616a116a0a` |
+| `bitirme/bitirme/Services/Payments/PaymentProvider.cs` | `32969b237e00bc54d4f3ec9fe4f6d2d1ca9cf15ba8a697994a4dd65857543ec5` |
 | `bitirme/bitirme/Services/RateLimitPolicies.cs` | `2b9e142b67b36ece5cb296e8c4ad4fe5d1800065c98ab48f3a66a45617ce41f2` |
 | `bitirme/bitirme/Services/RecoveryCodeHasher.cs` | `b3e59d5d216ca3c03f1e3aa1d44d3e842e38cd9247867a5889e74475c1bdd132` |
 | `bitirme/bitirme/Services/ReverseProxySettings.cs` | `95fbf6e31cd7f62665432553e1ed64d6ea0b440f6d7197e3093d98298d2820a1` |
