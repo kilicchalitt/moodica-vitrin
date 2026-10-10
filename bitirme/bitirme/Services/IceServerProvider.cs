@@ -38,6 +38,12 @@ namespace bitirme.Services
 
         /// <summary>coturn <c>static-auth-secret</c> (<c>use-auth-secret</c> kısa ömürlü kimlik bilgisi).</summary>
         public string? CoturnSecret { get; set; }
+
+        /// <summary>
+        /// Görüşme yalnızca TURN rölesi üzerinden kurulur (tarayıcıda <c>iceTransportPolicy: "relay"</c>). TURN denemesi ve
+        /// sorun ayıklama içindir; TURN kimlik bilgisi yoksa yok sayılır (yoksa hiç bağlantı kurulamaz). Varsayılan kapalı.
+        /// </summary>
+        public bool ForceRelay { get; set; }
     }
 
     /// <summary>Tarayıcının <c>RTCIceServer</c> biçimi.</summary>
@@ -110,6 +116,10 @@ namespace bitirme.Services
 
             return StunOnly();
         }
+
+        /// <summary>Tarayıcının <c>iceTransportPolicy</c> değeri: "relay" yalnızca ForceRelay açık ve TURN sunucusu verildiyse.</summary>
+        public string TransportPolicy(IReadOnlyList<IceServer> servers) =>
+            _options.ForceRelay && servers.Any(s => s.Credential != null) ? "relay" : "all";
 
         private IReadOnlyList<IceServer> StunOnly() =>
             _options.StunUrls.Length == 0 ? [] : [new IceServer(_options.StunUrls)];
