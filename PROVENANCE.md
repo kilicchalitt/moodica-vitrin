@@ -4,14 +4,14 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `2859449e81318211c2a9899855b61d4629f1bbc5`
-- Kaynak commit tarihi: 2026-10-11T01:27:09+03:00
+- Kaynak commit: `94e094abb981964f20a7f561718226064d29e767`
+- Kaynak commit tarihi: 2026-10-11T01:27:11+03:00
 - Dosya sayısı: 37
 
 | Dosya | SHA-256 |
 |---|---|
 | `Dockerfile` | `483d7f5c847700781694ec743ee5a6cc90ec64410efabf0f0cd62a6f0d08f754` |
-| `bitirme/bitirme.IntegrationTests/AuthorizationTests.cs` | `b939279e7e16600b9f25c8f5d7ac968240717a73455e5042d48562124503716d` |
+| `bitirme/bitirme.IntegrationTests/AuthorizationTests.cs` | `591beb7ff6f0eeb9fb7bbfaa3a1fd7d9c55f374928f808968050c64f402bd479` |
 | `bitirme/bitirme.IntegrationTests/RateLimitTests.cs` | `523806b60e756f717d5a19f552894b777bcec4cbf8dd9ba2dc2fd04eccb2a17a` |
 | `bitirme/bitirme.IntegrationTests/SecurityHeadersTests.cs` | `eb944586c189cf53399b721e7c486638667fdf67b51bc7c335c247a18e94fa18` |
 | `bitirme/bitirme.Tests/AppointmentStateRulesTests.cs` | `eb40abd1112735255c86eadf1de9246977956e2628c45956994d61c7ce877bda` |

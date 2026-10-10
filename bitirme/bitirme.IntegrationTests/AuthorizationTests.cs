@@ -106,4 +106,25 @@ public class AuthorizationTests(MoodicaFactory factory)
         var savedNote = await _data.StoredNoteAsync(appointment.Id);
         Assert.Equal("Seans notu", savedNote);
     }
+
+    [Fact]
+    public async Task AppointmentDetail_OnlyAppointmentsExpertCanOpen()
+    {
+        var patient = await _data.CreatePatientAsync();
+        var doctor = await _data.CreateDoctorAsync();
+        var appointment = await _data.CreateAppointmentAsync(patient, doctor, complaint: "Detay şikayeti 6601");
+        var path = $"/Doktor/RandevuDetay/{appointment.Id}";
+
+        var otherDoctor = await SignedInDoctorAsync(await _data.CreateDoctorAsync());
+        Assert.Equal(HttpStatusCode.NotFound, (await otherDoctor.GetAsync(path)).StatusCode);
+
+        var patientClient = factory.CreateAppClient();
+        await patientClient.LoginPatientAsync(patient.Email!);
+        var asPatient = await patientClient.GetAsync(path);
+        Assert.NotEqual(HttpStatusCode.OK, asPatient.StatusCode);
+        Assert.DoesNotContain("6601", await asPatient.ReadTextAsync());
+
+        var owner = await SignedInDoctorAsync(doctor);
+        Assert.Contains("Detay şikayeti 6601", await owner.GetStringAsync(path));
+    }
 }
