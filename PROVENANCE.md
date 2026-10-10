@@ -4,9 +4,9 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `9a8c10b9bf15747001bff8e5c66d83774ff02c74`
-- Kaynak commit tarihi: 2026-10-11T01:27:08+03:00
-- Dosya sayısı: 36
+- Kaynak commit: `2859449e81318211c2a9899855b61d4629f1bbc5`
+- Kaynak commit tarihi: 2026-10-11T01:27:09+03:00
+- Dosya sayısı: 37
 
 | Dosya | SHA-256 |
 |---|---|
@@ -30,6 +30,7 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme/Services/ConsentCatalog.cs` | `a3920e5d5417961db66b1a55fa087f4614d5ddb00c71aeb316dee746f37c4808` |
 | `bitirme/bitirme/Services/ConsentService.cs` | `789e7f19453836f4638dfeca0781138777508e2ec43edb2509af0a29e042133e` |
 | `bitirme/bitirme/Services/DataAccessReport.cs` | `ef9e2f268224054dc0b070e256a6b937050c1a77a3e10b7247fdafa697d5c29b` |
+| `bitirme/bitirme/Services/DataProtectionSetup.cs` | `1a645b894f1dd45f73a5bb31182c1efad38c3bfa3d051d40b4ca5fe2653ebb62` |
 | `bitirme/bitirme/Services/Email/EmailBackgroundWorker.cs` | `f81dd09177f69a082ca4c10c942c6917ad90862b504429cd48b59c7a9897e3e8` |
 | `bitirme/bitirme/Services/Email/EmailOutbox.cs` | `da01bc5e49346fc75f9a3def087287b4c017518bc91708246299eef904239e33` |
 | `bitirme/bitirme/Services/Email/EmailRules.cs` | `64c523294ddaa4875cd45ed17af2635e65665f9c9f7dceeff225e1fe884c5602` |
