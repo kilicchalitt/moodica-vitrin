@@ -94,6 +94,8 @@ namespace bitirme.Services
             AdminActionType.UserReactivated => "Hesabınızı yeniden açtı",
             AdminActionType.DocumentViewed => "Mesleki belgenizi görüntüledi",
             AdminActionType.FeedbackCommentViewed => "Seans geri bildirimi yorumunuzu görüntüledi",
+            AdminActionType.TwoFactorReset => "İki aşamalı doğrulama kurtarma talebinizi onayladı (2FA sıfırlandı)",
+            AdminActionType.TwoFactorResetRejected => "İki aşamalı doğrulama kurtarma talebinizi reddetti",
             _ => "Hesabınızla ilgili bir işlem yaptı"
         };
     }
