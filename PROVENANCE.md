@@ -4,7 +4,7 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `d9d2e63e7cad88027f9c9b02ca6e2e5254ffb0ed`
+- Kaynak commit: `8b7436e5d3cb75e750ca79307057435af6fdf496`
 - Kaynak commit tarihi: 2026-10-11T01:27:16+03:00
 - Dosya sayısı: 38
 
@@ -36,7 +36,7 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme/Services/Email/EmailRules.cs` | `64c523294ddaa4875cd45ed17af2635e65665f9c9f7dceeff225e1fe884c5602` |
 | `bitirme/bitirme/Services/HealthDataAuditLog.cs` | `4f6800737abd147bf9ffa48498312a6e9738b5e70fe7496cfae77642150aee9d` |
 | `bitirme/bitirme/Services/IceServerProvider.cs` | `81e980e2897bbff95b6814134d9047b1edb5581848e9a46a625ddd616a116a0a` |
-| `bitirme/bitirme/Services/Payments/PaymentProvider.cs` | `32969b237e00bc54d4f3ec9fe4f6d2d1ca9cf15ba8a697994a4dd65857543ec5` |
+| `bitirme/bitirme/Services/Payments/PaymentProvider.cs` | `9bcb42cb8565ac7b6fca103f53ecd6eb9f9179f20fa3959196005b8af3ba788f` |
 | `bitirme/bitirme/Services/RateLimitPolicies.cs` | `2b9e142b67b36ece5cb296e8c4ad4fe5d1800065c98ab48f3a66a45617ce41f2` |
 | `bitirme/bitirme/Services/RecoveryCodeHasher.cs` | `b3e59d5d216ca3c03f1e3aa1d44d3e842e38cd9247867a5889e74475c1bdd132` |
 | `bitirme/bitirme/Services/ReverseProxySettings.cs` | `95fbf6e31cd7f62665432553e1ed64d6ea0b440f6d7197e3093d98298d2820a1` |

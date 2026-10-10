@@ -60,8 +60,20 @@ namespace bitirme.Services.Payments
 
         public bool IsAvailable => true;
 
-        /// <summary>Testler için: iadeler başarısız olsun (sağlayıcı hatasını taklit eder).</summary>
-        public bool FailRefunds { get; set; }
+        private readonly ConcurrentDictionary<string, bool> _failingRefunds = new();
+
+        /// <summary>Testler için: bu ödemenin iadesi başarısız olsun (sağlayıcı hatasını taklit eder; testler paralel koşar).</summary>
+        public void SetRefundFailure(string providerPaymentId, bool fail)
+        {
+            if (fail)
+            {
+                _failingRefunds[providerPaymentId] = true;
+            }
+            else
+            {
+                _failingRefunds.TryRemove(providerPaymentId, out _);
+            }
+        }
 
         /// <summary>Yapılan iadeler (sağlayıcı ödeme numarası → tutar); testler doğrular.</summary>
         public IReadOnlyDictionary<string, decimal> Refunds => _refunds;
@@ -98,7 +110,7 @@ namespace bitirme.Services.Payments
 
         public Task<RefundResult> RefundAsync(string providerPaymentId, decimal amount, CancellationToken cancellationToken = default)
         {
-            if (FailRefunds)
+            if (_failingRefunds.ContainsKey(providerPaymentId))
             {
                 return Task.FromResult(new RefundResult(null, "Sağlayıcı iadeyi reddetti (test)."));
             }
