@@ -106,12 +106,13 @@ namespace bitirme.Services
                     return servers;
                 }
             }
+            // Boş adres (ör. ortam değişkeni verilmemiş ikinci adres) tarayıcıda RTCPeerConnection'ı bozar; ayıklanır.
             else if (string.Equals(_options.Provider, TurnOptions.Coturn, StringComparison.OrdinalIgnoreCase) &&
-                     !string.IsNullOrWhiteSpace(_options.CoturnSecret) && _options.CoturnUrls.Length > 0)
+                     !string.IsNullOrWhiteSpace(_options.CoturnSecret) && CoturnUrls() is { Length: > 0 } coturnUrls)
             {
                 var (username, credential) = TurnCredentialRules.Coturn(_options.CoturnSecret,
                     _time.GetUtcNow() + lifetime, Convert.ToHexString(RandomNumberGenerator.GetBytes(8)).ToLowerInvariant());
-                return [.. StunOnly(), new IceServer(_options.CoturnUrls, username, credential)];
+                return [.. StunOnly(), new IceServer(coturnUrls, username, credential)];
             }
 
             return StunOnly();
@@ -120,6 +121,8 @@ namespace bitirme.Services
         /// <summary>Tarayıcının <c>iceTransportPolicy</c> değeri: "relay" yalnızca ForceRelay açık ve TURN sunucusu verildiyse.</summary>
         public string TransportPolicy(IReadOnlyList<IceServer> servers) =>
             _options.ForceRelay && servers.Any(s => s.Credential != null) ? "relay" : "all";
+
+        private string[] CoturnUrls() => _options.CoturnUrls.Where(u => !string.IsNullOrWhiteSpace(u)).Select(u => u.Trim()).ToArray();
 
         private IReadOnlyList<IceServer> StunOnly() =>
             _options.StunUrls.Length == 0 ? [] : [new IceServer(_options.StunUrls)];
