@@ -4,13 +4,13 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `88ad43dcbac4926c52c36f1b5b6d32d4adf5bbb8`
-- Kaynak commit tarihi: 2026-10-12T23:03:04+03:00
+- Kaynak commit: `f2f35ee75977639597ca9524c528594c732e5ec7`
+- Kaynak commit tarihi: 2026-10-12T23:03:05+03:00
 - Dosya sayısı: 40
 
 | Dosya | SHA-256 |
 |---|---|
-| `Dockerfile` | `483d7f5c847700781694ec743ee5a6cc90ec64410efabf0f0cd62a6f0d08f754` |
+| `Dockerfile` | `7459d37898fb068c5c18e9f2e3a9ce3566bfc2c6f217f2d3da32da6b7af6d674` |
 | `bitirme/bitirme.IntegrationTests/AuthorizationTests.cs` | `591beb7ff6f0eeb9fb7bbfaa3a1fd7d9c55f374928f808968050c64f402bd479` |
 | `bitirme/bitirme.IntegrationTests/RateLimitTests.cs` | `523806b60e756f717d5a19f552894b777bcec4cbf8dd9ba2dc2fd04eccb2a17a` |
 | `bitirme/bitirme.IntegrationTests/SecurityHeadersTests.cs` | `eb944586c189cf53399b721e7c486638667fdf67b51bc7c335c247a18e94fa18` |
@@ -49,4 +49,4 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme/Services/WorkingHoursRules.cs` | `9757786ba77cbde498725c39d8386dc9ec1a7e58efa673a7e574409f519deea5` |
 | `bitirme/bitirme/bitirme.csproj` | `bf0f53c7439c8fac76ad0cf27b7fcec3bcfa99ad7a7756ca04e02ce60ad74c71` |
 | `deploy/Caddyfile` | `b7e2c80000778c65b686b816bf9a2aa4cbc83d1768bf9eaa47cbc3eb5fe1d18a` |
-| `docs/ana-proje-ci.yml` | `78e5e677339047d6ee37f99814d88bd2d43def0fc8a4b63c66d8ccb661e4f32a` |
+| `docs/ana-proje-ci.yml` | `12b99ae27f16f5fac4189e712aab597e64ecb6aaf87b5d8b4890cdc6b3a8f99b` |

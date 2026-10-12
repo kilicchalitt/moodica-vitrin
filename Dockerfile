@@ -2,8 +2,11 @@
 # Derleme:  docker build -t moodica-web .
 # Yerelde uygulama + veritabanı:  docker compose --profile app up -d --build
 
+# CI, Docker Hub'ın anonim çekme sınırına takılmamak için aynı resmî imajın aynasını verir (--build-arg NODE_IMAGE=...).
+ARG NODE_IMAGE=node:24-alpine
+
 # ---- Arayüz betikleri (TypeScript + Vite) — Node yalnızca bu aşamada, son imajda yok ----
-FROM node:24-alpine AS client
+FROM ${NODE_IMAGE} AS client
 WORKDIR /src/bitirme/bitirme/ClientApp
 COPY bitirme/bitirme/ClientApp/package.json bitirme/bitirme/ClientApp/package-lock.json ./
 RUN npm ci --no-fund --no-audit
