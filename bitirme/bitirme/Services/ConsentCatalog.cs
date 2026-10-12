@@ -16,10 +16,12 @@ namespace bitirme.Services
             // 2026-10-07: aydınlatma metinlerine görüntülü görüşme bağlantı (STUN/TURN) sağlayıcısına aktarım eklendi.
             // 2026-10-07b: seans geri bildirimi (veri türü ve hizmet kalitesi amacı, DECISION-33) eklendi.
             // 2026-10-08: danışan metinlerine isteğe bağlı ilerleme ölçümleri (PHQ-9/GAD-7 tekrarı, DECISION-33) eklendi.
-            [ConsentDocument.PatientPrivacyNotice] = "2026-10-08-taslak",
+            // 2026-10-09: danışan ve uzman aydınlatma metinlerine ödeme bilgileri, tahsil/iade amacı ve ödeme kuruluşuna
+            // aktarım eklendi (Faz 6, DECISION-38); uzman metnine herkese açık seans ücreti ve pay bilgisi.
+            [ConsentDocument.PatientPrivacyNotice] = "2026-10-09-taslak",
             [ConsentDocument.HealthDataExplicitConsent] = "2026-10-08-taslak",
             // 2026-10-08: uzman metnine danışanın ihtiyaç analizi özeti ve ilerleme ölçümleri eklendi.
-            [ConsentDocument.ExpertPrivacyNotice] = "2026-10-08-taslak"
+            [ConsentDocument.ExpertPrivacyNotice] = "2026-10-09-taslak"
         };
 
         private static readonly ConsentDocument[] PatientDocuments =
