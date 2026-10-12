@@ -48,7 +48,16 @@ jobs:
         run: dotnet build bitirme/bitirme.sln --configuration Release --no-restore
 
       # Entegrasyon testlerinin PostgreSQL'i: Docker Hub'ın anonim çekme sınırı (429) GitHub sunucularında sık doluyor;
-      # aynı resmî imaj AWS ECR Public aynasından çekilir (yerelde Docker Hub kullanılır).
+      # aynı resmî imaj AWS ECR Public aynasından çekilir (yerelde Docker Hub kullanılır). ECR de ara sıra "Rate exceeded"
+      # verdiği için imaj önceden, aralıklı yeniden denemeyle çekilir; Testcontainers yereldeki imajı kullanır.
+      - name: Test veritabanı imajını çek
+        run: |
+          for i in 1 2 3 4 5; do
+            docker pull public.ecr.aws/docker/library/postgres:18-alpine && exit 0
+            echo "Çekilemedi, $((i * 15)) sn sonra yeniden denenecek ($i/5)"; sleep $((i * 15))
+          done
+          exit 1
+
       - name: Testler
         env:
           MOODICA_TEST_POSTGRES_IMAGE: public.ecr.aws/docker/library/postgres:18-alpine
@@ -62,6 +71,14 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7
+
+      - name: Node imajını çek (yeniden denemeli)
+        run: |
+          for i in 1 2 3 4 5; do
+            docker pull public.ecr.aws/docker/library/node:24-alpine && exit 0
+            echo "Çekilemedi, $((i * 15)) sn sonra yeniden denenecek ($i/5)"; sleep $((i * 15))
+          done
+          exit 1
 
       - name: Docker imajını derle
         run: docker build --build-arg NODE_IMAGE=public.ecr.aws/docker/library/node:24-alpine --tag moodica-web:ci .
