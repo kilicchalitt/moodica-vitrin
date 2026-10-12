@@ -52,6 +52,9 @@ jobs:
       - name: Testler
         env:
           MOODICA_TEST_POSTGRES_IMAGE: public.ecr.aws/docker/library/postgres:18-alpine
+          # Testcontainers'ın temizlik yardımcısı (Ryuk) da Docker Hub'dan çekiliyor; CI sunucusu her çalışmada sıfırdan
+          # kurulduğu için gereksiz, kapatılır (container'lar testler bitince fabrikada zaten kapatılır).
+          TESTCONTAINERS_RYUK_DISABLED: 'true'
         run: dotnet test --solution bitirme/bitirme.sln --configuration Release --no-build
 
   # Dockerfile bozulursa yayın öncesi değil, ilk gönderimde fark edilir.
