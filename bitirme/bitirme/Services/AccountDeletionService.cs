@@ -80,6 +80,7 @@ namespace bitirme.Services
             user.EmailConfirmed = false;
             user.PhoneNumber = null;
             user.PhoneNumberConfirmed = false;
+            user.PendingPhoneNumber = null;
             user.TwoFactorEnabled = false;
             user.LockoutEnabled = true;
             user.LockoutEnd = AccountStatus.SuspendedUntil;
