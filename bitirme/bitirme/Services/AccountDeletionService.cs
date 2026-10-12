@@ -67,6 +67,10 @@ namespace bitirme.Services
                     $"<p>Merhaba <b>{WebUtility.HtmlEncode(user.FirstName)}</b>,</p>" +
                     "<p>Talebiniz üzerine Moodica hesabınız silindi; ad, e-posta ve telefon bilgileriniz kaldırıldı ve artık giriş yapılamaz. " +
                     "Randevu ve sağlık kayıtlarınız yasal saklama süresi boyunca şifreli olarak tutulur, süre dolunca silinir.</p>" +
+                    // İade e-postası işçi çalıştığında adres anonimleştiği için gidemez; iade bilgisi burada verilir.
+                    (user is Patient && cancelled > 0
+                        ? $"<p>Yaklaşan {cancelled} randevunuz iptal edildi; ödemesi alınmış randevuların ücretinin tamamı, ödeme yaptığınız karta birkaç iş günü içinde iade edilir.</p>"
+                        : string.Empty) +
                     "<p style='font-size:13px; color:#666;'>Bu işlemi siz yapmadıysanız bu e-postayı yanıtlayarak bize bildirin.</p>" +
                     "<br><p>Sağlıklı günler dileriz,<br><i>Moodica</i></p></div>");
             }
