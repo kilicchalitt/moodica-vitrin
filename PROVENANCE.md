@@ -4,9 +4,9 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `68a103b0e52255f7a3c9ba7de855402c159c0e3e`
+- Kaynak commit: `58ecee5b06a97269c24a4014cb056e68749bf3b1`
 - Kaynak commit tarihi: 2026-10-12T23:03:04+03:00
-- Dosya sayısı: 38
+- Dosya sayısı: 39
 
 | Dosya | SHA-256 |
 |---|---|
@@ -20,6 +20,7 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme/Data/AppUserStore.cs` | `771d76f59a11149fafaacc0d4bd8cde4e44232a74bd9fd3d5472d3c97257f25e` |
 | `bitirme/bitirme/Data/AppointmentTextEncryptionInterceptor.cs` | `65fce6a1ce518a27336b7571ecd12cd4cb6b64687817b67d7e59acec1f438efc` |
 | `bitirme/bitirme/Filters/RequireConsentFilter.cs` | `b9c38d04861ec81a725a68741421f8ff9484b7467a27cd0e7053e91b5c5eced5` |
+| `bitirme/bitirme/Filters/RequireExpertTwoFactorFilter.cs` | `86af7ed57daaaa7ef88b09eee548c8899fb1e018c4f6824a893567ee0e439e27` |
 | `bitirme/bitirme/Filters/RequireHealthConsentAttribute.cs` | `fc4e3568eb6a5e50268457ba42e3b20caa92af92f67a923b3a0207982f66436b` |
 | `bitirme/bitirme/Filters/RequireTwoFactorAttribute.cs` | `09298044da2fbf12280debae70cb048f6d27a3082f6b6e9fe3db88ec676c089c` |
 | `bitirme/bitirme/Hubs/NotificationHub.cs` | `b82dc9c0038902d064bf693e84f5db30c486bc3251754f080afae505a3d28f1a` |
