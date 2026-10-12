@@ -21,7 +21,8 @@ namespace bitirme.Services
             [ConsentDocument.PatientPrivacyNotice] = "2026-10-09-taslak",
             [ConsentDocument.HealthDataExplicitConsent] = "2026-10-08-taslak",
             // 2026-10-08: uzman metnine danışanın ihtiyaç analizi özeti ve ilerleme ölçümleri eklendi.
-            [ConsentDocument.ExpertPrivacyNotice] = "2026-10-09-taslak"
+            // 2026-10-09b: uzman metnine haftalık çalışma saatleri ve boş saatlerin danışanlara gösterilmesi eklendi (H-03).
+            [ConsentDocument.ExpertPrivacyNotice] = "2026-10-09b-taslak"
         };
 
         private static readonly ConsentDocument[] PatientDocuments =
