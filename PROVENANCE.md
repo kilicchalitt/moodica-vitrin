@@ -4,9 +4,9 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `4ae4f5409b779167d53462db900bef8d2a0fdad1`
-- Kaynak commit tarihi: 2026-10-12T23:03:06+03:00
-- Dosya sayısı: 40
+- Kaynak commit: `48647576c5354e149e67a4e4c7e739dad61701d5`
+- Kaynak commit tarihi: 2026-10-12T23:03:09+03:00
+- Dosya sayısı: 41
 
 | Dosya | SHA-256 |
 |---|---|
@@ -14,6 +14,7 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme.IntegrationTests/AuthorizationTests.cs` | `591beb7ff6f0eeb9fb7bbfaa3a1fd7d9c55f374928f808968050c64f402bd479` |
 | `bitirme/bitirme.IntegrationTests/RateLimitTests.cs` | `523806b60e756f717d5a19f552894b777bcec4cbf8dd9ba2dc2fd04eccb2a17a` |
 | `bitirme/bitirme.IntegrationTests/SecurityHeadersTests.cs` | `eb944586c189cf53399b721e7c486638667fdf67b51bc7c335c247a18e94fa18` |
+| `bitirme/bitirme.Tests/ActionAuthorizationTests.cs` | `c7c98cc36d8c7a7e65ea843c333205b0ccf3b5a78e7572c2603e234d1bca8379` |
 | `bitirme/bitirme.Tests/AppointmentStateRulesTests.cs` | `a8b61df4d1b03ef24679f32419a53a0c65a30e83cecb9a4e5253d0853e60604b` |
 | `bitirme/bitirme.Tests/SessionNoteProtectorTests.cs` | `5e88dbe2baa8f1cc14b64d9c6aa7bfc765fd7ca943cf0f028c92b6ea5f167027` |
 | `bitirme/bitirme.Tests/SlotRulesTests.cs` | `ceb0f90e6f703f02bdc50ae20b4b23437c07a84f84c30a5bcb8479a519b687f3` |
