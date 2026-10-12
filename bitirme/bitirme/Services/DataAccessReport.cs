@@ -97,6 +97,7 @@ namespace bitirme.Services
             AdminActionType.TwoFactorReset => "İki aşamalı doğrulama kurtarma talebinizi onayladı (2FA sıfırlandı)",
             AdminActionType.TwoFactorResetRejected => "İki aşamalı doğrulama kurtarma talebinizi reddetti",
             AdminActionType.NoShowRefunded => "\"Uzman gelmedi\" bildiriminizi inceleyip seans ücretinizi iade etti",
+            AdminActionType.RefundRetried => "Ödeme kuruluşunun reddettiği iadenizi yeniden denemeye aldı",
             _ => "Hesabınızla ilgili bir işlem yaptı"
         };
     }

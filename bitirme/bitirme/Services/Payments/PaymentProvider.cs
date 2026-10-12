@@ -171,6 +171,7 @@ namespace bitirme.Services.Payments
             }
 
             services.AddScoped<PaymentService>();
+            services.AddScoped<PaymentReport>();
             services.AddHostedService<PaymentBackgroundWorker>();
             return services;
         }
