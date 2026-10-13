@@ -136,6 +136,8 @@ namespace bitirme.Services.Payments
     /// <summary>iyzico istek/yanıt eşlemesi (saf; birim testli, ağ gerektirmez).</summary>
     public static class IyzicoMapping
     {
+        public const string BasketItemName = "Moodica online seans";
+
         public static bool IsSuccess(string? status) => string.Equals(status, "success", StringComparison.OrdinalIgnoreCase);
 
         /// <summary>iyzico fiyatı nokta ayraçlı metin ister ("1100.0").</summary>
@@ -186,7 +188,8 @@ namespace bitirme.Services.Payments
                     new BasketItem
                     {
                         Id = id,
-                        Name = Truncate(request.Description, 250),
+                        // Veri en aza indirme: ödeme kuruluşuna uzmanın adı ve seans saati gitmez (VERI_KORUMA.md).
+                        Name = BasketItemName,
                         Category1 = "Online terapi seansı",
                         ItemType = BasketItemType.VIRTUAL.ToString(),
                         Price = price
@@ -231,7 +234,5 @@ namespace bitirme.Services.Payments
         /// <summary>"05XXXXXXXXX" → "+905XXXXXXXXX"; boşsa null.</summary>
         public static string? ToInternationalPhone(string? phone) =>
             phone is { Length: 11 } && phone[0] == '0' ? "+90" + phone[1..] : null;
-
-        private static string Truncate(string value, int max) => value.Length <= max ? value : value[..max];
     }
 }
