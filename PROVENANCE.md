@@ -4,8 +4,8 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `4e4ecb0e5f4db9ffa1ddafe72f4d8d5fd8be032a`
-- Kaynak commit tarihi: 2026-10-13T19:24:03+03:00
+- Kaynak commit: `1ef4d4858ffcee3a2e743ad76128cf282c373988`
+- Kaynak commit tarihi: 2026-10-13T19:42:49+03:00
 - Dosya sayısı: 42
 
 | Dosya | SHA-256 |
@@ -13,7 +13,7 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `Dockerfile` | `7459d37898fb068c5c18e9f2e3a9ce3566bfc2c6f217f2d3da32da6b7af6d674` |
 | `bitirme/bitirme.IntegrationTests/AuthorizationTests.cs` | `591beb7ff6f0eeb9fb7bbfaa3a1fd7d9c55f374928f808968050c64f402bd479` |
 | `bitirme/bitirme.IntegrationTests/RateLimitTests.cs` | `523806b60e756f717d5a19f552894b777bcec4cbf8dd9ba2dc2fd04eccb2a17a` |
-| `bitirme/bitirme.IntegrationTests/SecurityHeadersTests.cs` | `eb944586c189cf53399b721e7c486638667fdf67b51bc7c335c247a18e94fa18` |
+| `bitirme/bitirme.IntegrationTests/SecurityHeadersTests.cs` | `88b9f863ba02808f82002aa69edafec13d6ed11852f07d24207c6002e580064a` |
 | `bitirme/bitirme.Tests/ActionAuthorizationTests.cs` | `c7c98cc36d8c7a7e65ea843c333205b0ccf3b5a78e7572c2603e234d1bca8379` |
 | `bitirme/bitirme.Tests/AppointmentStateRulesTests.cs` | `a8b61df4d1b03ef24679f32419a53a0c65a30e83cecb9a4e5253d0853e60604b` |
 | `bitirme/bitirme.Tests/SessionNoteProtectorTests.cs` | `5e88dbe2baa8f1cc14b64d9c6aa7bfc765fd7ca943cf0f028c92b6ea5f167027` |
@@ -44,7 +44,7 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme/Services/RateLimitPolicies.cs` | `2b9e142b67b36ece5cb296e8c4ad4fe5d1800065c98ab48f3a66a45617ce41f2` |
 | `bitirme/bitirme/Services/RecoveryCodeHasher.cs` | `b3e59d5d216ca3c03f1e3aa1d44d3e842e38cd9247867a5889e74475c1bdd132` |
 | `bitirme/bitirme/Services/ReverseProxySettings.cs` | `95fbf6e31cd7f62665432553e1ed64d6ea0b440f6d7197e3093d98298d2820a1` |
-| `bitirme/bitirme/Services/SecurityHeaders.cs` | `58550379b7a6675fab56d0cbbbbb54b04a6d654f6c19b64f32ec6d8358df59a8` |
+| `bitirme/bitirme/Services/SecurityHeaders.cs` | `26cb643efb206c1885137cfb3a738818c30d8b4897c04c2e7d882dc10d6e2077` |
 | `bitirme/bitirme/Services/SlotRules.cs` | `88ce0b5bbe76d08cbc9e053a0d9d79c83a0ca83113b3cad44c787a5d4670d69c` |
 | `bitirme/bitirme/Services/TextProtector.cs` | `d5f0bb368b003d64dc9f1eec1f0ba8e582c190f0f009e57fd292cd9960e2f9df` |
 | `bitirme/bitirme/Services/TwoFactorHelper.cs` | `eba0500e050458401531e836b14b42b647dc247ea22c1cb5c42d48c87df3a605` |

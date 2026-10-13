@@ -11,7 +11,8 @@ namespace bitirme.Services
     /// Tarayıcı güvenlik başlıkları (Faz 8): içerik güvenlik politikası (CSP), çerçeveye alınmama, MIME koklamama,
     /// yönlendiren bilgisi ve tarayıcı izinleri. Satır içi betikler yalnızca bu isteğe özel nonce ile çalışır
     /// (<c>&lt;script nonce="@Context.CspNonce()"&gt;</c>); satır içi olay işleyicisi (onclick vb.) çalışmaz.
-    /// Dış kaynaklar: Bootstrap ve SweetAlert2 (jsDelivr), SignalR ve Font Awesome (cdnjs), Google Fonts.
+    /// Dış betik, stil ve yazı tipi kaynağı yok: Bootstrap, SweetAlert2, SignalR, Font Awesome ve yazı tipleri
+    /// sunucumuzdan (wwwroot/lib) verilir; ziyaretçinin IP'si CDN'lere gitmez, CDN'deki dosya değişse etkilenmeyiz (ISSUE-53).
     /// Satır içi stil (style özniteliği, SweetAlert2'nin eklediği stil) izinli; stil enjeksiyonu betik çalıştıramaz.
     /// </summary>
     public static class SecurityHeaders
@@ -36,9 +37,9 @@ namespace bitirme.Services
                 var headers = context.Response.Headers;
                 headers.ContentSecurityPolicy =
                     "default-src 'self'; " +
-                    $"script-src 'self' 'nonce-{nonce}' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com{developmentSources}; " +
-                    "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com; " +
-                    "font-src 'self' data: https://cdnjs.cloudflare.com https://fonts.gstatic.com; " +
+                    $"script-src 'self' 'nonce-{nonce}'{developmentSources}; " +
+                    "style-src 'self' 'unsafe-inline'; " +
+                    "font-src 'self' data:; " +
                     "img-src 'self' data: blob:; " +
                     "media-src 'self' blob:; " +
                     $"connect-src 'self'{developmentSources}; " +

@@ -36,6 +36,54 @@ public class SecurityHeadersTests(MoodicaFactory factory)
         Assert.DoesNotContain($"'nonce-{nonce}'", Assert.Single(second.Headers.GetValues("Content-Security-Policy")));
     }
 
+    /// <summary>
+    /// ISSUE-53: betik, stil ve yazı tipleri sunucumuzdan gelir; ziyaretçinin IP'si CDN'lere/Google'a gitmez ve
+    /// CDN'deki dosya değişse sayfaya giremez (CSP de dış kaynak tanımaz).
+    /// </summary>
+    [Fact]
+    public async Task Pages_LoadNoThirdPartyScriptsStylesOrFonts()
+    {
+        var patient = await _data.CreatePatientAsync();
+        var doctor = await _data.CreateDoctorAsync();
+        var appointment = await _data.CreateAppointmentAsync(patient, doctor, status: AppointmentStatus.Approved, startUtc: DateTime.UtcNow);
+        var token = TestContext.Current.CancellationToken;
+
+        var anonymous = factory.CreateAppClient();
+        var home = await anonymous.GetAsync("/");
+        var patientClient = factory.CreateAppClient();
+        await patientClient.LoginPatientAsync(patient.Email!);
+        var pages = new[]
+        {
+            await home.Content.ReadAsStringAsync(token),
+            await patientClient.Http.GetStringAsync("/Hasta/Dashboard", token),
+            await patientClient.Http.GetStringAsync($"/Appointment/Meeting/{appointment.Id}", token),
+        };
+
+        var external = new System.Text.RegularExpressions.Regex("<(script|link)\\b[^>]*\\b(src|href)=\"(https?:)?//", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+        foreach (var html in pages)
+        {
+            Assert.DoesNotMatch(external, html);
+            Assert.Contains("/lib/bootstrap/dist/css/bootstrap.min.css", html);
+            Assert.Contains("/css/fonts.css", html);
+        }
+
+        var csp = Assert.Single(home.Headers.GetValues("Content-Security-Policy"));
+        foreach (var directive in new[] { "script-src", "style-src", "font-src" })
+        {
+            Assert.DoesNotContain("https:", csp.Split(';').Single(d => d.Trim().StartsWith(directive, StringComparison.Ordinal)));
+        }
+
+        foreach (var file in new[]
+                 {
+                     "/lib/sweetalert2/sweetalert2.all.min.js", "/lib/microsoft-signalr/signalr.min.js",
+                     "/lib/fontawesome/css/all.min.css", "/lib/fontawesome/webfonts/fa-solid-900.woff2",
+                     "/lib/fonts/lexend/lexend-latin-ext-600-normal.woff2", "/lib/fonts/source-sans-3/source-sans-3-latin-ext-400-normal.woff2",
+                 })
+        {
+            Assert.Equal(System.Net.HttpStatusCode.OK, (await anonymous.GetAsync(file)).StatusCode);
+        }
+    }
+
     [Fact]
     public async Task ExpertPages_HaveNoInlineHandlers_AndPatientNameStaysData()
     {
