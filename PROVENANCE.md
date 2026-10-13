@@ -4,9 +4,9 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `5eb522a9460f74baabafe247d47a6755803d6ed7`
-- Kaynak commit tarihi: 2026-10-12T23:03:10+03:00
-- Dosya sayısı: 41
+- Kaynak commit: `d96d801e772b3e4a0ccfcd8dda0bb31a524e11ff`
+- Kaynak commit tarihi: 2026-10-13T17:36:46+03:00
+- Dosya sayısı: 42
 
 | Dosya | SHA-256 |
 |---|---|
@@ -39,15 +39,16 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme/Services/Email/EmailRules.cs` | `64c523294ddaa4875cd45ed17af2635e65665f9c9f7dceeff225e1fe884c5602` |
 | `bitirme/bitirme/Services/HealthDataAuditLog.cs` | `4f6800737abd147bf9ffa48498312a6e9738b5e70fe7496cfae77642150aee9d` |
 | `bitirme/bitirme/Services/IceServerProvider.cs` | `81e980e2897bbff95b6814134d9047b1edb5581848e9a46a625ddd616a116a0a` |
-| `bitirme/bitirme/Services/Payments/PaymentProvider.cs` | `c2625969509ce8df2966416da7334cace1ced5baa71ec5ec15357f30a406a113` |
+| `bitirme/bitirme/Services/Payments/IyzicoPaymentProvider.cs` | `9485caa6141f9688c94f346ec49b42838b2d4f393dade1eedc289ff6433e5c20` |
+| `bitirme/bitirme/Services/Payments/PaymentProvider.cs` | `4a4712f87132957be6afe9874db9780bce79b6b0a062ccc5a4bb3cf0adefa40d` |
 | `bitirme/bitirme/Services/RateLimitPolicies.cs` | `2b9e142b67b36ece5cb296e8c4ad4fe5d1800065c98ab48f3a66a45617ce41f2` |
 | `bitirme/bitirme/Services/RecoveryCodeHasher.cs` | `b3e59d5d216ca3c03f1e3aa1d44d3e842e38cd9247867a5889e74475c1bdd132` |
 | `bitirme/bitirme/Services/ReverseProxySettings.cs` | `95fbf6e31cd7f62665432553e1ed64d6ea0b440f6d7197e3093d98298d2820a1` |
-| `bitirme/bitirme/Services/SecurityHeaders.cs` | `1d10ae718acf12a8dcdf9baded7771db1b1d0e436f9802b81aa834afe1d5c5d0` |
+| `bitirme/bitirme/Services/SecurityHeaders.cs` | `58550379b7a6675fab56d0cbbbbb54b04a6d654f6c19b64f32ec6d8358df59a8` |
 | `bitirme/bitirme/Services/SlotRules.cs` | `88ce0b5bbe76d08cbc9e053a0d9d79c83a0ca83113b3cad44c787a5d4670d69c` |
 | `bitirme/bitirme/Services/TextProtector.cs` | `d5f0bb368b003d64dc9f1eec1f0ba8e582c190f0f009e57fd292cd9960e2f9df` |
 | `bitirme/bitirme/Services/TwoFactorHelper.cs` | `eba0500e050458401531e836b14b42b647dc247ea22c1cb5c42d48c87df3a605` |
 | `bitirme/bitirme/Services/WorkingHoursRules.cs` | `9757786ba77cbde498725c39d8386dc9ec1a7e58efa673a7e574409f519deea5` |
-| `bitirme/bitirme/bitirme.csproj` | `bf0f53c7439c8fac76ad0cf27b7fcec3bcfa99ad7a7756ca04e02ce60ad74c71` |
+| `bitirme/bitirme/bitirme.csproj` | `036f104ca7d98d6a9ab13c0053f580614c3479fb36fbbcae86844594c9ee8bb1` |
 | `deploy/Caddyfile` | `b7e2c80000778c65b686b816bf9a2aa4cbc83d1768bf9eaa47cbc3eb5fe1d18a` |
 | `docs/ana-proje-ci.yml` | `2a831376433d19172ec91f5917e21ff34ebf53628382c71b7a84dda02f3f6be9` |

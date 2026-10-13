@@ -3,8 +3,18 @@ using System.Security.Cryptography;
 
 namespace bitirme.Services.Payments
 {
-    /// <summary>Ödeme başlatma isteği: tutar, açıklama ve sağlayıcının tarayıcıyı geri göndereceği adres.</summary>
-    public sealed record PaymentStartRequest(int PaymentId, decimal Amount, string Description, string CallbackUrl);
+    /// <summary>
+    /// Ödeme kuruluşuna giden alıcı bilgisi (dolandırıcılık denetimi ve makbuz için; aydınlatma metninde "ödeme kuruluşuna
+    /// aktarım"). TC kimlik ve adres toplanmaz (DECISION-17); sağlayıcı zorunlu tutuyorsa bağdaştırıcı ayardaki varsayılanı
+    /// gönderir (HUKUK.md H-09).
+    /// </summary>
+    public sealed record PaymentBuyer(int Id, string FirstName, string LastName, string Email, string? Phone, string? Ip);
+
+    /// <summary>Ödeme başlatma isteği: tutar, açıklama, alıcı ve sağlayıcının tarayıcıyı geri göndereceği adres.</summary>
+    public sealed record PaymentStartRequest(int PaymentId, decimal Amount, string Description, string CallbackUrl, PaymentBuyer Buyer);
+
+    /// <summary>Doğrulama: sağlayıcının bildirdiği ödeme bu ödeme kaydına ve bu tutara ait olmalı.</summary>
+    public sealed record PaymentVerifyRequest(string Token, int PaymentId, decimal Amount);
 
     /// <summary>Başarıda belirteç ve danışanın yönlendirileceği ödeme sayfası adresi.</summary>
     public sealed record PaymentStartResult(string? Token, string? RedirectUrl, string? Error)
@@ -27,7 +37,7 @@ namespace bitirme.Services.Payments
     /// Sağlayıcıdan bağımsız ödeme arayüzü (Faz 6 Aşama A). Akış barındırılan ödeme sayfası biçimindedir (iyzico Checkout
     /// Form gibi): <see cref="StartAsync"/> sayfa adresini verir, danışan kartını sağlayıcının sayfasında girer (kart bilgisi
     /// Moodica'ya hiç gelmez), sağlayıcı tarayıcıyı dönüş adresine gönderir, sonuç <see cref="VerifyAsync"/> ile sunucudan
-    /// sağlayıcıya sorulur (tarayıcının söylediğine güvenilmez). iyzico bağdaştırıcısı Aşama B'de (sandbox hesabı).
+    /// sağlayıcıya sorulur (tarayıcının söylediğine güvenilmez). Bağdaştırıcılar: sahte (geliştirme/test) ve iyzico.
     /// </summary>
     public interface IPaymentProvider
     {
@@ -38,7 +48,7 @@ namespace bitirme.Services.Payments
 
         Task<PaymentStartResult> StartAsync(PaymentStartRequest request, CancellationToken cancellationToken = default);
 
-        Task<PaymentVerifyResult> VerifyAsync(string token, CancellationToken cancellationToken = default);
+        Task<PaymentVerifyResult> VerifyAsync(PaymentVerifyRequest request, CancellationToken cancellationToken = default);
 
         /// <summary>Ödemenin <paramref name="amount"/> kadarını iade eder (tam iade: ödenen tutar).</summary>
         Task<RefundResult> RefundAsync(string providerPaymentId, decimal amount, CancellationToken cancellationToken = default);
@@ -100,12 +110,13 @@ namespace bitirme.Services.Payments
             return true;
         }
 
-        public Task<PaymentVerifyResult> VerifyAsync(string token, CancellationToken cancellationToken = default) =>
-            Task.FromResult(Find(token)?.Succeeded switch
+        public Task<PaymentVerifyResult> VerifyAsync(PaymentVerifyRequest request, CancellationToken cancellationToken = default) =>
+            Task.FromResult(Find(request.Token) switch
             {
-                true => new PaymentVerifyResult("fake-" + token, null),
-                false => new PaymentVerifyResult(null, "Kart reddedildi (test ödemesi)."),
-                null => new PaymentVerifyResult(null, "Ödeme tamamlanmadı.")
+                { } checkout when checkout.Amount != request.Amount => new PaymentVerifyResult(null, "Ödenen tutar beklenenle uyuşmuyor."),
+                { Succeeded: true } => new PaymentVerifyResult("fake-" + request.Token, null),
+                { Succeeded: false } => new PaymentVerifyResult(null, "Kart reddedildi (test ödemesi)."),
+                _ => new PaymentVerifyResult(null, "Ödeme tamamlanmadı.")
             });
 
         public Task<RefundResult> RefundAsync(string providerPaymentId, decimal amount, CancellationToken cancellationToken = default)
@@ -132,7 +143,7 @@ namespace bitirme.Services.Payments
         public Task<PaymentStartResult> StartAsync(PaymentStartRequest request, CancellationToken cancellationToken = default) =>
             Task.FromResult(new PaymentStartResult(null, null, "Ödeme sağlayıcısı ayarlı değil."));
 
-        public Task<PaymentVerifyResult> VerifyAsync(string token, CancellationToken cancellationToken = default) =>
+        public Task<PaymentVerifyResult> VerifyAsync(PaymentVerifyRequest request, CancellationToken cancellationToken = default) =>
             Task.FromResult(new PaymentVerifyResult(null, "Ödeme sağlayıcısı ayarlı değil."));
 
         public Task<RefundResult> RefundAsync(string providerPaymentId, decimal amount, CancellationToken cancellationToken = default) =>
@@ -142,8 +153,9 @@ namespace bitirme.Services.Payments
     public static class PaymentServiceCollectionExtensions
     {
         /// <summary>
-        /// Sağlayıcı seçimi: geliştirme ve testte sahte sağlayıcı (gerçek para hareketi yok). Yayında sahte sağlayıcı
-        /// açılışta reddedilir (bedava randevu açılmasın); iyzico Aşama B'de eklenene kadar yayında ödeme kapalıdır.
+        /// Sağlayıcı seçimi (<c>Payment:Provider</c>): "Iyzico" → iyzico (anahtarlar zorunlu); boş/"Fake" → geliştirme ve testte
+        /// sahte sağlayıcı (gerçek para hareketi yok). Yayında sahte sağlayıcı açılışta reddedilir (bedava randevu açılmasın);
+        /// sağlayıcı seçilmemişse yayında ödeme kapalıdır.
         /// </summary>
         public static IServiceCollection AddMoodicaPayments(this IServiceCollection services, IConfiguration configuration,
             IHostEnvironment environment)
@@ -160,7 +172,19 @@ namespace bitirme.Services.Payments
                 throw new InvalidOperationException("Sahte ödeme sağlayıcısı (Payment:Provider=Fake) yalnızca geliştirme ve testte kullanılabilir.");
             }
 
-            if (isTestEnvironment && (string.IsNullOrWhiteSpace(provider) || string.Equals(provider, PaymentOptions.FakeProvider, StringComparison.OrdinalIgnoreCase)))
+            if (string.Equals(provider, IyzicoOptions.ProviderName, StringComparison.OrdinalIgnoreCase))
+            {
+                // Anahtarlar User Secrets / ortam değişkeninde (DECISION-08). Yayında sandbox adresi kabul edilmez.
+                var iyzico = configuration.GetSection(IyzicoOptions.SectionName).Get<IyzicoOptions>() ?? new IyzicoOptions();
+                if (iyzico.GetConfigurationError(environment.IsProduction()) is { } error)
+                {
+                    throw new InvalidOperationException(error);
+                }
+
+                services.Configure<IyzicoOptions>(configuration.GetSection(IyzicoOptions.SectionName));
+                services.AddSingleton<IPaymentProvider, IyzicoPaymentProvider>();
+            }
+            else if (isTestEnvironment && (string.IsNullOrWhiteSpace(provider) || string.Equals(provider, PaymentOptions.FakeProvider, StringComparison.OrdinalIgnoreCase)))
             {
                 services.AddSingleton<FakePaymentProvider>();
                 services.AddSingleton<IPaymentProvider>(sp => sp.GetRequiredService<FakePaymentProvider>());

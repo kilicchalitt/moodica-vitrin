@@ -42,7 +42,8 @@ namespace bitirme.Services
                     "img-src 'self' data: blob:; " +
                     "media-src 'self' blob:; " +
                     $"connect-src 'self'{developmentSources}; " +
-                    "object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'";
+                    // form-action yönlendirmeyi de kapsar: "Ödemeye geç" formu iyzico'nun ödeme sayfasına yönlenir (Faz 6 B).
+                    "object-src 'none'; base-uri 'self'; form-action 'self' https://sandbox-cpp.iyzipay.com https://cpp.iyzipay.com; frame-ancestors 'none'";
                 headers.XFrameOptions = "DENY";
                 headers.XContentTypeOptions = "nosniff";
                 headers["Referrer-Policy"] = "strict-origin-when-cross-origin";
