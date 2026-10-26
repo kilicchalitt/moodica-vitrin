@@ -63,16 +63,14 @@ namespace bitirme.Services
             if (!string.IsNullOrWhiteSpace(user.Email))
             {
                 await _email.SendEmailAsync(user.Email, "Moodica hesabınız silindi",
-                    "<div style='font-family:sans-serif; color:#333; max-width:560px;'><h2 style='color:#0d6efd;'>Moodica</h2>" +
-                    $"<p>Merhaba <b>{WebUtility.HtmlEncode(user.FirstName)}</b>,</p>" +
-                    "<p>Talebiniz üzerine Moodica hesabınız silindi; ad, e-posta ve telefon bilgileriniz kaldırıldı ve artık giriş yapılamaz. " +
+                    EmailLayout.Wrap($"Merhaba {WebUtility.HtmlEncode(user.FirstName)},",
+                    "<p style='margin:0 0 12px;'>Talebiniz üzerine Moodica hesabınız silindi; ad, e-posta ve telefon bilgileriniz kaldırıldı ve artık giriş yapılamaz. " +
                     "Randevu ve sağlık kayıtlarınız yasal saklama süresi boyunca şifreli olarak tutulur, süre dolunca silinir.</p>" +
                     // İade e-postası işçi çalıştığında adres anonimleştiği için gidemez; iade bilgisi burada verilir.
                     (user is Patient && cancelled > 0
-                        ? $"<p>Yaklaşan {cancelled} randevunuz iptal edildi; ödemesi alınmış randevuların ücretinin tamamı, ödeme yaptığınız karta birkaç iş günü içinde iade edilir.</p>"
+                        ? $"<p style='margin:0 0 12px;'>Yaklaşan {cancelled} randevunuz iptal edildi; ödemesi alınmış randevuların ücretinin tamamı, ödeme yaptığınız karta birkaç iş günü içinde iade edilir.</p>"
                         : string.Empty) +
-                    "<p style='font-size:13px; color:#666;'>Bu işlemi siz yapmadıysanız bu e-postayı yanıtlayarak bize bildirin.</p>" +
-                    "<br><p>Sağlıklı günler dileriz,<br><i>Moodica</i></p></div>");
+                    EmailLayout.Note("Bu işlemi siz yapmadıysanız bu e-postayı yanıtlayarak bize bildirin.")));
             }
 
             var photo = (user as Doctor)?.PhotoFileName;

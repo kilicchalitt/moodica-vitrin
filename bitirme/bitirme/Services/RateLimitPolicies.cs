@@ -100,10 +100,12 @@ namespace bitirme.Services
             await response.WriteAsync(
                 "<!DOCTYPE html><html lang=\"tr\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" +
                 "<title>Çok fazla deneme - Moodica</title></head>" +
-                "<body style=\"font-family:system-ui,sans-serif;max-width:32rem;margin:4rem auto;padding:0 1rem;color:#212529\">" +
-                "<h1 style=\"font-size:1.4rem\">Çok fazla deneme</h1>" +
+                "<body style=\"margin:0;background:#F8F6EF;font-family:system-ui,sans-serif;color:#1C2733\">" +
+                "<div style=\"max-width:32rem;margin:4rem auto;padding:2rem;background:#fff;border:1px solid #E3DED0;border-radius:16px\">" +
+                "<p style=\"margin:0 0 1rem;font-family:Georgia,serif;font-size:1.4rem;color:#1460B0\">Moodica</p>" +
+                "<h1 style=\"margin:0 0 .75rem;font-family:Georgia,serif;font-weight:normal;font-size:1.6rem;color:#0A2E57\">Çok fazla deneme</h1>" +
                 $"<p>{WebUtility.HtmlEncode(RejectedMessage)}</p>" +
-                "<p><a href=\"/\">Ana sayfaya dön</a></p>" +
+                "<p><a href=\"/\" style=\"color:#1460B0;font-weight:600\">Ana sayfaya dön</a></p></div>" +
                 "</body></html>", cancellationToken);
         }
     }

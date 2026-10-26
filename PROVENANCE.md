@@ -4,9 +4,9 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `3bf22596fa1f2365dff166771d798b0a6fdfec70`
-- Kaynak commit tarihi: 2026-10-26T12:15:30+03:00
-- Dosya sayısı: 42
+- Kaynak commit: `9584e8f324f8376513356dff1bfc036ac80b3dcc`
+- Kaynak commit tarihi: 2026-10-26T12:15:33+03:00
+- Dosya sayısı: 43
 
 | Dosya | SHA-256 |
 |---|---|
@@ -26,7 +26,7 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme/Filters/RequireTwoFactorAttribute.cs` | `09298044da2fbf12280debae70cb048f6d27a3082f6b6e9fe3db88ec676c089c` |
 | `bitirme/bitirme/Hubs/NotificationHub.cs` | `b82dc9c0038902d064bf693e84f5db30c486bc3251754f080afae505a3d28f1a` |
 | `bitirme/bitirme/Hubs/VideoHub.cs` | `ede04a56cd7d8a4807817708b457864f85a6b4d9a008339c37396c4fcdfc7da3` |
-| `bitirme/bitirme/Services/AccountDeletionService.cs` | `4929474d80db1a7c2c39f961a6ff837db292465abbaab54e4111fd90bcb24cf6` |
+| `bitirme/bitirme/Services/AccountDeletionService.cs` | `dc430523a9d5ef8169e8dea434e478aad2b1fafd2ac9555a5681c52cb1eb083b` |
 | `bitirme/bitirme/Services/AdminAccess.cs` | `9922b3537e5f6910b28de1eaefcc64e1f5b3a3222f360fd95d80355979ce98d7` |
 | `bitirme/bitirme/Services/AppointmentRules.cs` | `43bfcdba5dbff88083e9679a131a0ad1680a6d066d577d5a911ce1199ad30c57` |
 | `bitirme/bitirme/Services/AppointmentStateRules.cs` | `0d7bf193a2276fa2ba070284584ccbdbe8e27669742c65be7d243531cc7a2041` |
@@ -37,11 +37,12 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme/Services/Email/EmailBackgroundWorker.cs` | `f81dd09177f69a082ca4c10c942c6917ad90862b504429cd48b59c7a9897e3e8` |
 | `bitirme/bitirme/Services/Email/EmailOutbox.cs` | `da01bc5e49346fc75f9a3def087287b4c017518bc91708246299eef904239e33` |
 | `bitirme/bitirme/Services/Email/EmailRules.cs` | `64c523294ddaa4875cd45ed17af2635e65665f9c9f7dceeff225e1fe884c5602` |
+| `bitirme/bitirme/Services/EmailLayout.cs` | `04457360b537da705749c802312eadf48a1cb00705cb54945d9ff5d013a30315` |
 | `bitirme/bitirme/Services/HealthDataAuditLog.cs` | `4f6800737abd147bf9ffa48498312a6e9738b5e70fe7496cfae77642150aee9d` |
 | `bitirme/bitirme/Services/IceServerProvider.cs` | `81e980e2897bbff95b6814134d9047b1edb5581848e9a46a625ddd616a116a0a` |
 | `bitirme/bitirme/Services/Payments/IyzicoPaymentProvider.cs` | `0069b1af4de29014703dd8b5999a26e075308a73db3f7373ef9061b84307e9c5` |
 | `bitirme/bitirme/Services/Payments/PaymentProvider.cs` | `4a4712f87132957be6afe9874db9780bce79b6b0a062ccc5a4bb3cf0adefa40d` |
-| `bitirme/bitirme/Services/RateLimitPolicies.cs` | `2b9e142b67b36ece5cb296e8c4ad4fe5d1800065c98ab48f3a66a45617ce41f2` |
+| `bitirme/bitirme/Services/RateLimitPolicies.cs` | `f4cd935b6d448f77c40d085b72133dcb09eed499b6eb142688e58520d75e0475` |
 | `bitirme/bitirme/Services/RecoveryCodeHasher.cs` | `b3e59d5d216ca3c03f1e3aa1d44d3e842e38cd9247867a5889e74475c1bdd132` |
 | `bitirme/bitirme/Services/ReverseProxySettings.cs` | `95fbf6e31cd7f62665432553e1ed64d6ea0b440f6d7197e3093d98298d2820a1` |
 | `bitirme/bitirme/Services/SecurityHeaders.cs` | `26cb643efb206c1885137cfb3a738818c30d8b4897c04c2e7d882dc10d6e2077` |
