@@ -4,8 +4,8 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `84ae3dab53b394e6df6a4acdb45c18b72925440d`
-- Kaynak commit tarihi: 2026-10-26T12:15:27+03:00
+- Kaynak commit: `3bf22596fa1f2365dff166771d798b0a6fdfec70`
+- Kaynak commit tarihi: 2026-10-26T12:15:30+03:00
 - Dosya sayısı: 42
 
 | Dosya | SHA-256 |
@@ -51,4 +51,4 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme/Services/WorkingHoursRules.cs` | `9757786ba77cbde498725c39d8386dc9ec1a7e58efa673a7e574409f519deea5` |
 | `bitirme/bitirme/bitirme.csproj` | `036f104ca7d98d6a9ab13c0053f580614c3479fb36fbbcae86844594c9ee8bb1` |
 | `deploy/Caddyfile` | `b7e2c80000778c65b686b816bf9a2aa4cbc83d1768bf9eaa47cbc3eb5fe1d18a` |
-| `docs/ana-proje-ci.yml` | `2a831376433d19172ec91f5917e21ff34ebf53628382c71b7a84dda02f3f6be9` |
+| `docs/ana-proje-ci.yml` | `1995dd34ff5cde6859f13ac1716fc8a9edfd55fc3fd74ca7c2ce9f0c51c47644` |

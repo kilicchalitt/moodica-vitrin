@@ -48,19 +48,22 @@ jobs:
         run: dotnet build bitirme/bitirme.sln --configuration Release --no-restore
 
       # Entegrasyon testlerinin PostgreSQL'i: Docker Hub'ın anonim çekme sınırı (429) GitHub sunucularında sık doluyor;
-      # aynı resmî imaj AWS ECR Public aynasından çekilir (yerelde Docker Hub kullanılır). ECR de ara sıra "Rate exceeded"
-      # verdiği için imaj önceden, aralıklı yeniden denemeyle çekilir; Testcontainers yereldeki imajı kullanır.
+      # aynı resmî imaj aynalardan çekilir (yerelde Docker Hub kullanılır): önce AWS ECR Public, o da kota/hız sınırı
+      # verirse ("Rate exceeded", "Data limit exceeded") Google'ın Docker Hub aynası mirror.gcr.io. İmaj önceden, aralıklı
+      # yeniden denemeyle çekilir; çekilen ad PG_IMAGE'a yazılır ve Testcontainers yereldeki imajı kullanır.
       - name: Test veritabanı imajını çek
         run: |
           for i in 1 2 3 4 5; do
-            docker pull public.ecr.aws/docker/library/postgres:18-alpine && exit 0
+            for image in public.ecr.aws/docker/library/postgres:18-alpine mirror.gcr.io/library/postgres:18-alpine; do
+              docker pull "$image" && echo "PG_IMAGE=$image" >> "$GITHUB_ENV" && exit 0
+            done
             echo "Çekilemedi, $((i * 15)) sn sonra yeniden denenecek ($i/5)"; sleep $((i * 15))
           done
           exit 1
 
       - name: Testler
         env:
-          MOODICA_TEST_POSTGRES_IMAGE: public.ecr.aws/docker/library/postgres:18-alpine
+          MOODICA_TEST_POSTGRES_IMAGE: ${{ env.PG_IMAGE }}
           # Testcontainers'ın temizlik yardımcısı (Ryuk) da Docker Hub'dan çekiliyor; CI sunucusu her çalışmada sıfırdan
           # kurulduğu için gereksiz, kapatılır (container'lar testler bitince fabrikada zaten kapatılır).
           TESTCONTAINERS_RYUK_DISABLED: 'true'
@@ -72,13 +75,16 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
+      # Test veritabanı imajıyla aynı sıra: ECR Public, olmazsa mirror.gcr.io.
       - name: Node imajını çek (yeniden denemeli)
         run: |
           for i in 1 2 3 4 5; do
-            docker pull public.ecr.aws/docker/library/node:24-alpine && exit 0
+            for image in public.ecr.aws/docker/library/node:24-alpine mirror.gcr.io/library/node:24-alpine; do
+              docker pull "$image" && echo "NODE_IMAGE=$image" >> "$GITHUB_ENV" && exit 0
+            done
             echo "Çekilemedi, $((i * 15)) sn sonra yeniden denenecek ($i/5)"; sleep $((i * 15))
           done
           exit 1
 
       - name: Docker imajını derle
-        run: docker build --build-arg NODE_IMAGE=public.ecr.aws/docker/library/node:24-alpine --tag moodica-web:ci .
+        run: docker build --build-arg NODE_IMAGE="$NODE_IMAGE" --tag moodica-web:ci .
