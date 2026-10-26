@@ -77,7 +77,7 @@ public class SecurityHeadersTests(MoodicaFactory factory)
                  {
                      "/lib/sweetalert2/sweetalert2.all.min.js", "/lib/microsoft-signalr/signalr.min.js",
                      "/lib/fontawesome/css/all.min.css", "/lib/fontawesome/webfonts/fa-solid-900.woff2",
-                     "/lib/fonts/lexend/lexend-latin-ext-600-normal.woff2", "/lib/fonts/source-sans-3/source-sans-3-latin-ext-400-normal.woff2",
+                     "/lib/fonts/source-serif-4/source-serif-4-latin-ext-500-normal.woff2", "/lib/fonts/source-sans-3/source-sans-3-latin-ext-400-normal.woff2",
                  })
         {
             Assert.Equal(System.Net.HttpStatusCode.OK, (await anonymous.GetAsync(file)).StatusCode);
