@@ -85,7 +85,7 @@ namespace bitirme.Services.Localization
         public static TimeZoneInfo Current => CurrentZone.Value ?? TurkeyTime.Zone;
 
         /// <summary>Türkiye saatinden farklı bir dilimde mi gösteriliyor?</summary>
-        public static bool IsNotTurkey => Current.BaseUtcOffset != TurkeyTime.Zone.BaseUtcOffset || Current.SupportsDaylightSavingTime;
+        public static bool IsNotTurkey => !ReferenceEquals(Current, TurkeyTime.Zone) && Current.Id != TurkeyTime.Zone.Id;
 
         public static void Set(TimeZoneInfo zone) => CurrentZone.Value = zone;
 

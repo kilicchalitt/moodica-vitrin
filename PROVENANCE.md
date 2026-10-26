@@ -4,8 +4,8 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `5a75c67845a77a83dba2bdc43ab4d44cd602915d`
-- Kaynak commit tarihi: 2026-10-26T21:50:50+03:00
+- Kaynak commit: `668380a0443d3921260878d5ba871e7367178cfe`
+- Kaynak commit tarihi: 2026-10-26T21:50:51+03:00
 - Dosya sayısı: 49
 
 | Dosya | SHA-256 |
@@ -44,7 +44,7 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme/Services/Localization/JsonStringLocalizer.cs` | `f7705b19c3c943a27a74b583409f2aa50cc3b7a37357050af607765329a28f11` |
 | `bitirme/bitirme/Services/Localization/LocalizationSetup.cs` | `b928006ca576c995cb4b59fd8ee8f2f8ea4066f2089b472d6e1694409b51e900` |
 | `bitirme/bitirme/Services/Localization/SiteCultures.cs` | `0f9cd97f214e2c59d59b90ba77654926d0c0056eb6944caaa248c6dc2dc75015` |
-| `bitirme/bitirme/Services/Localization/UserTimeZones.cs` | `cb934d1b3ac96d5093be11f9b9fa6bfa2659e638d08eba637105f9986c91e97d` |
+| `bitirme/bitirme/Services/Localization/UserTimeZones.cs` | `72df427bd8c2bf209f3a4d0414e255d71c184345a415539250651eb382b0cca4` |
 | `bitirme/bitirme/Services/Payments/ExchangeRates.cs` | `b373e935d4aa4427534caef8e2e5423db3e105a2c67f79ddb991b4bbfd566939` |
 | `bitirme/bitirme/Services/Payments/IyzicoPaymentProvider.cs` | `e007da6173861ec42dec923b802f67ed1704bb930d0b3f41af8019a05d06ae66` |
 | `bitirme/bitirme/Services/Payments/PaymentProvider.cs` | `05953f408aa98350e9055e51aa0d92fdc11eac13de7e3b2d169d02a6d82f9bbf` |
