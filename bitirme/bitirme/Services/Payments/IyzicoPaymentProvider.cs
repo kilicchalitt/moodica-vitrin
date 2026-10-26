@@ -231,8 +231,8 @@ namespace bitirme.Services.Payments
         public static (string PaymentId, string TransactionId)? ParseProviderPaymentId(string? value) =>
             value?.Split('/') is [{ Length: > 0 } paymentId, { Length: > 0 } transactionId] ? (paymentId, transactionId) : null;
 
-        /// <summary>"05XXXXXXXXX" → "+905XXXXXXXXX"; boşsa null.</summary>
+        /// <summary>Numara E.164 ("+905XXXXXXXXX") saklanır, olduğu gibi gönderilir; boşsa null.</summary>
         public static string? ToInternationalPhone(string? phone) =>
-            phone is { Length: 11 } && phone[0] == '0' ? "+90" + phone[1..] : null;
+            phone is { Length: > 1 } && phone[0] == '+' ? phone : null;
     }
 }

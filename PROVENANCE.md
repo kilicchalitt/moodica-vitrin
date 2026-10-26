@@ -4,7 +4,7 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `5d0497debb6e32db45ec9111512760bad25bcf61`
+- Kaynak commit: `5ed62a6826a123380ce8dc43512909a78026c26b`
 - Kaynak commit tarihi: 2026-10-26T21:50:48+03:00
 - Dosya sayısı: 47
 
@@ -44,7 +44,7 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme/Services/Localization/LocalizationSetup.cs` | `7bea535826cd204f6c98d86737eccfa9dbf3fea3804c9f28c09706205915de7d` |
 | `bitirme/bitirme/Services/Localization/SiteCultures.cs` | `0f9cd97f214e2c59d59b90ba77654926d0c0056eb6944caaa248c6dc2dc75015` |
 | `bitirme/bitirme/Services/Localization/UserTimeZones.cs` | `cb934d1b3ac96d5093be11f9b9fa6bfa2659e638d08eba637105f9986c91e97d` |
-| `bitirme/bitirme/Services/Payments/IyzicoPaymentProvider.cs` | `0069b1af4de29014703dd8b5999a26e075308a73db3f7373ef9061b84307e9c5` |
+| `bitirme/bitirme/Services/Payments/IyzicoPaymentProvider.cs` | `e007da6173861ec42dec923b802f67ed1704bb930d0b3f41af8019a05d06ae66` |
 | `bitirme/bitirme/Services/Payments/PaymentProvider.cs` | `4a4712f87132957be6afe9874db9780bce79b6b0a062ccc5a4bb3cf0adefa40d` |
 | `bitirme/bitirme/Services/RateLimitPolicies.cs` | `f4cd935b6d448f77c40d085b72133dcb09eed499b6eb142688e58520d75e0475` |
 | `bitirme/bitirme/Services/RecoveryCodeHasher.cs` | `b3e59d5d216ca3c03f1e3aa1d44d3e842e38cd9247867a5889e74475c1bdd132` |
@@ -54,6 +54,6 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme/Services/TextProtector.cs` | `d5f0bb368b003d64dc9f1eec1f0ba8e582c190f0f009e57fd292cd9960e2f9df` |
 | `bitirme/bitirme/Services/TwoFactorHelper.cs` | `eba0500e050458401531e836b14b42b647dc247ea22c1cb5c42d48c87df3a605` |
 | `bitirme/bitirme/Services/WorkingHoursRules.cs` | `9757786ba77cbde498725c39d8386dc9ec1a7e58efa673a7e574409f519deea5` |
-| `bitirme/bitirme/bitirme.csproj` | `036f104ca7d98d6a9ab13c0053f580614c3479fb36fbbcae86844594c9ee8bb1` |
+| `bitirme/bitirme/bitirme.csproj` | `c85f553f8fc879241e0336896686f4ca0a550fd021b7d127f810f9ca12d18426` |
 | `deploy/Caddyfile` | `b7e2c80000778c65b686b816bf9a2aa4cbc83d1768bf9eaa47cbc3eb5fe1d18a` |
 | `docs/ana-proje-ci.yml` | `1995dd34ff5cde6859f13ac1716fc8a9edfd55fc3fd74ca7c2ce9f0c51c47644` |
