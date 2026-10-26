@@ -196,6 +196,8 @@ namespace bitirme.Services.Payments
 
             services.AddScoped<PaymentService>();
             services.AddScoped<PaymentReport>();
+            // İngilizcede yaklaşık döviz karşılığı (TCMB günlük kuru; DECISION-49).
+            services.AddHttpClient<ExchangeRates>(client => client.Timeout = TimeSpan.FromSeconds(5));
             services.AddHostedService<PaymentBackgroundWorker>();
             return services;
         }
