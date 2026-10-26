@@ -4,9 +4,9 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `82f53845c12146fce2fa1815f2b5eb392fcbb92a`
-- Kaynak commit tarihi: 2026-10-26T21:50:46+03:00
-- Dosya sayısı: 43
+- Kaynak commit: `5d0497debb6e32db45ec9111512760bad25bcf61`
+- Kaynak commit tarihi: 2026-10-26T21:50:48+03:00
+- Dosya sayısı: 47
 
 | Dosya | SHA-256 |
 |---|---|
@@ -14,7 +14,7 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme.IntegrationTests/AuthorizationTests.cs` | `591beb7ff6f0eeb9fb7bbfaa3a1fd7d9c55f374928f808968050c64f402bd479` |
 | `bitirme/bitirme.IntegrationTests/RateLimitTests.cs` | `523806b60e756f717d5a19f552894b777bcec4cbf8dd9ba2dc2fd04eccb2a17a` |
 | `bitirme/bitirme.IntegrationTests/SecurityHeadersTests.cs` | `48487cb19dad853fe4afae5ba19d8cf257ea43cbe1d8090af59bd7ae63b25c12` |
-| `bitirme/bitirme.Tests/ActionAuthorizationTests.cs` | `3336d9bd25da1339215ae30565341d0260da72758afa18e79f34cf24036f578c` |
+| `bitirme/bitirme.Tests/ActionAuthorizationTests.cs` | `61ab540c398bb947caaf4a608ff409ea341e986e8821877ff8ef3aa976f84918` |
 | `bitirme/bitirme.Tests/AppointmentStateRulesTests.cs` | `a8b61df4d1b03ef24679f32419a53a0c65a30e83cecb9a4e5253d0853e60604b` |
 | `bitirme/bitirme.Tests/SessionNoteProtectorTests.cs` | `5e88dbe2baa8f1cc14b64d9c6aa7bfc765fd7ca943cf0f028c92b6ea5f167027` |
 | `bitirme/bitirme.Tests/SlotRulesTests.cs` | `ceb0f90e6f703f02bdc50ae20b4b23437c07a84f84c30a5bcb8479a519b687f3` |
@@ -40,6 +40,10 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme/Services/EmailLayout.cs` | `04457360b537da705749c802312eadf48a1cb00705cb54945d9ff5d013a30315` |
 | `bitirme/bitirme/Services/HealthDataAuditLog.cs` | `4f6800737abd147bf9ffa48498312a6e9738b5e70fe7496cfae77642150aee9d` |
 | `bitirme/bitirme/Services/IceServerProvider.cs` | `81e980e2897bbff95b6814134d9047b1edb5581848e9a46a625ddd616a116a0a` |
+| `bitirme/bitirme/Services/Localization/JsonStringLocalizer.cs` | `15114b82ea2d07e3125bc9fa9002c7bb4c84eaab06a6de37f2ec636f9b9e07a6` |
+| `bitirme/bitirme/Services/Localization/LocalizationSetup.cs` | `7bea535826cd204f6c98d86737eccfa9dbf3fea3804c9f28c09706205915de7d` |
+| `bitirme/bitirme/Services/Localization/SiteCultures.cs` | `0f9cd97f214e2c59d59b90ba77654926d0c0056eb6944caaa248c6dc2dc75015` |
+| `bitirme/bitirme/Services/Localization/UserTimeZones.cs` | `cb934d1b3ac96d5093be11f9b9fa6bfa2659e638d08eba637105f9986c91e97d` |
 | `bitirme/bitirme/Services/Payments/IyzicoPaymentProvider.cs` | `0069b1af4de29014703dd8b5999a26e075308a73db3f7373ef9061b84307e9c5` |
 | `bitirme/bitirme/Services/Payments/PaymentProvider.cs` | `4a4712f87132957be6afe9874db9780bce79b6b0a062ccc5a4bb3cf0adefa40d` |
 | `bitirme/bitirme/Services/RateLimitPolicies.cs` | `f4cd935b6d448f77c40d085b72133dcb09eed499b6eb142688e58520d75e0475` |

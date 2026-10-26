@@ -13,6 +13,7 @@ public class ActionAuthorizationTests
 {
     private static readonly HashSet<string> PublicActions =
     [
+        "Dil.Degistir",
         "Doktor.Login", "Doktor.Register", "Doktor.Fotograf",
         "Gizlilik.Aydinlatma", "Gizlilik.AcikRiza", "Gizlilik.UzmanAydinlatma",
         "Gizlilik.KullaniciSozlesmesi", "Gizlilik.UzmanSozlesmesi",
