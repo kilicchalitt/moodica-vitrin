@@ -4,8 +4,8 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `668380a0443d3921260878d5ba871e7367178cfe`
-- Kaynak commit tarihi: 2026-10-26T21:50:51+03:00
+- Kaynak commit: `2e23f371b207c88d51327d3a408a42db10d9f7ab`
+- Kaynak commit tarihi: 2026-10-26T21:50:52+03:00
 - Dosya sayısı: 49
 
 | Dosya | SHA-256 |
@@ -55,7 +55,7 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme/Services/SlotRules.cs` | `88ce0b5bbe76d08cbc9e053a0d9d79c83a0ca83113b3cad44c787a5d4670d69c` |
 | `bitirme/bitirme/Services/TextProtector.cs` | `d5f0bb368b003d64dc9f1eec1f0ba8e582c190f0f009e57fd292cd9960e2f9df` |
 | `bitirme/bitirme/Services/TwoFactorHelper.cs` | `eba0500e050458401531e836b14b42b647dc247ea22c1cb5c42d48c87df3a605` |
-| `bitirme/bitirme/Services/WorkingHoursRules.cs` | `9757786ba77cbde498725c39d8386dc9ec1a7e58efa673a7e574409f519deea5` |
+| `bitirme/bitirme/Services/WorkingHoursRules.cs` | `6272b1c43862418a6cb277c47950fed42888dafc6eeb084bff418d3b9ebc1195` |
 | `bitirme/bitirme/bitirme.csproj` | `c85f553f8fc879241e0336896686f4ca0a550fd021b7d127f810f9ca12d18426` |
 | `deploy/Caddyfile` | `b7e2c80000778c65b686b816bf9a2aa4cbc83d1768bf9eaa47cbc3eb5fe1d18a` |
 | `docs/ana-proje-ci.yml` | `1995dd34ff5cde6859f13ac1716fc8a9edfd55fc3fd74ca7c2ce9f0c51c47644` |

@@ -28,7 +28,7 @@ namespace bitirme.Services
             .Select(d => new WorkingRange(d, new TimeOnly(10, 0), new TimeOnly(20, 0)))
             .ToList();
 
-        public static string DayName(DayOfWeek day) => TurkeyTime.Culture.DateTimeFormat.GetDayName(day);
+        public static string DayName(DayOfWeek day) => Localization.SiteCultures.CurrentCulture.DateTimeFormat.GetDayName(day);
 
         /// <summary>Kaydetmeden önce denetim; hata yoksa boş liste. Hiç aralık olmaması geçerlidir (uzman randevu almaz).</summary>
         public static IReadOnlyList<string> Validate(IReadOnlyCollection<WorkingRange> ranges)
