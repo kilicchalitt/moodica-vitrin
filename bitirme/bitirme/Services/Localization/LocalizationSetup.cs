@@ -24,6 +24,8 @@ namespace bitirme.Services.Localization
         /// </summary>
         public static IApplicationBuilder UseMoodicaLocalization(this IApplicationBuilder app)
         {
+            // Sözlük açılışta yüklenir: SiteText (denetleyici ve e-posta metinleri) ilk görünümden önce de çalışsın.
+            app.ApplicationServices.GetRequiredService<IStringLocalizerFactory>();
             app.UseRequestLocalization(new RequestLocalizationOptions
             {
                 DefaultRequestCulture = new RequestCulture(SiteCultures.TurkishCulture),

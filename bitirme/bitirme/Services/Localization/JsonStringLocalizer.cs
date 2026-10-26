@@ -15,7 +15,9 @@ namespace bitirme.Services.Localization
 
         public JsonStringLocalizerFactory(IWebHostEnvironment environment)
         {
-            _localizer = new JsonStringLocalizer(Translations.Load(environment.ContentRootPath));
+            var translations = Translations.Load(environment.ContentRootPath);
+            SiteText.Use(translations);
+            _localizer = new JsonStringLocalizer(translations);
         }
 
         public IStringLocalizer Create(Type resourceSource) => _localizer;
@@ -68,6 +70,23 @@ namespace bitirme.Services.Localization
             var english = JsonSerializer.Deserialize<Dictionary<string, string>>(stream)
                 ?? throw new InvalidOperationException("Resources/en.json okunamadı.");
             return new Translations(english);
+        }
+    }
+
+    /// <summary>
+    /// Kod içinden çeviri (denetleyici mesajları, servis hata metinleri, e-postalar): <c>SiteText.T("Türkçe metin")</c>.
+    /// O anki dil İngilizceyse karşılığı, değilse Türkçesi döner; uygulama başlamadan (birim testleri) Türkçe döner.
+    /// </summary>
+    public static class SiteText
+    {
+        private static Translations? _translations;
+
+        internal static void Use(Translations translations) => _translations = translations;
+
+        public static string T(string turkish, params object[] arguments)
+        {
+            var text = SiteCultures.IsEnglish && _translations?.English.TryGetValue(turkish, out var english) == true ? english! : turkish;
+            return arguments.Length == 0 ? text : string.Format(SiteCultures.CurrentCulture, text, arguments);
         }
     }
 }
