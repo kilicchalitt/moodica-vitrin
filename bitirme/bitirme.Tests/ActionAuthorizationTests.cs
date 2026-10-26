@@ -15,6 +15,7 @@ public class ActionAuthorizationTests
     [
         "Doktor.Login", "Doktor.Register", "Doktor.Fotograf",
         "Gizlilik.Aydinlatma", "Gizlilik.AcikRiza", "Gizlilik.UzmanAydinlatma",
+        "Gizlilik.KullaniciSozlesmesi", "Gizlilik.UzmanSozlesmesi",
         "Hasta.Login", "Hasta.Register",
         "Hesap.EpostaDogrula", "Hesap.SifremiUnuttum", "Hesap.SifreSifirla", "Hesap.IkiAdimliGiris",
         "Hesap.KurtarmaTalebi", "Hesap.KurtarmaTalebiGonder", "Hesap.KurtarmaTalebiOnayla",

@@ -3,7 +3,7 @@ using bitirme.Models;
 namespace bitirme.Services
 {
     /// <summary>
-    /// Aydınlatma ve açık rıza metinlerinin güncel sürümleri ve hangi kullanıcı türünün hangilerini onaylaması
+    /// Sözleşme, aydınlatma ve açık rıza metinlerinin güncel sürümleri ve hangi kullanıcı türünün hangilerini onaylaması
     /// gerektiği. Metin değiştirildiğinde sürümü burada artırılır; kullanıcılar bir sonraki isteklerinde yeni sürümü
     /// onaylamaya yönlendirilir. Metinler taslaktır, avukat onayı Faz 8'de (TASK-32).
     /// </summary>
@@ -22,14 +22,17 @@ namespace bitirme.Services
             [ConsentDocument.HealthDataExplicitConsent] = "2026-10-08-taslak",
             // 2026-10-08: uzman metnine danışanın ihtiyaç analizi özeti ve ilerleme ölçümleri eklendi.
             // 2026-10-09b: uzman metnine haftalık çalışma saatleri ve boş saatlerin danışanlara gösterilmesi eklendi (H-03).
-            [ConsentDocument.ExpertPrivacyNotice] = "2026-10-09b-taslak"
+            [ConsentDocument.ExpertPrivacyNotice] = "2026-10-09b-taslak",
+            // 2026-10-26: kullanıcı ve uzman sözleşmesi taslakları eklendi (H-04).
+            [ConsentDocument.PatientTermsOfUse] = "2026-10-26-taslak",
+            [ConsentDocument.ExpertServiceAgreement] = "2026-10-26-taslak"
         };
 
         private static readonly ConsentDocument[] PatientDocuments =
-            [ConsentDocument.PatientPrivacyNotice, ConsentDocument.HealthDataExplicitConsent];
+            [ConsentDocument.PatientTermsOfUse, ConsentDocument.PatientPrivacyNotice, ConsentDocument.HealthDataExplicitConsent];
 
         private static readonly ConsentDocument[] ExpertDocuments =
-            [ConsentDocument.ExpertPrivacyNotice];
+            [ConsentDocument.ExpertServiceAgreement, ConsentDocument.ExpertPrivacyNotice];
 
         public static string CurrentVersion(ConsentDocument document) => CurrentVersions[document];
 
@@ -84,6 +87,8 @@ namespace bitirme.Services
             ConsentDocument.PatientPrivacyNotice => "Danışan Aydınlatma Metni",
             ConsentDocument.HealthDataExplicitConsent => "Sağlık Verileri Açık Rıza Metni",
             ConsentDocument.ExpertPrivacyNotice => "Uzman Aydınlatma Metni",
+            ConsentDocument.PatientTermsOfUse => "Kullanıcı Sözleşmesi",
+            ConsentDocument.ExpertServiceAgreement => "Uzman Hizmet Sözleşmesi",
             _ => document.ToString()
         };
     }
