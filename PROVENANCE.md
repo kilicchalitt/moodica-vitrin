@@ -4,8 +4,8 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `641aa3613454c35881d7414b8dc6ea85c9a29062`
-- Kaynak commit tarihi: 2026-10-29T09:30:18+03:00
+- Kaynak commit: `efb6b664a109e68d1931366e2cb02eb556f848c9`
+- Kaynak commit tarihi: 2026-10-29T09:30:19+03:00
 - Dosya sayısı: 51
 
 | Dosya | SHA-256 |
@@ -32,7 +32,7 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme/Services/AdminAccess.cs` | `9922b3537e5f6910b28de1eaefcc64e1f5b3a3222f360fd95d80355979ce98d7` |
 | `bitirme/bitirme/Services/AppointmentRules.cs` | `29928c4f46225170ee1b55449339c03b15a644b5d20cb7e295ee0101c086ee86` |
 | `bitirme/bitirme/Services/AppointmentStateRules.cs` | `2ebb6602b6818bce8dc423a8b5e30e47a4bb00adb11f4d2f9dd7ad928909616f` |
-| `bitirme/bitirme/Services/ConsentCatalog.cs` | `90d84c96a3501471e14d72c216b05feddbc38ec71b4755a0c7f7de0df4f52ac7` |
+| `bitirme/bitirme/Services/ConsentCatalog.cs` | `c3ce1bf0ee8fd7f30f37a63f7c3c817aed94004073395e51cfa5f20dacef6a99` |
 | `bitirme/bitirme/Services/ConsentService.cs` | `789e7f19453836f4638dfeca0781138777508e2ec43edb2509af0a29e042133e` |
 | `bitirme/bitirme/Services/DataAccessReport.cs` | `8df5efba1de5beb8ded42da8eb904554a5febc9798b84ca85fb6e4f8f5365d46` |
 | `bitirme/bitirme/Services/DataProtectionSetup.cs` | `1a645b894f1dd45f73a5bb31182c1efad38c3bfa3d051d40b4ca5fe2653ebb62` |

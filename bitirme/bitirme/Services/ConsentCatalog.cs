@@ -18,11 +18,13 @@ namespace bitirme.Services
             // 2026-10-08: danışan metinlerine isteğe bağlı ilerleme ölçümleri (PHQ-9/GAD-7 tekrarı, DECISION-33) eklendi.
             // 2026-10-09: danışan ve uzman aydınlatma metinlerine ödeme bilgileri, tahsil/iade amacı ve ödeme kuruluşuna
             // aktarım eklendi (Faz 6, DECISION-38); uzman metnine herkese açık seans ücreti ve pay bilgisi.
-            [ConsentDocument.PatientPrivacyNotice] = "2026-10-09-taslak",
+            // 2026-10-26b: danışan ve uzman aydınlatma metinlerine dil ve saat dilimi tercihi (ve tercih çerezleri), uzman
+            // metnine herkese açık görüşme dilleri eklendi (DECISION-49).
+            [ConsentDocument.PatientPrivacyNotice] = "2026-10-26b-taslak",
             [ConsentDocument.HealthDataExplicitConsent] = "2026-10-08-taslak",
             // 2026-10-08: uzman metnine danışanın ihtiyaç analizi özeti ve ilerleme ölçümleri eklendi.
             // 2026-10-09b: uzman metnine haftalık çalışma saatleri ve boş saatlerin danışanlara gösterilmesi eklendi (H-03).
-            [ConsentDocument.ExpertPrivacyNotice] = "2026-10-09b-taslak",
+            [ConsentDocument.ExpertPrivacyNotice] = "2026-10-26b-taslak",
             // 2026-10-26: kullanıcı ve uzman sözleşmesi taslakları eklendi (H-04).
             [ConsentDocument.PatientTermsOfUse] = "2026-10-26-taslak",
             [ConsentDocument.ExpertServiceAgreement] = "2026-10-26-taslak"
