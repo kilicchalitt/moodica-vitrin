@@ -69,6 +69,27 @@ jobs:
           TESTCONTAINERS_RYUK_DISABLED: 'true'
         run: dotnet test --solution bitirme/bitirme.sln --configuration Release --no-build
 
+  # Vitrin (docs/VITRIN.md): dışa aktarım ve eşitleme betiklerinin testleri; gerçek izin listesindeki her dosya bugün temiz
+  # mi (ihlal vitrine gitmeden burada yakalanır).
+  vitrin:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+
+      - name: Vitrin betik testleri
+        run: |
+          pip install --disable-pip-version-check pytest==8.4.2
+          python -m pytest tools/tests -q
+
+      - name: İzin listesi bugün temiz mi
+        run: python tools/export_public.py --out "$RUNNER_TEMP/vitrin" --dry-run
+
   # Dockerfile bozulursa yayın öncesi değil, ilk gönderimde fark edilir.
   docker:
     runs-on: ubuntu-24.04
