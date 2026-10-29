@@ -22,6 +22,13 @@ namespace bitirme.Services.Localization
             mvc.AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix).AddDataAnnotationsLocalization();
 
         /// <summary>
+        /// Tam yolla ("~/Views/…/_X.cshtml") çağrılan kısmi görünümde dil son eki kendiliğinden aranmaz; İngilizcede
+        /// <c>_X.en.cshtml</c> yolunu verir (dosya yoksa Razor hata verir, bu yüzden yalnızca İngilizcesi olan metinlerde kullanılır).
+        /// </summary>
+        public static string LocalizedPartial(string path) =>
+            SiteCultures.IsEnglish && path.EndsWith(".cshtml", StringComparison.Ordinal) ? path[..^".cshtml".Length] + ".en.cshtml" : path;
+
+        /// <summary>
         /// İstek dili yalnızca dil çerezinden gelir (yoksa Türkçe; tarayıcı dili kullanılmaz, birincil kitle Türkiye).
         /// Ardından gösterim saat dilimi <see cref="UserTimeZones.CookieName"/> çerezinden alınır.
         /// </summary>

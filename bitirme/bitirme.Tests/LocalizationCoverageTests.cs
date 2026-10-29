@@ -88,6 +88,21 @@ public partial class LocalizationCoverageTests
         Assert.True(missing.Count == 0, "en.json'da karşılığı olmayan form metinleri: " + string.Join(" | ", missing));
     }
 
+    [Theory]
+    [InlineData("Views/Gizlilik", "_*Metni.cshtml")]
+    [InlineData("Views/KendineYardim/Icerik", "_*.cshtml")]
+    public void LongTexts_HaveAnEnglishView(string folder, string pattern)
+    {
+        // Hukuki metinler ve kendine yardım yazıları çeviri sözlüğünde değil, _X.en.cshtml görünümünde (I-9).
+        var turkish = Directory.GetFiles(Path.Combine(AppDirectory, folder), pattern)
+            .Where(f => !f.EndsWith(".en.cshtml"))
+            .ToList();
+
+        Assert.NotEmpty(turkish);
+        var missing = turkish.Where(f => !File.Exists(f[..^".cshtml".Length] + ".en.cshtml")).Select(Path.GetFileName).ToList();
+        Assert.True(missing.Count == 0, "İngilizce görünümü olmayan metinler: " + string.Join(" | ", missing));
+    }
+
     [Fact]
     public void StoredCancellationReasons_HaveAnEnglishVersion()
     {
