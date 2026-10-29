@@ -14,7 +14,7 @@ Psikolojik destek arayan biri çoğu zaman hangi uzmana gitmesi gerektiğini bil
 
 ## Yaklaşım
 
-1. **İhtiyaç analizi:** Danışan, geçerliliği gösterilmiş kısa tarama ölçeklerinden oluşan bir anket doldurur: depresyon için PHQ-9 [[1]](#k1), kaygı için GAD-7 [[2]](#k2)[[3]](#k3), travma sonrası stres için PC-PTSD-5 [[4]](#k4), yeme sorunları için SCOFF [[5]](#k5), ayrıca panik, obsesif belirtiler ve uyku soruları.
+1. **İhtiyaç analizi:** Danışan, geçerliliği gösterilmiş kısa tarama ölçeklerinden oluşan bir anket doldurur: depresyon için PHQ-9 [[1]](#k1), kaygı için GAD-7 [[2]](#k2), [[3]](#k3), travma sonrası stres için PC-PTSD-5 [[4]](#k4), yeme sorunları için SCOFF [[5]](#k5), ayrıca panik, obsesif belirtiler ve uyku soruları.
 2. **Açıklanabilir eşleştirme:** Kurala dayalı bir motor, öne çıkan alanlarda kanıta dayalı yöntem uygulayan uzmanları [[6]](#k6) önerir ve her öneri için "neden önerildi" gerekçesini gösterir. Danışana tanı dili gösterilmez.
 3. **Güvenlik önce:** Kriz belirtisi işaretlenirse danışana hemen acil yardım hatları gösterilir, randevuları öncelikli olur ve uzmana ayrıntısız bildirim gider.
 4. **Randevu ve ödeme:** Uzmanın boş saatlerinden seçim, saat kısa süre ayrılır, ödeme ödeme kuruluşunun sayfasında yapılır ve sunucuda doğrulanınca randevu onaylanır.
@@ -26,7 +26,7 @@ Site Türkçe ve İngilizcedir; saatler kişinin saat diliminde gösterilir.
 ## Ekranlar
 
 | | |
-|---|---|
+| --- | --- |
 | ![Uzmanlar](docs/ekran/uzmanlar.jpg) | ![Danışan paneli](docs/ekran/danisan-paneli.jpg) |
 | Uzman listesi ve süzgeçler | Danışan paneli |
 | ![Uzman paneli](docs/ekran/uzman-paneli.jpg) | ![Telefon görünümü](docs/ekran/telefon.jpg) |
@@ -58,7 +58,7 @@ flowchart LR
 ## Tasarım kararları ve gerekçeleri
 
 | Karar | Neden | Dayanak |
-|---|---|---|
+| --- | --- | --- |
 | Sistem teşhis koymaz; anket yalnızca tarama ve öneri içindir | Tanı uzmanın işidir; tanı dili danışanı yanıltabilir | Ruh sağlığı alanının etik ilkeleri |
 | Eşleştirme kurala dayalı ve açıklanabilir (makine öğrenmesi yok) | Her öneri "neden" sorusuna cevap verebilmeli ve klinisyence denetlenebilmeli | Kanıt düzeyleri [[6]](#k6) |
 | Yalnızca geçerliliği gösterilmiş ölçekler; metinleri değiştirilmez | Uydurma sorular güvenilir sonuç vermez | [[1]](#k1)–[[5]](#k5) |
@@ -80,7 +80,7 @@ flowchart LR
 Aşağıdaki sayılar ana projenin test ve CI çalıştırmalarından alınmıştır (29 Ekim 2026):
 
 | Ölçüm | Sonuç |
-|---|---|
+| --- | --- |
 | Birim testleri (.NET, xUnit v3) | 886 / 886 geçti |
 | Entegrasyon testleri (gerçek PostgreSQL, HTTP) | 211 / 211 geçti |
 | Arayüz testleri (TypeScript, Vitest) | 25 / 25 geçti |
@@ -95,7 +95,7 @@ Aşağıdaki sayılar ana projenin test ve CI çalıştırmalarından alınmış
 ## Bu depoda ne var, ne yok
 
 | Var | Yok |
-|---|---|
+| --- | --- |
 | Güvenlik: CSP ve güvenlik başlıkları, istek sınırları, yönetim paneli adres kısıtı, ters vekil ayarı, alan düzeyinde şifreleme, iki aşamalı doğrulama, yetki filtreleri | 🔒 Eşleştirme motoru, puanlama ve kanıt tabloları |
 | KVKK: sürümlü rıza, sağlık verisi erişim kaydı, erişim raporu, hesap silme | 🔒 Anket soruları, ölçek metinleri ve anket ekranları |
 | Randevu: kurallar, boş saat hesabı, çalışma saatleri, durum makinesi | 🔒 Demo senaryoları ve beklenen sonuçlar |

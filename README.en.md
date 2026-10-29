@@ -14,7 +14,7 @@ People looking for psychological support often do not know which professional to
 
 ## Approach
 
-1. **Needs assessment:** The client completes a questionnaire built from short, validated screening scales: PHQ-9 for depression [[1]](#k1), GAD-7 for anxiety [[2]](#k2)[[3]](#k3), PC-PTSD-5 for post-traumatic stress [[4]](#k4), SCOFF for eating problems [[5]](#k5), plus questions on panic, obsessive symptoms and sleep.
+1. **Needs assessment:** The client completes a questionnaire built from short, validated screening scales: PHQ-9 for depression [[1]](#k1), GAD-7 for anxiety [[2]](#k2), [[3]](#k3), PC-PTSD-5 for post-traumatic stress [[4]](#k4), SCOFF for eating problems [[5]](#k5), plus questions on panic, obsessive symptoms and sleep.
 2. **Explainable matching:** A rule-based engine recommends professionals who apply evidence-based methods for the areas that stand out [[6]](#k6) and shows a "why recommended" reason for each. No diagnostic language is shown to the client.
 3. **Safety first:** If a crisis item is marked, emergency helplines are shown immediately, the client's appointments become priority and the professional receives a notification without details.
 4. **Booking and payment:** The client picks a free slot, the slot is held briefly, payment happens on the payment provider's page and the appointment is confirmed once the server verifies it.
@@ -26,7 +26,7 @@ The site is available in Turkish and English; times are shown in each person's t
 ## Screens
 
 | | |
-|---|---|
+| --- | --- |
 | ![Experts](docs/ekran/uzmanlar.jpg) | ![Client dashboard](docs/ekran/danisan-paneli.jpg) |
 | Expert directory and filters | Client dashboard |
 | ![Expert dashboard](docs/ekran/uzman-paneli.jpg) | ![Phone view](docs/ekran/telefon.jpg) |
@@ -58,7 +58,7 @@ The box marked 🔒 is not in this repository.
 ## Design decisions and rationale
 
 | Decision | Why | Basis |
-|---|---|---|
+| --- | --- | --- |
 | The system does not diagnose; the questionnaire is for screening and recommendation only | Diagnosis is the professional's job; diagnostic language can mislead clients | Ethical principles of mental health care |
 | Matching is rule-based and explainable (no machine learning) | Every recommendation must answer "why" and be auditable by a clinician | Levels of evidence [[6]](#k6) |
 | Only validated scales; their wording is never changed | Made-up questions do not give reliable results | [[1]](#k1)–[[5]](#k5) |
@@ -80,7 +80,7 @@ The box marked 🔒 is not in this repository.
 The figures below come from the main project's test and CI runs (29 October 2026):
 
 | Measure | Result |
-|---|---|
+| --- | --- |
 | Unit tests (.NET, xUnit v3) | 886 / 886 passed |
 | Integration tests (real PostgreSQL, HTTP) | 211 / 211 passed |
 | Front-end tests (TypeScript, Vitest) | 25 / 25 passed |
@@ -95,7 +95,7 @@ The figures below come from the main project's test and CI runs (29 October 2026
 ## What is and is not in this repository
 
 | Included | Not included |
-|---|---|
+| --- | --- |
 | Security: CSP and security headers, rate limits, admin panel address restriction, reverse proxy settings, field-level encryption, two-factor authentication, authorization filters | 🔒 Matching engine, scoring and evidence tables |
 | Data protection: versioned consent, health data access log, access report, account deletion | 🔒 Survey items, scale texts and survey screens |
 | Booking: rules, free slot calculation, working hours, state machine | 🔒 Demo scenarios and expected results |

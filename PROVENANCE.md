@@ -4,19 +4,19 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `ebe8acde91a1151b833702150edae67ba2ccedae`
-- Kaynak commit tarihi: 2026-10-29T14:48:12+03:00
+- Kaynak commit: `08ec7c57536256c18a6675f27e994d37909289e5`
+- Kaynak commit tarihi: 2026-10-29T15:11:20+03:00
 - Dosya sayısı: 62
 
 | Dosya | SHA-256 |
-|---|---|
+| --- | --- |
 | `.github/scripts/baglanti_denetimi.py` | `104db44de8af5f26c7683fbdcceb7c5fd8deb203ea13d98df0eecd066600e83e` |
 | `.github/workflows/vitrin-ci.yml` | `e771e258167cc258c1597305016d553d8084f2bd4d6a8a8c2cb7fb5603b9b55c` |
 | `.markdownlint-cli2.jsonc` | `9e0e6f487e90a6594f105136d8bbbea7769a0180e0a35e27ae4be8ba1f47b3d6` |
 | `Dockerfile` | `7459d37898fb068c5c18e9f2e3a9ce3566bfc2c6f217f2d3da32da6b7af6d674` |
 | `LICENSE` | `a76650c80b319661e895c59ac0c3de48f7c3bfa80675c2e1ac52c14ec69dd0f4` |
-| `README.en.md` | `bdc8be1827208a4fc77c3b93c4b737ce64d85fe2049dedf2f9d7028d10604a94` |
-| `README.md` | `528f2e9a084a3d3927725294fc3c3282f8b7a2cc37f27d46611bfe3e80c41b39` |
+| `README.en.md` | `846fbad529f209d80ae97853b910e8e0b43f650c074410fe4ffd9b7329b0d98d` |
+| `README.md` | `9578461dc0d380f3ec006cd437e59dbf69999fd5c7a735d2a166b12675322a74` |
 | `bitirme/bitirme.IntegrationTests/AuthorizationTests.cs` | `591beb7ff6f0eeb9fb7bbfaa3a1fd7d9c55f374928f808968050c64f402bd479` |
 | `bitirme/bitirme.IntegrationTests/RateLimitTests.cs` | `523806b60e756f717d5a19f552894b777bcec4cbf8dd9ba2dc2fd04eccb2a17a` |
 | `bitirme/bitirme.IntegrationTests/SecurityHeadersTests.cs` | `48487cb19dad853fe4afae5ba19d8cf257ea43cbe1d8090af59bd7ae63b25c12` |
