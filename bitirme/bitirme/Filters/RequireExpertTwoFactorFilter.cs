@@ -1,4 +1,5 @@
 using bitirme.Models;
+using bitirme.Services.Localization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -25,7 +26,7 @@ namespace bitirme.Filters
     /// </summary>
     public sealed class RequireExpertTwoFactorFilter(IOptionsMonitor<TwoFactorPolicyOptions> options) : IAsyncActionFilter
     {
-        public const string Message = "Uzman hesapları için iki aşamalı doğrulama zorunludur. Devam etmek için lütfen kurun.";
+        public static string Message => SiteText.T("Uzman hesapları için iki aşamalı doğrulama zorunludur. Devam etmek için lütfen kurun.");
 
         private static readonly HashSet<string> ExpertControllers = new(StringComparer.OrdinalIgnoreCase) { "Doktor", "Takvim", "Appointment" };
 

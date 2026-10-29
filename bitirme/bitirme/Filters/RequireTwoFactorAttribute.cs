@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using bitirme.Services.Localization;
 
 namespace bitirme.Filters
 {
@@ -27,7 +28,7 @@ namespace bitirme.Filters
                         .GetRequiredService<ITempDataDictionaryFactory>()
                         .GetTempData(context.HttpContext);
                     tempData["AlertType"] = "warning";
-                    tempData["AlertMessage"] = "Bu bölüm için önce iki aşamalı doğrulamayı kurmanız gerekiyor.";
+                    tempData["AlertMessage"] = SiteText.T("Bu bölüm için önce iki aşamalı doğrulamayı kurmanız gerekiyor.");
                     context.Result = new RedirectToActionResult("IkiAdimliDogrulama", "Hesap", null);
                     return;
                 }

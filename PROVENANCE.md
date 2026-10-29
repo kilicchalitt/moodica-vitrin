@@ -4,9 +4,9 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `2e23f371b207c88d51327d3a408a42db10d9f7ab`
-- Kaynak commit tarihi: 2026-10-26T21:50:52+03:00
-- Dosya sayısı: 49
+- Kaynak commit: `84177c00b5bebac8448794258dce424afe9678d5`
+- Kaynak commit tarihi: 2026-10-29T09:30:17+03:00
+- Dosya sayısı: 50
 
 | Dosya | SHA-256 |
 |---|---|
@@ -22,11 +22,12 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme/Data/AppUserStore.cs` | `771d76f59a11149fafaacc0d4bd8cde4e44232a74bd9fd3d5472d3c97257f25e` |
 | `bitirme/bitirme/Data/AppointmentTextEncryptionInterceptor.cs` | `65fce6a1ce518a27336b7571ecd12cd4cb6b64687817b67d7e59acec1f438efc` |
 | `bitirme/bitirme/Filters/RequireConsentFilter.cs` | `b9c38d04861ec81a725a68741421f8ff9484b7467a27cd0e7053e91b5c5eced5` |
-| `bitirme/bitirme/Filters/RequireExpertTwoFactorFilter.cs` | `86af7ed57daaaa7ef88b09eee548c8899fb1e018c4f6824a893567ee0e439e27` |
-| `bitirme/bitirme/Filters/RequireHealthConsentAttribute.cs` | `fc4e3568eb6a5e50268457ba42e3b20caa92af92f67a923b3a0207982f66436b` |
-| `bitirme/bitirme/Filters/RequireTwoFactorAttribute.cs` | `09298044da2fbf12280debae70cb048f6d27a3082f6b6e9fe3db88ec676c089c` |
+| `bitirme/bitirme/Filters/RequireExpertTwoFactorFilter.cs` | `3d663c8108b5386e321188cc41dd6a6c9bfb96ab27237564503a95559dfa4dc1` |
+| `bitirme/bitirme/Filters/RequireHealthConsentAttribute.cs` | `1d4223072b0af5bb21364cf53590da0da635ea0dcdcef06cb085127bd078e723` |
+| `bitirme/bitirme/Filters/RequireTwoFactorAttribute.cs` | `d42796a79abb97c6fdd8af5f48caf55cf4130386f7ed75e261eebde56f0316f8` |
+| `bitirme/bitirme/Hubs/HubCultureFilter.cs` | `bf8c829aede0b8f2186aeca4b4154cb63356f8cf68bb797578073ce0de598b83` |
 | `bitirme/bitirme/Hubs/NotificationHub.cs` | `b82dc9c0038902d064bf693e84f5db30c486bc3251754f080afae505a3d28f1a` |
-| `bitirme/bitirme/Hubs/VideoHub.cs` | `ede04a56cd7d8a4807817708b457864f85a6b4d9a008339c37396c4fcdfc7da3` |
+| `bitirme/bitirme/Hubs/VideoHub.cs` | `c49ca5db5e5600f79d6e60de29d92d23911a4f33788772d6656a7365b801a2c5` |
 | `bitirme/bitirme/Services/AccountDeletionService.cs` | `dc430523a9d5ef8169e8dea434e478aad2b1fafd2ac9555a5681c52cb1eb083b` |
 | `bitirme/bitirme/Services/AdminAccess.cs` | `9922b3537e5f6910b28de1eaefcc64e1f5b3a3222f360fd95d80355979ce98d7` |
 | `bitirme/bitirme/Services/AppointmentRules.cs` | `43bfcdba5dbff88083e9679a131a0ad1680a6d066d577d5a911ce1199ad30c57` |

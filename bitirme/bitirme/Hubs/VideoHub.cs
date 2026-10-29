@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using bitirme.Data;
 using bitirme.Models;
 using bitirme.Services;
+using bitirme.Services.Localization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
@@ -42,14 +43,14 @@ namespace bitirme.Hubs
         {
             if (!int.TryParse(roomId, out var appointmentId))
             {
-                throw new HubException("Geçersiz görüşme odası.");
+                throw new HubException(SiteText.T("Geçersiz görüşme odası."));
             }
 
             var userIdValue = Context.User?.FindFirstValue(ClaimTypes.NameIdentifier);
             var role = Context.User?.FindFirstValue(ClaimTypes.Role);
             if (!int.TryParse(userIdValue, out var userId))
             {
-                throw new HubException("Bu görüşmeye erişim yetkiniz yok.");
+                throw new HubException(SiteText.T("Bu görüşmeye erişim yetkiniz yok."));
             }
 
             var appointment = await _context.Appointments
@@ -64,7 +65,7 @@ namespace bitirme.Hubs
             if (appointment == null || (role == AppRoles.Doctor &&
                 !await _context.Doctors.Visible(_time.GetUtcNow()).AnyAsync(d => d.Id == userId)))
             {
-                throw new HubException("Bu görüşmeye erişim yetkiniz yok.");
+                throw new HubException(SiteText.T("Bu görüşmeye erişim yetkiniz yok."));
             }
 
             // Oda yalnızca onaylı randevuda ve seans saatine yakın açılır (ISSUE-19).
@@ -107,7 +108,7 @@ namespace bitirme.Hubs
             EnsureJoined(roomId);
             if (Context.User?.FindFirstValue(ClaimTypes.Role) != AppRoles.Doctor)
             {
-                throw new HubException("Not gönderme yetkiniz yok.");
+                throw new HubException(SiteText.T("Not gönderme yetkiniz yok."));
             }
 
             // Not, önbellek aralığını beklemeden her seferinde yeniden denetlenir.
@@ -164,7 +165,7 @@ namespace bitirme.Hubs
         {
             if (!GetJoinedRooms().ContainsKey(roomId))
             {
-                throw new HubException("Bu görüşme odasına katılmadınız.");
+                throw new HubException(SiteText.T("Bu görüşme odasına katılmadınız."));
             }
         }
 

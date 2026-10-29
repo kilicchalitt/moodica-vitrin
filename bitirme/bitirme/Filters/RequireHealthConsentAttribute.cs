@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using bitirme.Models;
 using bitirme.Services;
+using bitirme.Services.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
@@ -13,8 +14,8 @@ namespace bitirme.Filters
     /// </summary>
     public sealed class RequireHealthConsentAttribute : TypeFilterAttribute
     {
-        public const string BlockedMessage =
-            "Sağlık verisi açık rızanızı geri aldığınız için bu işlem yapılamıyor. Dilerseniz Verilerim sayfasından rızanızı yeniden verebilirsiniz.";
+        public static string BlockedMessage =>
+            SiteText.T("Sağlık verisi açık rızanızı geri aldığınız için bu işlem yapılamıyor. Dilerseniz Verilerim sayfasından rızanızı yeniden verebilirsiniz.");
 
         public RequireHealthConsentAttribute() : base(typeof(Filter))
         {
