@@ -1,5 +1,6 @@
 using System.Collections.Concurrent;
 using System.Security.Cryptography;
+using bitirme.Services.Localization;
 
 namespace bitirme.Services.Payments
 {
@@ -113,17 +114,17 @@ namespace bitirme.Services.Payments
         public Task<PaymentVerifyResult> VerifyAsync(PaymentVerifyRequest request, CancellationToken cancellationToken = default) =>
             Task.FromResult(Find(request.Token) switch
             {
-                { } checkout when checkout.Amount != request.Amount => new PaymentVerifyResult(null, "Ödenen tutar beklenenle uyuşmuyor."),
+                { } checkout when checkout.Amount != request.Amount => new PaymentVerifyResult(null, SiteText.T("Ödenen tutar beklenenle uyuşmuyor.")),
                 { Succeeded: true } => new PaymentVerifyResult("fake-" + request.Token, null),
-                { Succeeded: false } => new PaymentVerifyResult(null, "Kart reddedildi (test ödemesi)."),
-                _ => new PaymentVerifyResult(null, "Ödeme tamamlanmadı.")
+                { Succeeded: false } => new PaymentVerifyResult(null, SiteText.T("Kart reddedildi (test ödemesi).")),
+                _ => new PaymentVerifyResult(null, SiteText.T("Ödeme tamamlanmadı."))
             });
 
         public Task<RefundResult> RefundAsync(string providerPaymentId, decimal amount, CancellationToken cancellationToken = default)
         {
             if (_failingRefunds.ContainsKey(providerPaymentId))
             {
-                return Task.FromResult(new RefundResult(null, "Sağlayıcı iadeyi reddetti (test)."));
+                return Task.FromResult(new RefundResult(null, SiteText.T("Sağlayıcı iadeyi reddetti (test).")));
             }
 
             _refunds[providerPaymentId] = amount;
@@ -141,13 +142,13 @@ namespace bitirme.Services.Payments
         public bool IsAvailable => false;
 
         public Task<PaymentStartResult> StartAsync(PaymentStartRequest request, CancellationToken cancellationToken = default) =>
-            Task.FromResult(new PaymentStartResult(null, null, "Ödeme sağlayıcısı ayarlı değil."));
+            Task.FromResult(new PaymentStartResult(null, null, SiteText.T("Ödeme sağlayıcısı ayarlı değil.")));
 
         public Task<PaymentVerifyResult> VerifyAsync(PaymentVerifyRequest request, CancellationToken cancellationToken = default) =>
-            Task.FromResult(new PaymentVerifyResult(null, "Ödeme sağlayıcısı ayarlı değil."));
+            Task.FromResult(new PaymentVerifyResult(null, SiteText.T("Ödeme sağlayıcısı ayarlı değil.")));
 
         public Task<RefundResult> RefundAsync(string providerPaymentId, decimal amount, CancellationToken cancellationToken = default) =>
-            Task.FromResult(new RefundResult(null, "Ödeme sağlayıcısı ayarlı değil."));
+            Task.FromResult(new RefundResult(null, SiteText.T("Ödeme sağlayıcısı ayarlı değil.")));
     }
 
     public static class PaymentServiceCollectionExtensions

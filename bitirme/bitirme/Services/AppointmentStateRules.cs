@@ -1,4 +1,5 @@
 using bitirme.Models;
+using bitirme.Services.Localization;
 
 namespace bitirme.Services
 {
@@ -25,7 +26,7 @@ namespace bitirme.Services
         {
             if (from is AppointmentStatus.Cancelled or AppointmentStatus.Completed)
             {
-                return "İptal edilmiş veya tamamlanmış randevu değiştirilemez.";
+                return SiteText.T("İptal edilmiş veya tamamlanmış randevu değiştirilemez.");
             }
 
             if (from == to)
@@ -36,42 +37,42 @@ namespace bitirme.Services
             // Ödeme bekleyen randevu yalnızca ödeme akışıyla onaylanır veya bırakılır (Faz 6; PaymentService).
             if (from == AppointmentStatus.AwaitingPayment)
             {
-                return "Bu randevunun ödemesi bekleniyor.";
+                return SiteText.T("Bu randevunun ödemesi bekleniyor.");
             }
 
             switch (to)
             {
                 case AppointmentStatus.Pending:
-                    return "Randevu beklemeye alınamaz.";
+                    return SiteText.T("Randevu beklemeye alınamaz.");
 
                 case AppointmentStatus.Approved:
                     // Yeni randevular otomatik onaylıdır; yalnızca Faz 4 öncesinden kalan bekleyenleri uzman onaylar.
-                    return actor == AppointmentActor.Doctor ? null : "Randevuyu yalnızca uzman onaylayabilir.";
+                    return actor == AppointmentActor.Doctor ? null : SiteText.T("Randevuyu yalnızca uzman onaylayabilir.");
 
                 case AppointmentStatus.Completed:
                     if (actor != AppointmentActor.Doctor || from != AppointmentStatus.Approved)
                     {
-                        return "Yalnızca uzman, onaylı bir randevuyu tamamlandı olarak işaretleyebilir.";
+                        return SiteText.T("Yalnızca uzman, onaylı bir randevuyu tamamlandı olarak işaretleyebilir.");
                     }
 
-                    return nowUtc < startUtc ? "Seans başlamadan randevu tamamlandı olarak işaretlenemez." : null;
+                    return nowUtc < startUtc ? SiteText.T("Seans başlamadan randevu tamamlandı olarak işaretlenemez.") : null;
 
                 case AppointmentStatus.Cancelled:
                     return actor switch
                     {
                         AppointmentActor.Patient when startUtc - nowUtc <= PatientCancellationDeadline =>
-                            $"Seansa {PatientCancellationDeadline.TotalHours:0} saatten az kaldığı için randevu panelden iptal edilemez.",
+                            SiteText.T("Seansa {0:0} saatten az kaldığı için randevu panelden iptal edilemez.", PatientCancellationDeadline.TotalHours),
                         AppointmentActor.Doctor when nowUtc >= AppointmentRules.EndOf(startUtc) =>
-                            "Bitmiş bir seans iptal edilemez.",
+                            SiteText.T("Bitmiş bir seans iptal edilemez."),
                         AppointmentActor.Doctor when (reason?.Trim().Length ?? 0) < MinCancellationReasonLength =>
-                            $"Lütfen danışana iletilecek iptal gerekçesini yazın (en az {MinCancellationReasonLength} karakter).",
+                            SiteText.T("Lütfen danışana iletilecek iptal gerekçesini yazın (en az {0} karakter).", MinCancellationReasonLength),
                         _ when reason?.Trim().Length > MaxCancellationReasonLength =>
-                            $"Gerekçe en fazla {MaxCancellationReasonLength} karakter olabilir.",
+                            SiteText.T("Gerekçe en fazla {0} karakter olabilir.", MaxCancellationReasonLength),
                         _ => null
                     };
 
                 default:
-                    return "Geçersiz durum.";
+                    return SiteText.T("Geçersiz durum.");
             }
         }
     }

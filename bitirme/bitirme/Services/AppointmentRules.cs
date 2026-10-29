@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using bitirme.Models;
+using bitirme.Services.Localization;
 
 namespace bitirme.Services
 {
@@ -28,7 +29,7 @@ namespace bitirme.Services
         /// <summary>Uzmanın seans notu için en fazla karakter (ISSUE-40).</summary>
         public const int MaxNoteLength = 4000;
 
-        public static string NoteTooLongMessage => $"Not en fazla {MaxNoteLength} karakter olabilir.";
+        public static string NoteTooLongMessage => SiteText.T("Not en fazla {0} karakter olabilir.", MaxNoteLength);
 
         /// <summary>Seansın bittiği an.</summary>
         public static DateTime EndOf(DateTime start) => start.AddMinutes(SessionMinutes);
@@ -93,9 +94,9 @@ namespace bitirme.Services
         /// <summary>Odaya girilemediğinde kullanıcıya gösterilen açıklama.</summary>
         public static string MeetingAccessMessage(MeetingAccess access) => access switch
         {
-            MeetingAccess.NotApproved => "Görüşme odası yalnızca onaylı randevularda açılır.",
-            MeetingAccess.TooEarly => $"Görüşme odası seanstan {MeetingOpensBefore.TotalMinutes:0} dakika önce açılır.",
-            MeetingAccess.Ended => "Bu seansın görüşme süresi doldu.",
+            MeetingAccess.NotApproved => SiteText.T("Görüşme odası yalnızca onaylı randevularda açılır."),
+            MeetingAccess.TooEarly => SiteText.T("Görüşme odası seanstan {0:0} dakika önce açılır.", MeetingOpensBefore.TotalMinutes),
+            MeetingAccess.Ended => SiteText.T("Bu seansın görüşme süresi doldu."),
             _ => string.Empty
         };
     }

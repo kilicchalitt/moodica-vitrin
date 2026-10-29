@@ -1,4 +1,5 @@
 using System.Globalization;
+using bitirme.Services.Localization;
 using Iyzipay.Model;
 using Iyzipay.Request;
 using Microsoft.Extensions.Options;
@@ -82,7 +83,7 @@ namespace bitirme.Services.Payments
             if (!IyzicoMapping.IsSuccess(form.Status) || string.IsNullOrEmpty(form.Token) || string.IsNullOrEmpty(form.PaymentPageUrl))
             {
                 logger.LogWarning("iyzico ödeme formu açılamadı (ödeme {PaymentId}): {Code} {Message}", request.PaymentId, form.ErrorCode, form.ErrorMessage);
-                return new PaymentStartResult(null, null, "Ödeme sayfası açılamadı.");
+                return new PaymentStartResult(null, null, SiteText.T("Ödeme sayfası açılamadı."));
             }
 
             return new PaymentStartResult(form.Token, form.PaymentPageUrl, null);
@@ -207,22 +208,22 @@ namespace bitirme.Services.Payments
         {
             if (!IsSuccess(status) || !string.Equals(paymentStatus, "SUCCESS", StringComparison.OrdinalIgnoreCase))
             {
-                return new PaymentVerifyResult(null, string.IsNullOrWhiteSpace(errorMessage) ? "Ödeme tamamlanmadı." : errorMessage);
+                return new PaymentVerifyResult(null, string.IsNullOrWhiteSpace(errorMessage) ? SiteText.T("Ödeme tamamlanmadı.") : errorMessage);
             }
 
             if (basketId != request.PaymentId.ToString(CultureInfo.InvariantCulture))
             {
-                return new PaymentVerifyResult(null, "Ödeme bu randevuya ait değil.");
+                return new PaymentVerifyResult(null, SiteText.T("Ödeme bu randevuya ait değil."));
             }
 
             if (!decimal.TryParse(paidPrice, NumberStyles.Number, CultureInfo.InvariantCulture, out var paid) || paid != request.Amount)
             {
-                return new PaymentVerifyResult(null, "Ödenen tutar beklenenle uyuşmuyor.");
+                return new PaymentVerifyResult(null, SiteText.T("Ödenen tutar beklenenle uyuşmuyor."));
             }
 
             if (string.IsNullOrEmpty(paymentId) || transactionIds is not [var transactionId] || string.IsNullOrEmpty(transactionId))
             {
-                return new PaymentVerifyResult(null, "iyzico ödeme ayrıntısı eksik.");
+                return new PaymentVerifyResult(null, SiteText.T("iyzico ödeme ayrıntısı eksik."));
             }
 
             return new PaymentVerifyResult($"{paymentId}/{transactionId}", null);

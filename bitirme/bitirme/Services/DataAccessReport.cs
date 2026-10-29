@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using bitirme.Data;
 using bitirme.Models;
+using bitirme.Services.Localization;
 using Microsoft.EntityFrameworkCore;
 
 namespace bitirme.Services
@@ -77,28 +78,28 @@ namespace bitirme.Services
         {
             var data = kind switch
             {
-                HealthDataKind.Complaint => "Randevu şikayetinizi",
+                HealthDataKind.Complaint => SiteText.T("Randevu şikayetinizi"),
                 HealthDataKind.SessionNote => "Seans notunuzu",
-                HealthDataKind.NeedsAssessment => "İhtiyaç analizi anketinizi",
-                HealthDataKind.ProgressCheck => "İlerleme ölçümlerinizi",
-                _ => "Sağlık verinizi"
+                HealthDataKind.NeedsAssessment => SiteText.T("İhtiyaç analizi anketinizi"),
+                HealthDataKind.ProgressCheck => SiteText.T("İlerleme ölçümlerinizi"),
+                _ => SiteText.T("Sağlık verinizi")
             };
-            return action == HealthDataAccessAction.Written ? $"{data} yazdı veya güncelledi" : $"{data} görüntüledi";
+            return action == HealthDataAccessAction.Written ? SiteText.T("{0} yazdı veya güncelledi", data) : SiteText.T("{0} görüntüledi", data);
         }
 
         public static string Describe(AdminActionType action) => action switch
         {
-            AdminActionType.DoctorApproved => "Uzman başvurunuzu onayladı",
-            AdminActionType.DoctorRejected => "Uzman başvurunuzu reddetti",
-            AdminActionType.UserSuspended => "Hesabınızı askıya aldı",
-            AdminActionType.UserReactivated => "Hesabınızı yeniden açtı",
-            AdminActionType.DocumentViewed => "Mesleki belgenizi görüntüledi",
-            AdminActionType.FeedbackCommentViewed => "Seans geri bildirimi yorumunuzu görüntüledi",
-            AdminActionType.TwoFactorReset => "İki aşamalı doğrulama kurtarma talebinizi onayladı (2FA sıfırlandı)",
-            AdminActionType.TwoFactorResetRejected => "İki aşamalı doğrulama kurtarma talebinizi reddetti",
-            AdminActionType.NoShowRefunded => "\"Uzman gelmedi\" bildiriminizi inceleyip seans ücretinizi iade etti",
-            AdminActionType.RefundRetried => "Ödeme kuruluşunun reddettiği iadenizi yeniden denemeye aldı",
-            _ => "Hesabınızla ilgili bir işlem yaptı"
+            AdminActionType.DoctorApproved => SiteText.T("Uzman başvurunuzu onayladı"),
+            AdminActionType.DoctorRejected => SiteText.T("Uzman başvurunuzu reddetti"),
+            AdminActionType.UserSuspended => SiteText.T("Hesabınızı askıya aldı"),
+            AdminActionType.UserReactivated => SiteText.T("Hesabınızı yeniden açtı"),
+            AdminActionType.DocumentViewed => SiteText.T("Mesleki belgenizi görüntüledi"),
+            AdminActionType.FeedbackCommentViewed => SiteText.T("Seans geri bildirimi yorumunuzu görüntüledi"),
+            AdminActionType.TwoFactorReset => SiteText.T("İki aşamalı doğrulama kurtarma talebinizi onayladı (2FA sıfırlandı)"),
+            AdminActionType.TwoFactorResetRejected => SiteText.T("İki aşamalı doğrulama kurtarma talebinizi reddetti"),
+            AdminActionType.NoShowRefunded => SiteText.T("\"Uzman gelmedi\" bildiriminizi inceleyip seans ücretinizi iade etti"),
+            AdminActionType.RefundRetried => SiteText.T("Ödeme kuruluşunun reddettiği iadenizi yeniden denemeye aldı"),
+            _ => SiteText.T("Hesabınızla ilgili bir işlem yaptı")
         };
     }
 }

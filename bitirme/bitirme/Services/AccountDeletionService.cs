@@ -2,6 +2,7 @@ using System;
 using System.Net;
 using System.Threading.Tasks;
 using bitirme.Models;
+using bitirme.Services.Localization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 
@@ -43,8 +44,8 @@ namespace bitirme.Services
 
         public static string? GetBlocker(User user) => user switch
         {
-            Admin => "Yönetici hesapları bu sayfadan silinmez.",
-            { DeletedAt: not null } => "Hesap zaten silinmiş.",
+            Admin => SiteText.T("Yönetici hesapları bu sayfadan silinmez."),
+            { DeletedAt: not null } => SiteText.T("Hesap zaten silinmiş."),
             _ => null
         };
 

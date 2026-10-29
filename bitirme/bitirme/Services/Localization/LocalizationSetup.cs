@@ -14,9 +14,12 @@ namespace bitirme.Services.Localization
             return services;
         }
 
-        /// <summary>Uzun metinler (hukuki metinler, kendine yardım) için dil son ekli görünüm: <c>_AydinlatmaMetni.en.cshtml</c>.</summary>
+        /// <summary>
+        /// Uzun metinler (hukuki metinler, kendine yardım) için dil son ekli görünüm: <c>_AydinlatmaMetni.en.cshtml</c>.
+        /// Form modellerindeki doğrulama mesajları ve alan adları da aynı sözlükten çevrilir.
+        /// </summary>
         public static IMvcBuilder AddMoodicaViewLocalization(this IMvcBuilder mvc) =>
-            mvc.AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix);
+            mvc.AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix).AddDataAnnotationsLocalization();
 
         /// <summary>
         /// İstek dili yalnızca dil çerezinden gelir (yoksa Türkçe; tarayıcı dili kullanılmaz, birincil kitle Türkiye).

@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Net;
 using System.Security.Claims;
 using System.Threading.RateLimiting;
+using bitirme.Services.Localization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.Extensions.Configuration;
@@ -37,7 +38,7 @@ namespace bitirme.Services
         /// <summary>Telefon doğrulama kodunu girme (tahmin denemesi; kullanıcı başına).</summary>
         public const string PhoneCodeVerify = "telefon-dogrulama";
 
-        public const string RejectedMessage = "Çok fazla deneme yapıldı. Lütfen birkaç dakika sonra tekrar deneyin.";
+        public static string RejectedMessage => SiteText.T("Çok fazla deneme yapıldı. Lütfen birkaç dakika sonra tekrar deneyin.");
 
         public static IServiceCollection AddMoodicaRateLimiting(this IServiceCollection services, IConfiguration configuration)
         {
@@ -98,14 +99,14 @@ namespace bitirme.Services
 
             response.ContentType = "text/html; charset=utf-8";
             await response.WriteAsync(
-                "<!DOCTYPE html><html lang=\"tr\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" +
-                "<title>Çok fazla deneme - Moodica</title></head>" +
+                $"<!DOCTYPE html><html lang=\"{SiteCultures.Current}\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" +
+                $"<title>{WebUtility.HtmlEncode(SiteText.T("Çok fazla deneme"))} - Moodica</title></head>" +
                 "<body style=\"margin:0;background:#F8F6EF;font-family:system-ui,sans-serif;color:#1C2733\">" +
                 "<div style=\"max-width:32rem;margin:4rem auto;padding:2rem;background:#fff;border:1px solid #E3DED0;border-radius:16px\">" +
                 "<p style=\"margin:0 0 1rem;font-family:Georgia,serif;font-size:1.4rem;color:#1460B0\">Moodica</p>" +
-                "<h1 style=\"margin:0 0 .75rem;font-family:Georgia,serif;font-weight:normal;font-size:1.6rem;color:#0A2E57\">Çok fazla deneme</h1>" +
+                $"<h1 style=\"margin:0 0 .75rem;font-family:Georgia,serif;font-weight:normal;font-size:1.6rem;color:#0A2E57\">{WebUtility.HtmlEncode(SiteText.T("Çok fazla deneme"))}</h1>" +
                 $"<p>{WebUtility.HtmlEncode(RejectedMessage)}</p>" +
-                "<p><a href=\"/\" style=\"color:#1460B0;font-weight:600\">Ana sayfaya dön</a></p></div>" +
+                $"<p><a href=\"/\" style=\"color:#1460B0;font-weight:600\">{WebUtility.HtmlEncode(SiteText.T("Ana sayfaya dön"))}</a></p></div>" +
                 "</body></html>", cancellationToken);
         }
     }

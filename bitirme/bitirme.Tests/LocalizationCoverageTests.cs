@@ -70,6 +70,42 @@ public partial class LocalizationCoverageTests
     }
 
     [Fact]
+    public void FormModelMessages_HaveAnEnglishVersion()
+    {
+        // Doğrulama mesajları ve alan adları AddDataAnnotationsLocalization ile sözlükten çevrilir.
+        var texts = typeof(SiteText).Assembly.GetTypes()
+            .SelectMany(t => t.GetProperties())
+            .SelectMany(p => p.GetCustomAttributes(inherit: true))
+            .SelectMany(a => a switch
+            {
+                System.ComponentModel.DataAnnotations.ValidationAttribute v when v.ErrorMessage != null => [v.ErrorMessage],
+                System.ComponentModel.DataAnnotations.DisplayAttribute d when d.Name != null => [d.Name],
+                _ => Array.Empty<string>()
+            })
+            .Distinct();
+
+        var missing = texts.Where(t => !English.ContainsKey(t)).ToList();
+        Assert.True(missing.Count == 0, "en.json'da karşılığı olmayan form metinleri: " + string.Join(" | ", missing));
+    }
+
+    [Fact]
+    public void StoredCancellationReasons_HaveAnEnglishVersion()
+    {
+        // Sistemin yazdığı iptal gerekçeleri Türkçe saklanır, danışan panelinde SiteText.T ile çevrilir.
+        string[] reasons =
+        [
+            bitirme.Services.AppointmentStatusService.SystemCancellationReason,
+            bitirme.Services.AppointmentStatusService.HealthConsentWithdrawnReason,
+            bitirme.Services.DoctorScheduleService.LeaveCancellationReason,
+            bitirme.Services.AccountDeletionService.PatientDeletedReason,
+            bitirme.Services.Payments.PaymentService.HoldExpiredReason,
+            bitirme.Services.Payments.PaymentService.AbandonedReason
+        ];
+
+        Assert.All(reasons, r => Assert.True(English.ContainsKey(r), "en.json'da yok: " + r));
+    }
+
+    [Fact]
     public void SiteText_ReturnsTurkishOutsideEnglishRequests()
     {
         using (SiteCultures.Use(SiteCultures.Turkish))

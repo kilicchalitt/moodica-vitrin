@@ -1,4 +1,5 @@
 using bitirme.Models;
+using bitirme.Services.Localization;
 
 namespace bitirme.Services
 {
@@ -40,15 +41,15 @@ namespace bitirme.Services
                 var label = DayName(range.Day);
                 if (range.Start.Minute != 0 || range.End.Minute != 0 || range.Start.Second != 0 || range.End.Second != 0)
                 {
-                    errors.Add($"{label}: saatler tam saat olmalı (seanslar saat başında başlar).");
+                    errors.Add(SiteText.T("{0}: saatler tam saat olmalı (seanslar saat başında başlar).", label));
                 }
                 else if (range.Start >= range.End)
                 {
-                    errors.Add($"{label}: bitiş saati başlangıçtan sonra olmalı.");
+                    errors.Add(SiteText.T("{0}: bitiş saati başlangıçtan sonra olmalı.", label));
                 }
                 else if (range.Start < EarliestStart || range.End > LatestEnd)
                 {
-                    errors.Add($"{label}: çalışma saatleri {EarliestStart:HH\\:mm}–{LatestEnd:HH\\:mm} arasında olmalı.");
+                    errors.Add(SiteText.T("{0}: çalışma saatleri {1:HH\\:mm}–{2:HH\\:mm} arasında olmalı.", label, EarliestStart, LatestEnd));
                 }
             }
 
@@ -57,12 +58,12 @@ namespace bitirme.Services
                 var ordered = day.OrderBy(r => r.Start).ToList();
                 if (ordered.Count > MaxRangesPerDay)
                 {
-                    errors.Add($"{DayName(day.Key)}: en fazla {MaxRangesPerDay} aralık girilebilir.");
+                    errors.Add(SiteText.T("{0}: en fazla {1} aralık girilebilir.", DayName(day.Key), MaxRangesPerDay));
                 }
 
                 if (ordered.Zip(ordered.Skip(1)).Any(pair => pair.Second.Start < pair.First.End))
                 {
-                    errors.Add($"{DayName(day.Key)}: aralıklar çakışıyor.");
+                    errors.Add(SiteText.T("{0}: aralıklar çakışıyor.", DayName(day.Key)));
                 }
             }
 
