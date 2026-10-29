@@ -4,14 +4,19 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `1d83e02a4f974eafcfc3baf597fef4b92459b564`
-- Kaynak commit tarihi: 2026-10-29T11:08:54+03:00
-- Dosya sayısı: 52
+- Kaynak commit: `93dab50ee826e9173a5bb58375b5fdba1c891b1a`
+- Kaynak commit tarihi: 2026-10-29T11:23:47+03:00
+- Dosya sayısı: 62
 
 | Dosya | SHA-256 |
 |---|---|
+| `.github/scripts/baglanti_denetimi.py` | `104db44de8af5f26c7683fbdcceb7c5fd8deb203ea13d98df0eecd066600e83e` |
+| `.github/workflows/vitrin-ci.yml` | `e771e258167cc258c1597305016d553d8084f2bd4d6a8a8c2cb7fb5603b9b55c` |
+| `.markdownlint-cli2.jsonc` | `9e0e6f487e90a6594f105136d8bbbea7769a0180e0a35e27ae4be8ba1f47b3d6` |
 | `Dockerfile` | `7459d37898fb068c5c18e9f2e3a9ce3566bfc2c6f217f2d3da32da6b7af6d674` |
 | `LICENSE` | `a76650c80b319661e895c59ac0c3de48f7c3bfa80675c2e1ac52c14ec69dd0f4` |
+| `README.en.md` | `bdc8be1827208a4fc77c3b93c4b737ce64d85fe2049dedf2f9d7028d10604a94` |
+| `README.md` | `528f2e9a084a3d3927725294fc3c3282f8b7a2cc37f27d46611bfe3e80c41b39` |
 | `bitirme/bitirme.IntegrationTests/AuthorizationTests.cs` | `591beb7ff6f0eeb9fb7bbfaa3a1fd7d9c55f374928f808968050c64f402bd479` |
 | `bitirme/bitirme.IntegrationTests/RateLimitTests.cs` | `523806b60e756f717d5a19f552894b777bcec4cbf8dd9ba2dc2fd04eccb2a17a` |
 | `bitirme/bitirme.IntegrationTests/SecurityHeadersTests.cs` | `48487cb19dad853fe4afae5ba19d8cf257ea43cbe1d8090af59bd7ae63b25c12` |
@@ -62,3 +67,8 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `bitirme/bitirme/bitirme.csproj` | `c85f553f8fc879241e0336896686f4ca0a550fd021b7d127f810f9ca12d18426` |
 | `deploy/Caddyfile` | `b7e2c80000778c65b686b816bf9a2aa4cbc83d1768bf9eaa47cbc3eb5fe1d18a` |
 | `docs/ana-proje-ci.yml` | `1995dd34ff5cde6859f13ac1716fc8a9edfd55fc3fd74ca7c2ce9f0c51c47644` |
+| `docs/ekran/ana-sayfa.jpg` | `533470790cd9739ed41a0cad8b861f6a22d465ec92a6a66c1bae7dffe6e82369` |
+| `docs/ekran/danisan-paneli.jpg` | `39e1ad06657881855e44d544e16bccab40a275997ed7ec42d1db8ac71f56ab06` |
+| `docs/ekran/telefon.jpg` | `ac896935c4e24bb9060788af074f5ea972377dbb4cba284d5745f27c0b3c988b` |
+| `docs/ekran/uzman-paneli.jpg` | `dbc94fbe6b9d4a0026ae77b341ea93cd45ab0a1a45746476f0702db0976f37d4` |
+| `docs/ekran/uzmanlar.jpg` | `eb8195cbef2ac188764991129ffc31e5d029c2aaebbd7faac33a06985e9ebd18` |

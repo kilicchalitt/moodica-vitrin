@@ -1,0 +1,34 @@
+name: Vitrin CI
+
+# Vitrin kodu çekirdek olmadan derlenmez; bu iş yalnızca bağlantıları, Markdown biçimini ve gizli bilgi taramasını denetler.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  denetim:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+
+      - name: Göreli bağlantılar ve çapalar
+        run: python .github/scripts/baglanti_denetimi.py .
+
+      - name: Markdown biçimi
+        uses: DavidAnson/markdownlint-cli2-action@v24.2.0
+        with:
+          globs: '**/*.md'
+
+      - name: Gizli bilgi taraması (bütün geçmiş)
+        run: docker run --rm -v "$PWD:/repo" ghcr.io/gitleaks/gitleaks:v8.30.1 git /repo --redact --verbose

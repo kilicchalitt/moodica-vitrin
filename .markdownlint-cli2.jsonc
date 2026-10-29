@@ -1,0 +1,9 @@
+// Vitrin Markdown kuralları (markdownlint-cli2). Uzun satırlar ve satır içi HTML (kaynakça çapaları) serbest.
+{
+  "config": {
+    "default": true,
+    "MD013": false,
+    "MD033": { "allowed_elements": ["a", "br"] },
+    "MD041": false
+  }
+}
