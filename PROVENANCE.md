@@ -4,13 +4,14 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `c5bcaa05e72cac6834f3dc08ce9e05f20bfd4d55`
-- Kaynak commit tarihi: 2026-10-29T09:30:20+03:00
-- Dosya sayısı: 51
+- Kaynak commit: `1d83e02a4f974eafcfc3baf597fef4b92459b564`
+- Kaynak commit tarihi: 2026-10-29T11:08:54+03:00
+- Dosya sayısı: 52
 
 | Dosya | SHA-256 |
 |---|---|
 | `Dockerfile` | `7459d37898fb068c5c18e9f2e3a9ce3566bfc2c6f217f2d3da32da6b7af6d674` |
+| `LICENSE` | `a76650c80b319661e895c59ac0c3de48f7c3bfa80675c2e1ac52c14ec69dd0f4` |
 | `bitirme/bitirme.IntegrationTests/AuthorizationTests.cs` | `591beb7ff6f0eeb9fb7bbfaa3a1fd7d9c55f374928f808968050c64f402bd479` |
 | `bitirme/bitirme.IntegrationTests/RateLimitTests.cs` | `523806b60e756f717d5a19f552894b777bcec4cbf8dd9ba2dc2fd04eccb2a17a` |
 | `bitirme/bitirme.IntegrationTests/SecurityHeadersTests.cs` | `48487cb19dad853fe4afae5ba19d8cf257ea43cbe1d8090af59bd7ae63b25c12` |
