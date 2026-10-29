@@ -10,7 +10,7 @@ namespace bitirme.Services
 
     /// <summary>
     /// Bütün e-postaların ortak görünümü (T2, DECISION-46): krem zemin, beyaz kart, mavi "Moodica" başlığı, serif başlık,
-    /// tonuna göre renkli şerit, alt bilgide acil durum notu. E-posta programları dış stil ve betik yüklemediği için stiller
+    /// tonuna göre renkli şerit, alt bilgide acil durum notu. Metinler o anki dildedir (alıcının dili, <c>RecipientScope</c>). E-posta programları dış stil ve betik yüklemediği için stiller
     /// satır içinde, düzen tablo ile; görsel ve dış kaynak yok (izleme pikseli de yok). <paramref name="bodyHtml"/> çağıranın
     /// kodladığı HTML'dir; kullanıcıdan gelen değerler çağıran tarafta HtmlEncode edilir.
     /// </summary>
@@ -40,10 +40,10 @@ namespace bitirme.Services
                 $"font-family:\"Segoe UI\",Arial,Helvetica,sans-serif; font-size:15px; line-height:1.6; color:{Ink};'>" +
                 $"<h1 style='margin:0 0 16px; font-family:Georgia,\"Times New Roman\",serif; font-weight:normal; font-size:24px; line-height:1.25; color:{accent};'>{title}</h1>" +
                 bodyHtml +
-                $"<p style='margin:24px 0 0; color:{Muted};'>Sağlıklı günler dileriz,<br>Moodica</p>" +
+                $"<p style='margin:24px 0 0; color:{Muted};'>{Localization.SiteText.T("Sağlıklı günler dileriz,<br>Moodica")}</p>" +
                 "</td></tr>" +
                 $"<tr><td style='padding:16px 4px 0; font-family:\"Segoe UI\",Arial,Helvetica,sans-serif; font-size:12px; line-height:1.5; color:{Muted};'>" +
-                "Moodica acil durum hizmeti değildir. Kendinizi ya da başkasını tehlikede hissediyorsanız hemen 112'yi arayın." +
+                Localization.SiteText.T("Moodica acil durum hizmeti değildir. Kendinizi ya da başkasını tehlikede hissediyorsanız hemen 112'yi arayın.") +
                 "</td></tr>" +
                 "</table></div>";
         }

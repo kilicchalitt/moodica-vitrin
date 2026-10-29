@@ -88,5 +88,11 @@ namespace bitirme.Services.Localization
             var text = SiteCultures.IsEnglish && _translations?.English.TryGetValue(turkish, out var english) == true ? english! : turkish;
             return arguments.Length == 0 ? text : string.Format(SiteCultures.CurrentCulture, text, arguments);
         }
+
+        /// <summary>
+        /// Çevrilmeden taşınan metin anahtarı: başka birine giden canlı bildirim gibi, çevirinin alıcının dilinde sonra
+        /// yapılacağı yerlerde kullanılır. Metni olduğu gibi döner; <c>LocalizationCoverageTests</c> karşılığını yine denetler.
+        /// </summary>
+        public static string Key(string turkish) => turkish;
     }
 }

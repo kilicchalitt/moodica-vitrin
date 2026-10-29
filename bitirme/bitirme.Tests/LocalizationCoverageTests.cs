@@ -15,7 +15,7 @@ public partial class LocalizationCoverageTests
     private static readonly Dictionary<string, string> English =
         JsonSerializer.Deserialize<Dictionary<string, string>>(File.ReadAllText(Path.Combine(AppDirectory, "Resources", "en.json")))!;
 
-    [GeneratedRegex("""(?:(?:\bL)\[|\bL\.GetString\(|SiteText\.T\()\s*"((?:[^"\\]|\\.)*)"(?=\s*[\],)])""")]
+    [GeneratedRegex("""(?:(?:\bL)\[|\bL\.GetString\(|SiteText\.(?:T|Key)\()\s*"((?:[^"\\]|\\.)*)"(?=\s*[\],)])""")]
     private static partial Regex KeyPattern();
 
     [GeneratedRegex("""ViewData\["Title"\]\s*=\s*"((?:[^"\\]|\\.)*)"\s*;""")]

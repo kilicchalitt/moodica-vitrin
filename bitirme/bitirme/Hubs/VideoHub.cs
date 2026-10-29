@@ -199,7 +199,7 @@ namespace bitirme.Hubs
             rooms.Remove(roomId);
             await Clients.Group(roomId).SendAsync("RoomClosed", RoomClosedMessage);
             await Groups.RemoveFromGroupAsync(Context.ConnectionId, roomId);
-            throw new HubException(RoomClosedMessage);
+            throw new HubException(SiteText.T(RoomClosedMessage));
         }
     }
 }

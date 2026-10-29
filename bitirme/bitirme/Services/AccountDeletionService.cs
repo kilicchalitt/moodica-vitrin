@@ -63,15 +63,24 @@ namespace bitirme.Services
 
             if (!string.IsNullOrWhiteSpace(user.Email))
             {
-                await _email.SendEmailAsync(user.Email, "Moodica hesabınız silindi",
-                    EmailLayout.Wrap($"Merhaba {WebUtility.HtmlEncode(user.FirstName)},",
-                    "<p style='margin:0 0 12px;'>Talebiniz üzerine Moodica hesabınız silindi; ad, e-posta ve telefon bilgileriniz kaldırıldı ve artık giriş yapılamaz. " +
-                    "Randevu ve sağlık kayıtlarınız yasal saklama süresi boyunca şifreli olarak tutulur, süre dolunca silinir.</p>" +
-                    // İade e-postası işçi çalıştığında adres anonimleştiği için gidemez; iade bilgisi burada verilir.
-                    (user is Patient && cancelled > 0
-                        ? $"<p style='margin:0 0 12px;'>Yaklaşan {cancelled} randevunuz iptal edildi; ödemesi alınmış randevuların ücretinin tamamı, ödeme yaptığınız karta birkaç iş günü içinde iade edilir.</p>"
-                        : string.Empty) +
-                    EmailLayout.Note("Bu işlemi siz yapmadıysanız bu e-postayı yanıtlayarak bize bildirin.")));
+                string subject, body;
+                using (RecipientScope.Use(user))
+                {
+                    subject = SiteText.T("Moodica hesabınız silindi");
+                    body = EmailLayout.Wrap(SiteText.T("Merhaba {0},", WebUtility.HtmlEncode(user.FirstName)),
+                        "<p style='margin:0 0 12px;'>" +
+                        SiteText.T("Talebiniz üzerine Moodica hesabınız silindi; ad, e-posta ve telefon bilgileriniz kaldırıldı ve artık giriş yapılamaz. Randevu ve sağlık kayıtlarınız yasal saklama süresi boyunca şifreli olarak tutulur, süre dolunca silinir.") +
+                        "</p>" +
+                        // İade e-postası işçi çalıştığında adres anonimleştiği için gidemez; iade bilgisi burada verilir.
+                        (user is Patient && cancelled > 0
+                            ? "<p style='margin:0 0 12px;'>" +
+                              SiteText.T("Yaklaşan {0} randevunuz iptal edildi; ödemesi alınmış randevuların ücretinin tamamı, ödeme yaptığınız karta birkaç iş günü içinde iade edilir.", cancelled) +
+                              "</p>"
+                            : string.Empty) +
+                        EmailLayout.Note(SiteText.T("Bu işlemi siz yapmadıysanız bu e-postayı yanıtlayarak bize bildirin.")));
+                }
+
+                await _email.SendEmailAsync(user.Email, subject, body);
             }
 
             var photo = (user as Doctor)?.PhotoFileName;
