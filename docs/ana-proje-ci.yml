@@ -87,6 +87,9 @@ jobs:
           pip install --disable-pip-version-check pytest==8.4.2
           python -m pytest tools/tests -q
 
+      - name: Kalp listesi çekirdekle güncel mi
+        run: python tools/vitrin_heart_uret.py --check
+
       - name: İzin listesi bugün temiz mi
         run: python tools/export_public.py --out "$RUNNER_TEMP/vitrin" --dry-run
 
