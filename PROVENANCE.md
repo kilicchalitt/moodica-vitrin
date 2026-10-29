@@ -4,8 +4,8 @@
 
 Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; elle düzenlenmez.
 
-- Kaynak commit: `422a1527776bd1467138aafeba8e31143d080080`
-- Kaynak commit tarihi: 2026-10-29T15:51:16+03:00
+- Kaynak commit: `84599cdd396140e2238b8d84b57aac3ee8c58bbb`
+- Kaynak commit tarihi: 2026-10-29T16:00:19+03:00
 - Dosya sayısı: 62
 
 | Dosya | SHA-256 |
@@ -69,6 +69,6 @@ Bu depo, private ana projeden `tools/export_public.py` ile otomatik üretilir; e
 | `docs/ana-proje-ci.yml` | `4db0e61bbc7cc38d851d63cf045f092a90e747f5d3ddf7a6d4ad3b0a253e8ed3` |
 | `docs/ekran/ana-sayfa.jpg` | `ac0f3b4a18121ef1602ac6d3fa1a1acaaf01b3cdffca93dbb4abddad03101329` |
 | `docs/ekran/danisan-paneli.jpg` | `39e1ad06657881855e44d544e16bccab40a275997ed7ec42d1db8ac71f56ab06` |
-| `docs/ekran/telefon.jpg` | `64fcfa361a7520987b5417032de4ce8e5d71e036d9cb381c3359da3014b5cebc` |
+| `docs/ekran/telefon.jpg` | `be0bc1349b4a68651ef2d21f50f6910726bcf6e8d40eee254e2e91ff45ab4e2f` |
 | `docs/ekran/uzman-paneli.jpg` | `dbc94fbe6b9d4a0026ae77b341ea93cd45ab0a1a45746476f0702db0976f37d4` |
 | `docs/ekran/uzmanlar.jpg` | `eb8195cbef2ac188764991129ffc31e5d029c2aaebbd7faac33a06985e9ebd18` |
